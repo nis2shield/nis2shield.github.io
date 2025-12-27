@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cryptographic Specification - NIS2 Shield</title>
+    <meta name="description" content="Encryption algorithms and key management for NIS2 Shield.">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=JetBrains+Mono:wght@400&display=swap"
+        rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+
+        code {
+            font-family: 'JetBrains Mono', monospace;
+        }
+
+        .gradient-text {
+            background: linear-gradient(to right, #60a5fa, #34d399);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        @media print {
+            body {
+                background: white !important;
+                color: black !important;
+            }
+
+            nav,
+            .no-print,
+            footer {
+                display: none !important;
+            }
+
+            h1,
+            h2,
+            h3 {
+                color: black !important;
+            }
+
+            .bg-slate-800\/50 {
+                background: #f5f5f5 !important;
+            }
+
+            .text-slate-300,
+            .text-slate-400 {
+                color: #333 !important;
+            }
+
+            .text-white {
+                color: black !important;
+            }
+        }
+    </style>
+</head>
+
+<body class="bg-slate-900 text-slate-300">
+
+    <!-- Navbar -->
+    <nav class="border-b border-slate-800 bg-slate-900/80 backdrop-blur sticky top-0 z-50 no-print">
+        <div class="container mx-auto px-6 py-4 flex justify-between items-center">
+            <a href="../../" class="flex items-center space-x-2">
+                <div class="w-8 h-8 rounded bg-teal-500 flex items-center justify-center">
+                    <i data-lucide="shield" class="w-5 h-5 text-white"></i>
+                </div>
+                <span class="text-xl font-bold text-white">NIS2<span class="text-teal-400">Shield</span></span>
+            </a>
+            <div class="hidden md:flex space-x-8">
+                <a href="../../" class="hover:text-teal-400 transition">Home</a>
+                <a href="../../auditor-kit/" class="hover:text-teal-400 transition">Auditor Kit</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Header -->
+    <header class="py-12 border-b border-slate-800">
+        <div class="container mx-auto px-6 max-w-4xl">
+            <div class="flex justify-between items-start flex-wrap gap-4">
+                <div>
+                    <h1 class="text-3xl md:text-4xl font-bold text-white mb-2">
+                        Cryptographic <span class="gradient-text">Specification</span>
+                    </h1>
+                    <p class="text-slate-400">
+                        Encryption algorithms, key management, and security parameters.
+                    </p>
+                </div>
+                <button onclick="window.print()"
+                    class="no-print flex items-center gap-2 px-4 py-2 bg-blue-500 text-white font-semibold rounded-lg hover:bg-blue-600 transition">
+                    <i data-lucide="download" class="w-4 h-4"></i>
+                    Download PDF
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <main class="py-12">
+        <div class="container mx-auto px-6 max-w-4xl">
+
+            <!-- Algorithm Summary -->
+            <section class="mb-12">
+                <h2 class="text-xl font-bold text-white mb-4">Algorithm Summary</h2>
+                <div class="overflow-x-auto">
+                    <table class="w-full text-sm">
+                        <thead>
+                            <tr class="border-b border-slate-700 text-slate-400">
+                                <th class="py-3 px-4 text-left">Component</th>
+                                <th class="py-3 px-4 text-left">Algorithm</th>
+                                <th class="py-3 px-4 text-left">Key Size</th>
+                                <th class="py-3 px-4 text-left">Mode</th>
+                            </tr>
+                        </thead>
+                        <tbody class="text-slate-300">
+                            <tr class="border-b border-slate-800">
+                                <td class="py-3 px-4">Log field encryption</td>
+                                <td class="py-3 px-4 text-blue-400">AES</td>
+                                <td class="py-3 px-4">128-bit</td>
+                                <td class="py-3 px-4">Fernet (CBC+HMAC)</td>
+                            </tr>
+                            <tr class="border-b border-slate-800">
+                                <td class="py-3 px-4">Cloud backup payload</td>
+                                <td class="py-3 px-4 text-blue-400">AES</td>
+                                <td class="py-3 px-4">256-bit</td>
+                                <td class="py-3 px-4">GCM</td>
+                            </tr>
+                            <tr class="border-b border-slate-800">
+                                <td class="py-3 px-4">Cloud backup key wrap</td>
+                                <td class="py-3 px-4 text-purple-400">RSA</td>
+                                <td class="py-3 px-4">2048-bit</td>
+                                <td class="py-3 px-4">OAEP-SHA256</td>
+                            </tr>
+                            <tr class="border-b border-slate-800">
+                                <td class="py-3 px-4">Log signing</td>
+                                <td class="py-3 px-4 text-green-400">HMAC</td>
+                                <td class="py-3 px-4">256-bit</td>
+                                <td class="py-3 px-4">SHA-256</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+
+            <!-- Hybrid Encryption -->
+            <section class="mb-12">
+                <h2 class="text-xl font-bold text-white mb-4">Hybrid Encryption (Zero-Trust Backup)</h2>
+                <div class="bg-slate-800/50 rounded-xl p-6 border border-slate-700 mb-6">
+                    <pre class="text-sm text-slate-300 overflow-x-auto"><code>┌─────────────────────────────────────────────────────────────┐
+│                     Encryption Flow                          │
+│                                                              │
+│  Plaintext → [Generate Session Key] → AES-256-GCM Encrypt   │
+│                      │                        │              │
+│                      ▼                        ▼              │
+│              RSA-OAEP Wrap Key          Ciphertext          │
+│                      │                        │              │
+│                      └────────┬───────────────┘              │
+│                               ▼                              │
+│                    Encrypted Envelope (JSON)                 │
+│     { encrypted_data, encrypted_key, iv, tag, key_id }      │
+└─────────────────────────────────────────────────────────────┘</code></pre>
+                </div>
+
+                <h3 class="text-lg font-semibold text-white mb-3">Security Properties</h3>
+                <ul class="space-y-2 text-slate-300">
+                    <li class="flex items-center gap-2">
+                        <i data-lucide="check-circle" class="w-5 h-5 text-green-400"></i>
+                        <span><strong>Forward Secrecy:</strong> Unique session key per message</span>
+                    </li>
+                    <li class="flex items-center gap-2">
+                        <i data-lucide="check-circle" class="w-5 h-5 text-green-400"></i>
+                        <span><strong>Authenticated Encryption:</strong> GCM provides integrity</span>
+                    </li>
+                    <li class="flex items-center gap-2">
+                        <i data-lucide="check-circle" class="w-5 h-5 text-green-400"></i>
+                        <span><strong>Zero-Trust Cloud:</strong> Private key never in cloud</span>
+                    </li>
+                    <li class="flex items-center gap-2">
+                        <i data-lucide="check-circle" class="w-5 h-5 text-green-400"></i>
+                        <span><strong>Key Rotation:</strong> key_id enables historic decryption</span>
+                    </li>
+                </ul>
+            </section>
+
+            <!-- Key Management -->
+            <section class="mb-12">
+                <h2 class="text-xl font-bold text-white mb-4">Key Management</h2>
+
+                <div class="grid md:grid-cols-2 gap-6">
+                    <div class="bg-slate-800/50 rounded-xl p-6 border border-slate-700">
+                        <h3 class="text-lg font-semibold text-white mb-3">RSA Key Pair</h3>
+                        <div class="space-y-2 text-sm">
+                            <div class="flex justify-between">
+                                <span class="text-slate-400">Public Key</span>
+                                <span class="text-green-400">In container</span>
+                            </div>
+                            <div class="flex justify-between">
+                                <span class="text-slate-400">Private Key</span>
+                                <span class="text-red-400">OFFLINE only</span>
+                            </div>
+                            <div class="flex justify-between">
+                                <span class="text-slate-400">Rotation</span>
+                                <span class="text-slate-300">Annual</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="bg-slate-800/50 rounded-xl p-6 border border-slate-700">
+                        <h3 class="text-lg font-semibold text-white mb-3">Session Keys</h3>
+                        <div class="space-y-2 text-sm">
+                            <div class="flex justify-between">
+                                <span class="text-slate-400">Generation</span>
+                                <span class="text-slate-300">CSPRNG</span>
+                            </div>
+                            <div class="flex justify-between">
+                                <span class="text-slate-400">Lifetime</span>
+                                <span class="text-slate-300">Single message</span>
+                            </div>
+                            <div class="flex justify-between">
+                                <span class="text-slate-400">Storage</span>
+                                <span class="text-slate-300">Wrapped in envelope</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Key Generation -->
+            <section class="mb-12">
+                <h2 class="text-xl font-bold text-white mb-4">Key Generation Commands</h2>
+                <div class="bg-slate-800 rounded-xl p-6 border border-slate-700">
+                    <pre class="text-sm text-slate-300 overflow-x-auto"><code># Generate RSA private key (KEEP OFFLINE!)
+openssl genrsa -out private.pem 2048
+
+# Extract public key
+openssl rsa -in private.pem -pubout -out public.pem
+
+# Verify key
+openssl rsa -in private.pem -check
+
+# Generate Fernet key for Django
+python -c "from cryptography.fernet import Fernet; print(Fernet.generate_key().decode())"</code></pre>
+                </div>
+            </section>
+
+            <!-- TLS Requirements -->
+            <section class="mb-12">
+                <h2 class="text-xl font-bold text-white mb-4">TLS Requirements</h2>
+                <div class="overflow-x-auto">
+                    <table class="w-full text-sm">
+                        <thead>
+                            <tr class="border-b border-slate-700 text-slate-400">
+                                <th class="py-3 px-4 text-left">Connection</th>
+                                <th class="py-3 px-4 text-left">Protocol</th>
+                                <th class="py-3 px-4 text-left">Min Version</th>
+                            </tr>
+                        </thead>
+                        <tbody class="text-slate-300">
+                            <tr class="border-b border-slate-800">
+                                <td class="py-3 px-4">HTTPS (Ingress)</td>
+                                <td class="py-3 px-4">TLS</td>
+                                <td class="py-3 px-4">1.2</td>
+                            </tr>
+                            <tr class="border-b border-slate-800">
+                                <td class="py-3 px-4">Database</td>
+                                <td class="py-3 px-4">TLS</td>
+                                <td class="py-3 px-4">1.2</td>
+                            </tr>
+                            <tr class="border-b border-slate-800">
+                                <td class="py-3 px-4">SIEM forwarding</td>
+                                <td class="py-3 px-4">TLS</td>
+                                <td class="py-3 px-4">1.2</td>
+                            </tr>
+                            <tr class="border-b border-slate-800">
+                                <td class="py-3 px-4">Cloud backup API</td>
+                                <td class="py-3 px-4">TLS</td>
+                                <td class="py-3 px-4">1.2</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+
+            <!-- Compliance -->
+            <section>
+                <h2 class="text-xl font-bold text-white mb-4">Standards Compliance</h2>
+                <div class="grid md:grid-cols-2 gap-4">
+                    <div class="bg-slate-800/50 rounded-lg p-4 border border-slate-700">
+                        <div class="text-sm text-slate-400">NIST SP 800-38D</div>
+                        <div class="text-white">GCM Mode ✅</div>
+                    </div>
+                    <div class="bg-slate-800/50 rounded-lg p-4 border border-slate-700">
+                        <div class="text-sm text-slate-400">NIST SP 800-57</div>
+                        <div class="text-white">Key Management ✅</div>
+                    </div>
+                    <div class="bg-slate-800/50 rounded-lg p-4 border border-slate-700">
+                        <div class="text-sm text-slate-400">FIPS 140-2</div>
+                        <div class="text-white">Approved Algorithms ✅</div>
+                    </div>
+                    <div class="bg-slate-800/50 rounded-lg p-4 border border-slate-700">
+                        <div class="text-sm text-slate-400">NIS2 Art. 21(f)</div>
+                        <div class="text-white">Cryptography Policies ✅</div>
+                    </div>
+                </div>
+            </section>
+
+        </div>
+    </main>
+
+    <footer class="border-t border-slate-800 py-12 text-center text-slate-500 no-print">
+        <p>© 2025 NIS2 Shield. <a href="https://github.com/nis2shield/infrastructure" class="text-teal-400">GitHub</a>
+        </p>
+    </footer>
+
+    <script>lucide.createIcons();</script>
+</body>
+
+</html>

@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CIS Benchmark Compliance - NIS2 Shield</title>
+    <meta name="description" content="CIS Docker and Kubernetes benchmark compliance for NIS2 Shield.">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+
+        .gradient-text {
+            background: linear-gradient(to right, #a855f7, #60a5fa);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        @media print {
+            body {
+                background: white !important;
+                color: black !important;
+            }
+
+            nav,
+            .no-print,
+            footer {
+                display: none !important;
+            }
+
+            .print-break {
+                page-break-before: always;
+            }
+
+            table {
+                font-size: 9pt;
+            }
+
+            h1,
+            h2 {
+                color: black !important;
+            }
+
+            .bg-slate-800\/50 {
+                background: white !important;
+            }
+
+            .border-slate-700 {
+                border-color: #ccc !important;
+            }
+
+            .text-slate-300,
+            .text-slate-400 {
+                color: #333 !important;
+            }
+
+            .text-white {
+                color: black !important;
+            }
+        }
+    </style>
+</head>
+
+<body class="bg-slate-900 text-slate-300">
+
+    <!-- Navbar -->
+    <nav class="border-b border-slate-800 bg-slate-900/80 backdrop-blur sticky top-0 z-50 no-print">
+        <div class="container mx-auto px-6 py-4 flex justify-between items-center">
+            <a href="../../" class="flex items-center space-x-2">
+                <div class="w-8 h-8 rounded bg-teal-500 flex items-center justify-center">
+                    <i data-lucide="shield" class="w-5 h-5 text-white"></i>
+                </div>
+                <span class="text-xl font-bold text-white">NIS2<span class="text-teal-400">Shield</span></span>
+            </a>
+            <div class="hidden md:flex space-x-8">
+                <a href="../../" class="hover:text-teal-400 transition">Home</a>
+                <a href="../../auditor-kit/" class="hover:text-teal-400 transition">Auditor Kit</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Header -->
+    <header class="py-12 border-b border-slate-800">
+        <div class="container mx-auto px-6 max-w-4xl">
+            <div class="flex justify-between items-start flex-wrap gap-4">
+                <div>
+                    <h1 class="text-3xl md:text-4xl font-bold text-white mb-2">
+                        CIS Benchmark <span class="gradient-text">Compliance</span>
+                    </h1>
+                    <p class="text-slate-400">
+                        Self-assessment against CIS Docker v1.6 and Kubernetes v1.8 benchmarks.
+                    </p>
+                </div>
+                <button onclick="window.print()"
+                    class="no-print flex items-center gap-2 px-4 py-2 bg-purple-500 text-white font-semibold rounded-lg hover:bg-purple-600 transition">
+                    <i data-lucide="download" class="w-4 h-4"></i>
+                    Download PDF
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <main class="py-12">
+        <div class="container mx-auto px-6 max-w-4xl">
+
+            <!-- Summary -->
+            <div class="bg-slate-800/50 rounded-xl p-6 border border-slate-700 mb-12">
+                <div class="grid md:grid-cols-2 gap-8">
+                    <div class="text-center">
+                        <div class="text-sm text-purple-400 mb-2">CIS Docker v1.6</div>
+                        <div class="text-4xl font-bold text-white">38/46</div>
+                        <div class="text-slate-400">controls pass</div>
+                    </div>
+                    <div class="text-center">
+                        <div class="text-sm text-blue-400 mb-2">CIS Kubernetes v1.8</div>
+                        <div class="text-4xl font-bold text-white">18/20</div>
+                        <div class="text-slate-400">controls pass</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Docker Section 4 -->
+            <section class="mb-12">
+                <h2 class="text-xl font-bold text-white mb-4">Docker: Container Images (Section 4)</h2>
+                <div class="overflow-x-auto">
+                    <table class="w-full text-sm">
+                        <thead>
+                            <tr class="border-b border-slate-700 text-slate-400">
+                                <th class="py-3 px-3 text-left">#</th>
+                                <th class="py-3 px-3 text-left">Recommendation</th>
+                                <th class="py-3 px-3 text-left w-20">Status</th>
+                            </tr>
+                        </thead>
+                        <tbody class="text-slate-300">
+                            <tr class="border-b border-slate-800">
+                                <td class="py-3 px-3">4.1</td>
+                                <td class="py-3 px-3">User for container created</td>
+                                <td class="py-3 px-3 text-green-400">✅</td>
+                            </tr>
+                            <tr class="border-b border-slate-800">
+                                <td class="py-3 px-3">4.2</td>
+                                <td class="py-3 px-3">Trusted base images only</td>
+                                <td class="py-3 px-3 text-green-400">✅</td>
+                            </tr>
+                            <tr class="border-b border-slate-800">
+                                <td class="py-3 px-3">4.3</td>
+                                <td class="py-3 px-3">Unnecessary packages not installed</td>
+                                <td class="py-3 px-3 text-green-400">✅</td>
+                            </tr>
+                            <tr class="border-b border-slate-800">
+                                <td class="py-3 px-3">4.4</td>
+                                <td class="py-3 px-3">Images scanned and rebuilt</td>
+                                <td class="py-3 px-3 text-yellow-400">⚠️</td>
+                            </tr>
+                            <tr class="border-b border-slate-800">
+                                <td class="py-3 px-3">4.6</td>
+                                <td class="py-3 px-3">HEALTHCHECK added</td>
+                                <td class="py-3 px-3 text-green-400">✅</td>
+                            </tr>
+                            <tr class="border-b border-slate-800">
+                                <td class="py-3 px-3">4.8</td>
+                                <td class="py-3 px-3">setuid/setgid removed</td>
+                                <td class="py-3 px-3 text-green-400">✅</td>
+                            </tr>
+                            <tr class="border-b border-slate-800">
+                                <td class="py-3 px-3">4.9</td>
+                                <td class="py-3 px-3">COPY used instead of ADD</td>
+                                <td class="py-3 px-3 text-green-400">✅</td>
+                            </tr>
+                            <tr class="border-b border-slate-800">
+                                <td class="py-3 px-3">4.10</td>
+                                <td class="py-3 px-3">Secrets not in Dockerfiles</td>
+                                <td class="py-3 px-3 text-green-400">✅</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+
+            <!-- Docker Section 5 -->
+            <section class="mb-12">
+                <h2 class="text-xl font-bold text-white mb-4">Docker: Container Runtime (Section 5)</h2>
+                <div class="overflow-x-auto">
+                    <table class="w-full text-sm">
+                        <thead>
+                            <tr class="border-b border-slate-700 text-slate-400">
+                                <th class="py-3 px-3 text-left">#</th>
+                                <th class="py-3 px-3 text-left">Recommendation</th>
+                                <th class="py-3 px-3 text-left w-20">Status</th>
+                            </tr>
+                        </thead>
+                        <tbody class="text-slate-300">
+                            <tr class="border-b border-slate-800">
+                                <td class="py-3 px-3">5.3</td>
+                                <td class="py-3 px-3">Kernel capabilities restricted</td>
+                                <td class="py-3 px-3 text-green-400">✅</td>
+                            </tr>
+                            <tr class="border-b border-slate-800">
+                                <td class="py-3 px-3">5.4</td>
+                                <td class="py-3 px-3">Privileged containers not used</td>
+                                <td class="py-3 px-3 text-green-400">✅</td>
+                            </tr>
+                            <tr class="border-b border-slate-800">
+                                <td class="py-3 px-3">5.5</td>
+                                <td class="py-3 px-3">Sensitive host dirs not mounted</td>
+                                <td class="py-3 px-3 text-green-400">✅</td>
+                            </tr>
+                            <tr class="border-b border-slate-800">
+                                <td class="py-3 px-3">5.6</td>
+                                <td class="py-3 px-3">SSH not running in containers</td>
+                                <td class="py-3 px-3 text-green-400">✅</td>
+                            </tr>
+                            <tr class="border-b border-slate-800">
+                                <td class="py-3 px-3">5.7</td>
+                                <td class="py-3 px-3">Privileged ports not mapped</td>
+                                <td class="py-3 px-3 text-green-400">✅</td>
+                            </tr>
+                            <tr class="border-b border-slate-800">
+                                <td class="py-3 px-3">5.12</td>
+                                <td class="py-3 px-3">Root filesystem read-only</td>
+                                <td class="py-3 px-3 text-green-400">✅</td>
+                            </tr>
+                            <tr class="border-b border-slate-800">
+                                <td class="py-3 px-3">5.21</td>
+                                <td class="py-3 px-3">Default seccomp profile</td>
+                                <td class="py-3 px-3 text-green-400">✅</td>
+                            </tr>
+                            <tr class="border-b border-slate-800">
+                                <td class="py-3 px-3">5.25</td>
+                                <td class="py-3 px-3">No additional privileges</td>
+                                <td class="py-3 px-3 text-green-400">✅</td>
+                            </tr>
+                            <tr class="border-b border-slate-800">
+                                <td class="py-3 px-3">5.28</td>
+                                <td class="py-3 px-3">Default bridge not used</td>
+                                <td class="py-3 px-3 text-green-400">✅</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+
+            <!-- Kubernetes Section 5 -->
+            <section class="mb-12 print-break">
+                <h2 class="text-xl font-bold text-white mb-4">Kubernetes: Policies (Section 5)</h2>
+                <div class="overflow-x-auto">
+                    <table class="w-full text-sm">
+                        <thead>
+                            <tr class="border-b border-slate-700 text-slate-400">
+                                <th class="py-3 px-3 text-left">#</th>
+                                <th class="py-3 px-3 text-left">Recommendation</th>
+                                <th class="py-3 px-3 text-left w-20">Status</th>
+                            </tr>
+                        </thead>
+                        <tbody class="text-slate-300">
+                            <tr class="border-b border-slate-800">
+                                <td class="py-3 px-3">5.1.5</td>
+                                <td class="py-3 px-3">Default service account not used</td>
+                                <td class="py-3 px-3 text-green-400">✅</td>
+                            </tr>
+                            <tr class="border-b border-slate-800">
+                                <td class="py-3 px-3">5.2.1</td>
+                                <td class="py-3 px-3">Minimize privileged containers</td>
+                                <td class="py-3 px-3 text-green-400">✅</td>
+                            </tr>
+                            <tr class="border-b border-slate-800">
+                                <td class="py-3 px-3">5.2.4</td>
+                                <td class="py-3 px-3">Minimize allowPrivilegeEscalation</td>
+                                <td class="py-3 px-3 text-green-400">✅</td>
+                            </tr>
+                            <tr class="border-b border-slate-800">
+                                <td class="py-3 px-3">5.2.5</td>
+                                <td class="py-3 px-3">Minimize root containers</td>
+                                <td class="py-3 px-3 text-green-400">✅</td>
+                            </tr>
+                            <tr class="border-b border-slate-800">
+                                <td class="py-3 px-3">5.2.6</td>
+                                <td class="py-3 px-3">Minimize NET_RAW capability</td>
+                                <td class="py-3 px-3 text-green-400">✅</td>
+                            </tr>
+                            <tr class="border-b border-slate-800">
+                                <td class="py-3 px-3">5.2.8</td>
+                                <td class="py-3 px-3">Read-only root filesystem</td>
+                                <td class="py-3 px-3 text-green-400">✅</td>
+                            </tr>
+                            <tr class="border-b border-slate-800">
+                                <td class="py-3 px-3">5.3.1</td>
+                                <td class="py-3 px-3">NetworkPolicies defined</td>
+                                <td class="py-3 px-3 text-green-400">✅</td>
+                            </tr>
+                            <tr class="border-b border-slate-800">
+                                <td class="py-3 px-3">5.3.2</td>
+                                <td class="py-3 px-3">Default deny ingress</td>
+                                <td class="py-3 px-3 text-green-400">✅</td>
+                            </tr>
+                            <tr class="border-b border-slate-800">
+                                <td class="py-3 px-3">5.4.1</td>
+                                <td class="py-3 px-3">Secrets instead of env vars</td>
+                                <td class="py-3 px-3 text-green-400">✅</td>
+                            </tr>
+                            <tr class="border-b border-slate-800">
+                                <td class="py-3 px-3">6.1</td>
+                                <td class="py-3 px-3">Seccomp profile set</td>
+                                <td class="py-3 px-3 text-green-400">✅</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+
+            <!-- Legend -->
+            <div class="bg-slate-800/50 rounded-xl p-6 border border-slate-700">
+                <h3 class="text-lg font-bold text-white mb-4">Legend</h3>
+                <div class="flex flex-wrap gap-6">
+                    <div class="flex items-center gap-2">
+                        <span class="text-green-400">✅</span>
+                        <span>Compliant</span>
+                    </div>
+                    <div class="flex items-center gap-2">
+                        <span class="text-yellow-400">⚠️</span>
+                        <span>Partial / Recommended</span>
+                    </div>
+                    <div class="flex items-center gap-2">
+                        <span class="text-slate-400">ℹ️</span>
+                        <span>Host / Cluster responsibility</span>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </main>
+
+    <footer class="border-t border-slate-800 py-12 text-center text-slate-500 no-print">
+        <p>© 2025 NIS2 Shield. <a href="https://github.com/nis2shield/infrastructure" class="text-teal-400">GitHub</a>
+        </p>
+    </footer>
+
+    <script>lucide.createIcons();</script>
+</body>
+
+</html>

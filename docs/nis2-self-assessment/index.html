@@ -1,0 +1,647 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NIS2 Self-Assessment Checklist - NIS2 Shield</title>
+    <meta name="description" content="NIS2 Directive Article 21 compliance checklist for auditors and procurement.">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=JetBrains+Mono:wght@400&display=swap"
+        rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+
+        .gradient-text {
+            background: linear-gradient(to right, #2dd4bf, #60a5fa);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        /* Print styles for PDF export */
+        @media print {
+            body {
+                background: white !important;
+                color: black !important;
+            }
+
+            nav,
+            .no-print,
+            footer {
+                display: none !important;
+            }
+
+            .print-break {
+                page-break-before: always;
+            }
+
+            table {
+                font-size: 10pt;
+            }
+
+            h1,
+            h2,
+            h3 {
+                color: black !important;
+            }
+
+            a {
+                color: black !important;
+                text-decoration: none !important;
+            }
+
+            .bg-slate-800\/50,
+            .bg-slate-900 {
+                background: white !important;
+            }
+
+            .border-slate-700,
+            .border-slate-800 {
+                border-color: #ccc !important;
+            }
+
+            .text-slate-300,
+            .text-slate-400 {
+                color: #333 !important;
+            }
+
+            .text-white {
+                color: black !important;
+            }
+        }
+    </style>
+</head>
+
+<body class="bg-slate-900 text-slate-300">
+
+    <!-- Navbar (hidden in print) -->
+    <nav class="border-b border-slate-800 bg-slate-900/80 backdrop-blur sticky top-0 z-50 no-print">
+        <div class="container mx-auto px-6 py-4 flex justify-between items-center">
+            <a href="../" class="flex items-center space-x-2">
+                <div class="w-8 h-8 rounded bg-teal-500 flex items-center justify-center">
+                    <i data-lucide="shield" class="w-5 h-5 text-white"></i>
+                </div>
+                <span class="text-xl font-bold text-white">NIS2<span class="text-teal-400">Shield</span></span>
+            </a>
+            <div class="hidden md:flex space-x-8">
+                <a href="../" class="hover:text-teal-400 transition">Home</a>
+                <a href="../auditor-kit/" class="hover:text-teal-400 transition">Auditor Kit</a>
+                <a href="https://github.com/nis2shield/infrastructure" class="hover:text-teal-400 transition">GitHub</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Header -->
+    <header class="py-12 border-b border-slate-800">
+        <div class="container mx-auto px-6 max-w-4xl">
+            <div class="flex justify-between items-start flex-wrap gap-4">
+                <div>
+                    <div
+                        class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-green-900/30 text-green-400 text-sm font-medium mb-4 no-print">
+                        <i data-lucide="check-circle" class="w-4 h-4"></i>
+                        95% Compliant
+                    </div>
+                    <h1 class="text-3xl md:text-4xl font-bold text-white mb-2">
+                        NIS2 Self-Assessment <span class="gradient-text">Checklist</span>
+                    </h1>
+                    <p class="text-slate-400">
+                        Compliance verification for NIS2 Directive Article 21 & 23 requirements.
+                    </p>
+                </div>
+                <button onclick="window.print()"
+                    class="no-print flex items-center gap-2 px-4 py-2 bg-teal-500 text-white font-semibold rounded-lg hover:bg-teal-600 transition">
+                    <i data-lucide="download" class="w-4 h-4"></i>
+                    Download PDF
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Content -->
+    <main class="py-12">
+        <div class="container mx-auto px-6 max-w-4xl">
+
+            <!-- Summary Box -->
+            <div class="bg-slate-800/50 rounded-xl p-6 border border-slate-700 mb-12">
+                <h2 class="text-xl font-bold text-white mb-4">Compliance Summary</h2>
+                <div class="grid grid-cols-2 md:grid-cols-4 gap-4 text-center">
+                    <div>
+                        <div class="text-3xl font-bold text-teal-400">42</div>
+                        <div class="text-sm text-slate-400">Total Requirements</div>
+                    </div>
+                    <div>
+                        <div class="text-3xl font-bold text-green-400">40</div>
+                        <div class="text-sm text-slate-400">Compliant</div>
+                    </div>
+                    <div>
+                        <div class="text-3xl font-bold text-yellow-400">2</div>
+                        <div class="text-sm text-slate-400">Partial</div>
+                    </div>
+                    <div>
+                        <div class="text-3xl font-bold text-red-400">0</div>
+                        <div class="text-sm text-slate-400">Gaps</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Article 21(a) -->
+            <section class="mb-12">
+                <h2 class="text-xl font-bold text-white mb-2">Article 21(a) - Risk Analysis</h2>
+                <p class="text-slate-400 text-sm mb-4 italic">"Policies on risk analysis and information system
+                    security"</p>
+
+                <div class="overflow-x-auto">
+                    <table class="w-full text-sm">
+                        <thead>
+                            <tr class="border-b border-slate-700 text-slate-400">
+                                <th class="py-3 px-3 text-left w-12">#</th>
+                                <th class="py-3 px-3 text-left">Requirement</th>
+                                <th class="py-3 px-3 text-left">Implementation</th>
+                                <th class="py-3 px-3 text-left w-20">Status</th>
+                            </tr>
+                        </thead>
+                        <tbody class="text-slate-300">
+                            <tr class="border-b border-slate-800">
+                                <td class="py-3 px-3">21a.1</td>
+                                <td class="py-3 px-3">Risk analysis performed</td>
+                                <td class="py-3 px-3">Threat model in SECURITY.md</td>
+                                <td class="py-3 px-3 text-green-400">✅</td>
+                            </tr>
+                            <tr class="border-b border-slate-800">
+                                <td class="py-3 px-3">21a.2</td>
+                                <td class="py-3 px-3">Security policies defined</td>
+                                <td class="py-3 px-3">CIS_COMPLIANCE.md</td>
+                                <td class="py-3 px-3 text-green-400">✅</td>
+                            </tr>
+                            <tr class="border-b border-slate-800">
+                                <td class="py-3 px-3">21a.3</td>
+                                <td class="py-3 px-3">Attack surface minimized</td>
+                                <td class="py-3 px-3">Read-only containers</td>
+                                <td class="py-3 px-3 text-green-400">✅</td>
+                            </tr>
+                            <tr class="border-b border-slate-800">
+                                <td class="py-3 px-3">21a.4</td>
+                                <td class="py-3 px-3">Configuration hardening</td>
+                                <td class="py-3 px-3">Non-root, no-new-privileges</td>
+                                <td class="py-3 px-3 text-green-400">✅</td>
+                            </tr>
+                            <tr class="border-b border-slate-800">
+                                <td class="py-3 px-3">21a.5</td>
+                                <td class="py-3 px-3">Vulnerability management</td>
+                                <td class="py-3 px-3">CI pipeline with linting</td>
+                                <td class="py-3 px-3 text-green-400">✅</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+
+            <!-- Article 21(b) -->
+            <section class="mb-12">
+                <h2 class="text-xl font-bold text-white mb-2">Article 21(b) - Incident Handling</h2>
+                <p class="text-slate-400 text-sm mb-4 italic">"Incident handling"</p>
+
+                <div class="overflow-x-auto">
+                    <table class="w-full text-sm">
+                        <thead>
+                            <tr class="border-b border-slate-700 text-slate-400">
+                                <th class="py-3 px-3 text-left w-12">#</th>
+                                <th class="py-3 px-3 text-left">Requirement</th>
+                                <th class="py-3 px-3 text-left">Implementation</th>
+                                <th class="py-3 px-3 text-left w-20">Status</th>
+                            </tr>
+                        </thead>
+                        <tbody class="text-slate-300">
+                            <tr class="border-b border-slate-800">
+                                <td class="py-3 px-3">21b.1</td>
+                                <td class="py-3 px-3">Incident detection</td>
+                                <td class="py-3 px-3">SIEM-ready logging (Fluent Bit)</td>
+                                <td class="py-3 px-3 text-green-400">✅</td>
+                            </tr>
+                            <tr class="border-b border-slate-800">
+                                <td class="py-3 px-3">21b.2</td>
+                                <td class="py-3 px-3">Structured audit logs</td>
+                                <td class="py-3 px-3">JSON/CEF format with HMAC</td>
+                                <td class="py-3 px-3 text-green-400">✅</td>
+                            </tr>
+                            <tr class="border-b border-slate-800">
+                                <td class="py-3 px-3">21b.3</td>
+                                <td class="py-3 px-3">Log integrity</td>
+                                <td class="py-3 px-3">HMAC signing</td>
+                                <td class="py-3 px-3 text-green-400">✅</td>
+                            </tr>
+                            <tr class="border-b border-slate-800">
+                                <td class="py-3 px-3">21b.4</td>
+                                <td class="py-3 px-3">Incident response plan</td>
+                                <td class="py-3 px-3">Vulnerability disclosure</td>
+                                <td class="py-3 px-3 text-green-400">✅</td>
+                            </tr>
+                            <tr class="border-b border-slate-800">
+                                <td class="py-3 px-3">21b.5</td>
+                                <td class="py-3 px-3">24h notification</td>
+                                <td class="py-3 px-3">SIEM integration, webhooks</td>
+                                <td class="py-3 px-3 text-green-400">✅</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+
+            <!-- Article 21(c) -->
+            <section class="mb-12 print-break">
+                <h2 class="text-xl font-bold text-white mb-2">Article 21(c) - Business Continuity</h2>
+                <p class="text-slate-400 text-sm mb-4 italic">"Business continuity, backup management and disaster
+                    recovery"</p>
+
+                <div class="overflow-x-auto">
+                    <table class="w-full text-sm">
+                        <thead>
+                            <tr class="border-b border-slate-700 text-slate-400">
+                                <th class="py-3 px-3 text-left w-12">#</th>
+                                <th class="py-3 px-3 text-left">Requirement</th>
+                                <th class="py-3 px-3 text-left">Implementation</th>
+                                <th class="py-3 px-3 text-left w-20">Status</th>
+                            </tr>
+                        </thead>
+                        <tbody class="text-slate-300">
+                            <tr class="border-b border-slate-800">
+                                <td class="py-3 px-3">21c.1</td>
+                                <td class="py-3 px-3">Automated backups</td>
+                                <td class="py-3 px-3">Every 6h, 7-day retention</td>
+                                <td class="py-3 px-3 text-green-400">✅</td>
+                            </tr>
+                            <tr class="border-b border-slate-800">
+                                <td class="py-3 px-3">21c.2</td>
+                                <td class="py-3 px-3">Backup encryption</td>
+                                <td class="py-3 px-3">GPG encryption supported</td>
+                                <td class="py-3 px-3 text-green-400">✅</td>
+                            </tr>
+                            <tr class="border-b border-slate-800">
+                                <td class="py-3 px-3">21c.3</td>
+                                <td class="py-3 px-3">Offsite backup</td>
+                                <td class="py-3 px-3">Crypto-Replicator to cloud</td>
+                                <td class="py-3 px-3 text-green-400">✅</td>
+                            </tr>
+                            <tr class="border-b border-slate-800">
+                                <td class="py-3 px-3">21c.4</td>
+                                <td class="py-3 px-3">Zero-trust cloud</td>
+                                <td class="py-3 px-3">AES-256-GCM + RSA-OAEP</td>
+                                <td class="py-3 px-3 text-green-400">✅</td>
+                            </tr>
+                            <tr class="border-b border-slate-800">
+                                <td class="py-3 px-3">21c.5</td>
+                                <td class="py-3 px-3">DR testing</td>
+                                <td class="py-3 px-3">restore-test.sh script</td>
+                                <td class="py-3 px-3 text-green-400">✅</td>
+                            </tr>
+                            <tr class="border-b border-slate-800">
+                                <td class="py-3 px-3">21c.6</td>
+                                <td class="py-3 px-3">DR documentation</td>
+                                <td class="py-3 px-3">CRYPTOGRAPHY.md</td>
+                                <td class="py-3 px-3 text-green-400">✅</td>
+                            </tr>
+                            <tr class="border-b border-slate-800">
+                                <td class="py-3 px-3">21c.7</td>
+                                <td class="py-3 px-3">Key rotation</td>
+                                <td class="py-3 px-3">KeyRotationManager</td>
+                                <td class="py-3 px-3 text-green-400">✅</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+
+            <!-- Article 21(d) -->
+            <section class="mb-12">
+                <h2 class="text-xl font-bold text-white mb-2">Article 21(d) - Supply Chain Security</h2>
+                <p class="text-slate-400 text-sm mb-4 italic">"Supply chain security"</p>
+
+                <div class="overflow-x-auto">
+                    <table class="w-full text-sm">
+                        <thead>
+                            <tr class="border-b border-slate-700 text-slate-400">
+                                <th class="py-3 px-3 text-left w-12">#</th>
+                                <th class="py-3 px-3 text-left">Requirement</th>
+                                <th class="py-3 px-3 text-left">Implementation</th>
+                                <th class="py-3 px-3 text-left w-20">Status</th>
+                            </tr>
+                        </thead>
+                        <tbody class="text-slate-300">
+                            <tr class="border-b border-slate-800">
+                                <td class="py-3 px-3">21d.1</td>
+                                <td class="py-3 px-3">Verified base images</td>
+                                <td class="py-3 px-3">Official images</td>
+                                <td class="py-3 px-3 text-green-400">✅</td>
+                            </tr>
+                            <tr class="border-b border-slate-800">
+                                <td class="py-3 px-3">21d.2</td>
+                                <td class="py-3 px-3">Dependency pinning</td>
+                                <td class="py-3 px-3">requirements.txt</td>
+                                <td class="py-3 px-3 text-green-400">✅</td>
+                            </tr>
+                            <tr class="border-b border-slate-800">
+                                <td class="py-3 px-3">21d.3</td>
+                                <td class="py-3 px-3">Open source transparency</td>
+                                <td class="py-3 px-3">MIT license, public repo</td>
+                                <td class="py-3 px-3 text-green-400">✅</td>
+                            </tr>
+                            <tr class="border-b border-slate-800">
+                                <td class="py-3 px-3">21d.4</td>
+                                <td class="py-3 px-3">SBOM generation</td>
+                                <td class="py-3 px-3">Recommended in CI</td>
+                                <td class="py-3 px-3 text-yellow-400">⚠️</td>
+                            </tr>
+                            <tr class="border-b border-slate-800">
+                                <td class="py-3 px-3">21d.5</td>
+                                <td class="py-3 px-3">Vulnerability scanning</td>
+                                <td class="py-3 px-3">Hadolint in CI</td>
+                                <td class="py-3 px-3 text-green-400">✅</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+
+            <!-- Article 21(e) -->
+            <section class="mb-12">
+                <h2 class="text-xl font-bold text-white mb-2">Article 21(e) - Vulnerability Handling</h2>
+                <p class="text-slate-400 text-sm mb-4 italic">"Security in network and systems acquisition, development
+                    and maintenance"</p>
+
+                <div class="overflow-x-auto">
+                    <table class="w-full text-sm">
+                        <thead>
+                            <tr class="border-b border-slate-700 text-slate-400">
+                                <th class="py-3 px-3 text-left w-12">#</th>
+                                <th class="py-3 px-3 text-left">Requirement</th>
+                                <th class="py-3 px-3 text-left">Implementation</th>
+                                <th class="py-3 px-3 text-left w-20">Status</th>
+                            </tr>
+                        </thead>
+                        <tbody class="text-slate-300">
+                            <tr class="border-b border-slate-800">
+                                <td class="py-3 px-3">21e.1</td>
+                                <td class="py-3 px-3">Secure development</td>
+                                <td class="py-3 px-3">Code review, CI/CD</td>
+                                <td class="py-3 px-3 text-green-400">✅</td>
+                            </tr>
+                            <tr class="border-b border-slate-800">
+                                <td class="py-3 px-3">21e.2</td>
+                                <td class="py-3 px-3">Vulnerability disclosure</td>
+                                <td class="py-3 px-3">security@nis2shield.com</td>
+                                <td class="py-3 px-3 text-green-400">✅</td>
+                            </tr>
+                            <tr class="border-b border-slate-800">
+                                <td class="py-3 px-3">21e.3</td>
+                                <td class="py-3 px-3">Response timelines</td>
+                                <td class="py-3 px-3">SLAs by severity</td>
+                                <td class="py-3 px-3 text-green-400">✅</td>
+                            </tr>
+                            <tr class="border-b border-slate-800">
+                                <td class="py-3 px-3">21e.4</td>
+                                <td class="py-3 px-3">Patch management</td>
+                                <td class="py-3 px-3">Monthly recommended</td>
+                                <td class="py-3 px-3 text-yellow-400">⚠️</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+
+            <!-- Article 21(f) -->
+            <section class="mb-12 print-break">
+                <h2 class="text-xl font-bold text-white mb-2">Article 21(f) - Cryptography</h2>
+                <p class="text-slate-400 text-sm mb-4 italic">"Policies and procedures regarding the use of
+                    cryptography"</p>
+
+                <div class="overflow-x-auto">
+                    <table class="w-full text-sm">
+                        <thead>
+                            <tr class="border-b border-slate-700 text-slate-400">
+                                <th class="py-3 px-3 text-left w-12">#</th>
+                                <th class="py-3 px-3 text-left">Requirement</th>
+                                <th class="py-3 px-3 text-left">Implementation</th>
+                                <th class="py-3 px-3 text-left w-20">Status</th>
+                            </tr>
+                        </thead>
+                        <tbody class="text-slate-300">
+                            <tr class="border-b border-slate-800">
+                                <td class="py-3 px-3">21f.1</td>
+                                <td class="py-3 px-3">Encryption at rest</td>
+                                <td class="py-3 px-3">AES-256, Fernet</td>
+                                <td class="py-3 px-3 text-green-400">✅</td>
+                            </tr>
+                            <tr class="border-b border-slate-800">
+                                <td class="py-3 px-3">21f.2</td>
+                                <td class="py-3 px-3">Encryption in transit</td>
+                                <td class="py-3 px-3">TLS 1.2+</td>
+                                <td class="py-3 px-3 text-green-400">✅</td>
+                            </tr>
+                            <tr class="border-b border-slate-800">
+                                <td class="py-3 px-3">21f.3</td>
+                                <td class="py-3 px-3">Key management</td>
+                                <td class="py-3 px-3">Rotation, separation</td>
+                                <td class="py-3 px-3 text-green-400">✅</td>
+                            </tr>
+                            <tr class="border-b border-slate-800">
+                                <td class="py-3 px-3">21f.4</td>
+                                <td class="py-3 px-3">Algorithm selection</td>
+                                <td class="py-3 px-3">NIST-approved</td>
+                                <td class="py-3 px-3 text-green-400">✅</td>
+                            </tr>
+                            <tr class="border-b border-slate-800">
+                                <td class="py-3 px-3">21f.5</td>
+                                <td class="py-3 px-3">PII protection</td>
+                                <td class="py-3 px-3">Fernet in logs</td>
+                                <td class="py-3 px-3 text-green-400">✅</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+
+            <!-- Article 21(g) -->
+            <section class="mb-12">
+                <h2 class="text-xl font-bold text-white mb-2">Article 21(g) - Access Control</h2>
+                <p class="text-slate-400 text-sm mb-4 italic">"Human resources security, access control policies"</p>
+
+                <div class="overflow-x-auto">
+                    <table class="w-full text-sm">
+                        <thead>
+                            <tr class="border-b border-slate-700 text-slate-400">
+                                <th class="py-3 px-3 text-left w-12">#</th>
+                                <th class="py-3 px-3 text-left">Requirement</th>
+                                <th class="py-3 px-3 text-left">Implementation</th>
+                                <th class="py-3 px-3 text-left w-20">Status</th>
+                            </tr>
+                        </thead>
+                        <tbody class="text-slate-300">
+                            <tr class="border-b border-slate-800">
+                                <td class="py-3 px-3">21g.1</td>
+                                <td class="py-3 px-3">Access control</td>
+                                <td class="py-3 px-3">RBAC, DB separation</td>
+                                <td class="py-3 px-3 text-green-400">✅</td>
+                            </tr>
+                            <tr class="border-b border-slate-800">
+                                <td class="py-3 px-3">21g.2</td>
+                                <td class="py-3 px-3">Least privilege</td>
+                                <td class="py-3 px-3">Minimal capabilities</td>
+                                <td class="py-3 px-3 text-green-400">✅</td>
+                            </tr>
+                            <tr class="border-b border-slate-800">
+                                <td class="py-3 px-3">21g.3</td>
+                                <td class="py-3 px-3">Secrets management</td>
+                                <td class="py-3 px-3">Vault ready</td>
+                                <td class="py-3 px-3 text-green-400">✅</td>
+                            </tr>
+                            <tr class="border-b border-slate-800">
+                                <td class="py-3 px-3">21g.4</td>
+                                <td class="py-3 px-3">Audit logging</td>
+                                <td class="py-3 px-3">All access logged</td>
+                                <td class="py-3 px-3 text-green-400">✅</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+
+            <!-- Article 21(h) -->
+            <section class="mb-12">
+                <h2 class="text-xl font-bold text-white mb-2">Article 21(h) - Multi-Factor Authentication</h2>
+                <p class="text-slate-400 text-sm mb-4 italic">"Use of multi-factor authentication"</p>
+
+                <div class="overflow-x-auto">
+                    <table class="w-full text-sm">
+                        <thead>
+                            <tr class="border-b border-slate-700 text-slate-400">
+                                <th class="py-3 px-3 text-left w-12">#</th>
+                                <th class="py-3 px-3 text-left">Requirement</th>
+                                <th class="py-3 px-3 text-left">Implementation</th>
+                                <th class="py-3 px-3 text-left w-20">Status</th>
+                            </tr>
+                        </thead>
+                        <tbody class="text-slate-300">
+                            <tr class="border-b border-slate-800">
+                                <td class="py-3 px-3">21h.1</td>
+                                <td class="py-3 px-3">MFA support</td>
+                                <td class="py-3 px-3">MFAEnforcer middleware</td>
+                                <td class="py-3 px-3 text-green-400">✅</td>
+                            </tr>
+                            <tr class="border-b border-slate-800">
+                                <td class="py-3 px-3">21h.2</td>
+                                <td class="py-3 px-3">Session security</td>
+                                <td class="py-3 px-3">SessionGuard, fingerprint</td>
+                                <td class="py-3 px-3 text-green-400">✅</td>
+                            </tr>
+                            <tr class="border-b border-slate-800">
+                                <td class="py-3 px-3">21h.3</td>
+                                <td class="py-3 px-3">Device validation</td>
+                                <td class="py-3 px-3">Device fingerprint</td>
+                                <td class="py-3 px-3 text-green-400">✅</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+
+            <!-- Article 23 -->
+            <section class="mb-12">
+                <h2 class="text-xl font-bold text-white mb-2">Article 23 - Reporting Obligations</h2>
+                <p class="text-slate-400 text-sm mb-4 italic">"Reporting obligations"</p>
+
+                <div class="overflow-x-auto">
+                    <table class="w-full text-sm">
+                        <thead>
+                            <tr class="border-b border-slate-700 text-slate-400">
+                                <th class="py-3 px-3 text-left w-12">#</th>
+                                <th class="py-3 px-3 text-left">Requirement</th>
+                                <th class="py-3 px-3 text-left">Implementation</th>
+                                <th class="py-3 px-3 text-left w-20">Status</th>
+                            </tr>
+                        </thead>
+                        <tbody class="text-slate-300">
+                            <tr class="border-b border-slate-800">
+                                <td class="py-3 px-3">23.1</td>
+                                <td class="py-3 px-3">Early warning (24h)</td>
+                                <td class="py-3 px-3">Timestamped logs</td>
+                                <td class="py-3 px-3 text-green-400">✅</td>
+                            </tr>
+                            <tr class="border-b border-slate-800">
+                                <td class="py-3 px-3">23.2</td>
+                                <td class="py-3 px-3">Structured reports</td>
+                                <td class="py-3 px-3">JSON/CEF format</td>
+                                <td class="py-3 px-3 text-green-400">✅</td>
+                            </tr>
+                            <tr class="border-b border-slate-800">
+                                <td class="py-3 px-3">23.3</td>
+                                <td class="py-3 px-3">CSIRT integration</td>
+                                <td class="py-3 px-3">SIEM forwarding</td>
+                                <td class="py-3 px-3 text-green-400">✅</td>
+                            </tr>
+                            <tr class="border-b border-slate-800">
+                                <td class="py-3 px-3">23.4</td>
+                                <td class="py-3 px-3">Evidence preservation</td>
+                                <td class="py-3 px-3">Immutable, HMAC signed</td>
+                                <td class="py-3 px-3 text-green-400">✅</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+
+            <!-- Certification Block -->
+            <section class="mt-16 print-break">
+                <div class="bg-slate-800/50 rounded-xl p-8 border border-slate-700">
+                    <h2 class="text-xl font-bold text-white mb-6">Certification Statement</h2>
+                    <p class="text-slate-400 mb-8">
+                        This self-assessment was conducted against NIS2 Shield Infrastructure v1.0.0.
+                    </p>
+
+                    <div class="grid md:grid-cols-2 gap-6">
+                        <div>
+                            <label class="block text-sm text-slate-400 mb-2">Organization</label>
+                            <div class="h-10 border-b border-slate-600"></div>
+                        </div>
+                        <div>
+                            <label class="block text-sm text-slate-400 mb-2">Assessor Name</label>
+                            <div class="h-10 border-b border-slate-600"></div>
+                        </div>
+                        <div>
+                            <label class="block text-sm text-slate-400 mb-2">Assessment Date</label>
+                            <div class="h-10 border-b border-slate-600"></div>
+                        </div>
+                        <div>
+                            <label class="block text-sm text-slate-400 mb-2">Next Review Date</label>
+                            <div class="h-10 border-b border-slate-600"></div>
+                        </div>
+                    </div>
+
+                    <div class="mt-8">
+                        <label class="block text-sm text-slate-400 mb-2">Signature</label>
+                        <div class="h-20 border-b border-slate-600"></div>
+                    </div>
+                </div>
+            </section>
+
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="border-t border-slate-800 py-12 text-center text-slate-500 no-print">
+        <p class="mb-4">© 2025 NIS2 Shield Contributors. MIT License.</p>
+        <a href="https://github.com/nis2shield/infrastructure" class="text-teal-400 hover:underline">View on GitHub</a>
+    </footer>
+
+    <script>lucide.createIcons();</script>
+</body>
+
+</html>
