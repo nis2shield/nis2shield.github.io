@@ -7,28 +7,36 @@
     <title>NIS2 Shield - Security-First Compliance Ecosystem</title>
     <meta name="description"
         content="Open-source security ecosystem for NIS2 compliance. Django middleware, React client-side protection, and more.">
-    
+
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=JetBrains+Mono:wght@400;500&display=swap"
+        rel="stylesheet">
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://unpkg.com/lucide@latest"></script>
 
     <style>
-        body { font-family: 'Inter', sans-serif; }
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+
         .gradient-text {
             background: linear-gradient(to right, #2dd4bf, #60a5fa);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
         }
+
         .glass-effect {
             background: rgba(30, 41, 59, 0.8);
             backdrop-filter: blur(10px);
             border-bottom: 1px solid rgba(255, 255, 255, 0.1);
         }
+
         .code-window {
             box-shadow: 0 0 40px -10px rgba(20, 184, 166, 0.3);
         }
+
         .card-hover:hover {
             transform: translateY(-8px);
             box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
@@ -62,7 +70,8 @@
         <div class="absolute bottom-20 right-1/4 w-96 h-96 bg-blue-600/10 rounded-full blur-3xl"></div>
 
         <div class="container mx-auto px-6 text-center relative z-10">
-            <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-slate-800/50 border border-slate-700 text-teal-400 text-sm font-medium mb-6">
+            <div
+                class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-slate-800/50 border border-slate-700 text-teal-400 text-sm font-medium mb-6">
                 <span class="w-2 h-2 rounded-full bg-teal-500 animate-pulse"></span>
                 Open Source NIS2 Ecosystem
             </div>
@@ -71,7 +80,8 @@
                 Made Simple
             </h1>
             <p class="text-xl text-slate-400 mb-12 max-w-3xl mx-auto">
-                End-to-end security for your applications. From backend forensic logging to client-side session protection.
+                End-to-end security for your applications. From backend forensic logging to client-side session
+                protection.
                 Open source, production-ready, NIS2 compliant.
             </p>
 
@@ -91,13 +101,17 @@
                         <div class="text-slate-400">$ python manage.py check_nis2</div>
                         <div class="text-teal-400 mt-2">[NIS2 SHIELD AUDIT REPORT]</div>
                         <div class="text-slate-600">------------------------------------------------</div>
-                        <div class="flex gap-3"><span class="text-green-500">[PASS]</span> Forensic Logging active (JSON/CEF)</div>
-                        <div class="flex gap-3"><span class="text-green-500">[PASS]</span> PII Encryption in logs (Fernet)</div>
+                        <div class="flex gap-3"><span class="text-green-500">[PASS]</span> Forensic Logging active
+                            (JSON/CEF)</div>
+                        <div class="flex gap-3"><span class="text-green-500">[PASS]</span> PII Encryption in logs
+                            (Fernet)</div>
                         <div class="flex gap-3"><span class="text-green-500">[PASS]</span> Session Cookie Secure</div>
                         <div class="flex gap-3"><span class="text-green-500">[PASS]</span> Rate Limiting enabled</div>
-                        <div class="flex gap-3"><span class="text-green-500">[PASS]</span> Client Telemetry endpoint configured</div>
+                        <div class="flex gap-3"><span class="text-green-500">[PASS]</span> Client Telemetry endpoint
+                            configured</div>
                         <div class="text-slate-600 mt-2">------------------------------------------------</div>
-                        <div class="mt-2 text-white">COMPLIANCE SCORE: <span class="text-green-400 font-bold">100/100</span></div>
+                        <div class="mt-2 text-white">COMPLIANCE SCORE: <span
+                                class="text-green-400 font-bold">100/100</span></div>
                         <div class="text-slate-400 mt-4">$ <span class="animate-pulse">_</span></div>
                     </div>
                 </div>
@@ -109,12 +123,14 @@
     <section id="projects" class="container mx-auto px-6 py-20">
         <h2 class="text-3xl font-bold text-white text-center mb-4">Choose Your Stack</h2>
         <p class="text-slate-400 text-center mb-12 max-w-2xl mx-auto">
-            NIS2 Shield provides security components for both backend and frontend. Use them together for complete coverage.
+            NIS2 Shield provides security components for both backend and frontend. Use them together for complete
+            coverage.
         </p>
-        
+
         <div class="grid md:grid-cols-3 gap-6 max-w-6xl mx-auto">
             <!-- Django Card -->
-            <a href="django/" class="bg-slate-800/50 p-8 rounded-2xl border border-slate-700 hover:border-green-500 transition-all duration-300 card-hover block">
+            <a href="django/"
+                class="bg-slate-800/50 p-8 rounded-2xl border border-slate-700 hover:border-green-500 transition-all duration-300 card-hover block">
                 <div class="flex items-center gap-4 mb-6">
                     <div class="w-14 h-14 bg-green-900/50 rounded-xl flex items-center justify-center">
                         <i data-lucide="server" class="w-8 h-8 text-green-400"></i>
@@ -124,7 +140,8 @@
                         <p class="text-slate-400">Backend Middleware</p>
                     </div>
                 </div>
-                <p class="text-slate-300 mb-6">Security-first middleware for Django. Forensic logging, rate limiting, Tor blocking, and multi-SIEM integration.</p>
+                <p class="text-slate-300 mb-6">Security-first middleware for Django. Forensic logging, rate limiting,
+                    Tor blocking, and multi-SIEM integration.</p>
                 <div class="flex flex-wrap gap-2 mb-6">
                     <span class="px-3 py-1 bg-green-900/30 text-green-400 rounded-full text-sm">Python</span>
                     <span class="px-3 py-1 bg-slate-700 text-slate-300 rounded-full text-sm">Django 3.2+</span>
@@ -134,7 +151,8 @@
             </a>
 
             <!-- React Card -->
-            <a href="react-guard/" class="bg-slate-800/50 p-8 rounded-2xl border border-slate-700 hover:border-blue-500 transition-all duration-300 card-hover block">
+            <a href="react-guard/"
+                class="bg-slate-800/50 p-8 rounded-2xl border border-slate-700 hover:border-blue-500 transition-all duration-300 card-hover block">
                 <div class="flex items-center gap-4 mb-6">
                     <div class="w-14 h-14 bg-blue-900/50 rounded-xl flex items-center justify-center">
                         <i data-lucide="layout" class="w-8 h-8 text-blue-400"></i>
@@ -144,7 +162,8 @@
                         <p class="text-slate-400">Client-Side Protection</p>
                     </div>
                 </div>
-                <p class="text-slate-300 mb-6">Client-side security telemetry for React. Session protection, encrypted storage, device fingerprinting.</p>
+                <p class="text-slate-300 mb-6">Client-side security telemetry for React. Session protection, encrypted
+                    storage, device fingerprinting.</p>
                 <div class="flex flex-wrap gap-2 mb-6">
                     <span class="px-3 py-1 bg-blue-900/30 text-blue-400 rounded-full text-sm">TypeScript</span>
                     <span class="px-3 py-1 bg-slate-700 text-slate-300 rounded-full text-sm">React 18+</span>
@@ -153,7 +172,8 @@
                 <div class="flex items-center text-blue-400 font-semibold">Explore React Guard →</div>
             </a>
             <!-- Infrastructure Card -->
-            <a href="https://github.com/nis2shield/infrastructure" class="bg-slate-800/50 p-8 rounded-2xl border border-slate-700 hover:border-purple-500 transition-all duration-300 card-hover block">
+            <a href="https://github.com/nis2shield/infrastructure"
+                class="bg-slate-800/50 p-8 rounded-2xl border border-slate-700 hover:border-purple-500 transition-all duration-300 card-hover block">
                 <div class="flex items-center gap-4 mb-6">
                     <div class="w-14 h-14 bg-purple-900/50 rounded-xl flex items-center justify-center">
                         <i data-lucide="container" class="w-8 h-8 text-purple-400"></i>
@@ -163,7 +183,8 @@
                         <p class="text-slate-400">Docker Stack</p>
                     </div>
                 </div>
-                <p class="text-slate-300 mb-6">Secure-by-design Docker infrastructure. Hardened containers, log segregation, automated backups.</p>
+                <p class="text-slate-300 mb-6">Secure-by-design Docker infrastructure. Hardened containers, log
+                    segregation, automated backups.</p>
                 <div class="flex flex-wrap gap-2 mb-6">
                     <span class="px-3 py-1 bg-purple-900/30 text-purple-400 rounded-full text-sm">Docker</span>
                     <span class="px-3 py-1 bg-slate-700 text-slate-300 rounded-full text-sm">Fluent Bit</span>
@@ -180,7 +201,7 @@
         <p class="text-slate-400 text-center mb-12 max-w-2xl mx-auto">
             Deploy both components for end-to-end NIS2 compliance coverage.
         </p>
-        
+
         <div class="max-w-3xl mx-auto space-y-4">
             <div class="bg-slate-800/60 border border-blue-500/50 rounded-xl p-6">
                 <div class="flex items-center gap-3 mb-4">
@@ -218,11 +239,13 @@
         <div class="max-w-4xl mx-auto px-4 text-center">
             <h2 class="text-3xl font-bold text-white mb-8">Get Started in Seconds</h2>
             <div class="grid md:grid-cols-2 gap-6">
-                <div class="bg-slate-900 border border-slate-700 rounded-xl p-6 text-left hover:border-green-500 transition-colors">
+                <div
+                    class="bg-slate-900 border border-slate-700 rounded-xl p-6 text-left hover:border-green-500 transition-colors">
                     <div class="text-xs text-green-500 font-bold mb-2 uppercase tracking-wider">Backend</div>
                     <code class="font-mono text-lg text-white">pip install django-nis2-shield</code>
                 </div>
-                <div class="bg-slate-900 border border-slate-700 rounded-xl p-6 text-left hover:border-blue-500 transition-colors">
+                <div
+                    class="bg-slate-900 border border-slate-700 rounded-xl p-6 text-left hover:border-blue-500 transition-colors">
                     <div class="text-xs text-blue-500 font-bold mb-2 uppercase tracking-wider">Frontend</div>
                     <code class="font-mono text-lg text-white">npm install @nis2shield/react-guard</code>
                 </div>
@@ -237,7 +260,7 @@
                 <h2 class="text-3xl font-bold text-white">Compliance Matrix</h2>
                 <p class="text-slate-400 mt-2">How our tools map to NIS2 Directive articles.</p>
             </div>
-            
+
             <div class="overflow-x-auto">
                 <table class="w-full text-left border-collapse">
                     <thead>
@@ -259,6 +282,12 @@
                             <td class="py-4 px-6">24h incident reports & structured audit logs.</td>
                         </tr>
                         <tr class="border-b border-slate-800 hover:bg-slate-800/30 transition-colors">
+                            <td class="py-4 px-6 font-mono text-teal-400">Art. 21 (c)</td>
+                            <td class="py-4 px-6">Business continuity</td>
+                            <td class="py-4 px-6">Encrypted Twin (Crypto-Replicator), automated backups, DR testing.
+                            </td>
+                        </tr>
+                        <tr class="border-b border-slate-800 hover:bg-slate-800/30 transition-colors">
                             <td class="py-4 px-6 font-mono text-teal-400">Art. 21 (d)</td>
                             <td class="py-4 px-6">Supply chain security</td>
                             <td class="py-4 px-6">Open source verifiable code (no black box).</td>
@@ -267,6 +296,16 @@
                             <td class="py-4 px-6 font-mono text-teal-400">Art. 21 (e)</td>
                             <td class="py-4 px-6">Cryptography & HR security</td>
                             <td class="py-4 px-6">PII encryption, log hashing, Session Guard & Secure Storage.</td>
+                        </tr>
+                        <tr class="border-b border-slate-800 hover:bg-slate-800/30 transition-colors">
+                            <td class="py-4 px-6 font-mono text-teal-400">Art. 21 (f)</td>
+                            <td class="py-4 px-6">Network security</td>
+                            <td class="py-4 px-6">Container hardening, network isolation, Tor blocking.</td>
+                        </tr>
+                        <tr class="border-b border-slate-800 hover:bg-slate-800/30 transition-colors">
+                            <td class="py-4 px-6 font-mono text-teal-400">Art. 21 (g)</td>
+                            <td class="py-4 px-6">Security policies & training</td>
+                            <td class="py-4 px-6">CLI audit tools, compliance reports, documentation.</td>
                         </tr>
                         <tr class="hover:bg-slate-800/30 transition-colors">
                             <td class="py-4 px-6 font-mono text-teal-400">Art. 23</td>
@@ -293,4 +332,5 @@
 
     <script>lucide.createIcons();</script>
 </body>
+
 </html>
