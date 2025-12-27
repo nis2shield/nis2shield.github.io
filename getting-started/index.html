@@ -1,25 +1,41 @@
 <!DOCTYPE html>
 <html lang="en" class="scroll-smooth">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Getting Started - NIS2 Shield End-to-End Tutorial</title>
-    <meta name="description" content="Complete guide to setting up NIS2 compliance with Django, React, and Docker infrastructure.">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <meta name="description"
+        content="Complete guide to setting up NIS2 compliance with Django, React, and Docker infrastructure.">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=JetBrains+Mono:wght@400;500&display=swap"
+        rel="stylesheet">
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://unpkg.com/lucide@latest"></script>
     <style>
-        body { font-family: 'Inter', sans-serif; }
-        .code-block { font-family: 'JetBrains Mono', monospace; }
-        .step-number { 
-            width: 40px; height: 40px; 
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+
+        .code-block {
+            font-family: 'JetBrains Mono', monospace;
+        }
+
+        .step-number {
+            width: 40px;
+            height: 40px;
             background: linear-gradient(135deg, #14b8a6, #3b82f6);
-            border-radius: 50%; 
-            display: flex; align-items: center; justify-content: center;
-            color: white; font-weight: bold; flex-shrink: 0;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+            flex-shrink: 0;
         }
     </style>
 </head>
+
 <body class="bg-slate-900 text-slate-300">
 
     <!-- Navbar -->
@@ -31,9 +47,11 @@
                 </div>
                 <span class="text-xl font-bold text-white">NIS2<span class="text-teal-400">Shield</span></span>
             </a>
-            <div class="flex space-x-6 text-sm">
-                <a href="../" class="hover:text-teal-400">← Hub</a>
-                <a href="https://github.com/nis2shield" class="hover:text-teal-400">GitHub</a>
+            <div class="hidden md:flex space-x-8">
+                <a href="../" class="hover:text-teal-400 transition">Home</a>
+                <a href="../pricing/" class="hover:text-teal-400 transition">Pricing</a>
+                <a href="../faq/" class="hover:text-teal-400 transition">FAQ</a>
+                <a href="../about/" class="hover:text-teal-400 transition">About</a>
             </div>
         </div>
     </nav>
@@ -84,7 +102,7 @@
                     <p class="text-slate-400">Security middleware with forensic logging</p>
                 </div>
             </div>
-            
+
             <div class="bg-slate-800 border border-slate-700 rounded-xl overflow-hidden mb-6">
                 <div class="bg-slate-800/80 border-b border-slate-700 px-4 py-2 flex items-center gap-2">
                     <div class="w-3 h-3 rounded-full bg-green-500"></div>
@@ -128,7 +146,7 @@ python manage.py check_nis2</code></pre>
                     <p class="text-slate-400">Client-side security and telemetry</p>
                 </div>
             </div>
-            
+
             <div class="bg-slate-800 border border-slate-700 rounded-xl overflow-hidden mb-6">
                 <div class="bg-slate-800/80 border-b border-slate-700 px-4 py-2 flex items-center gap-2">
                     <div class="w-3 h-3 rounded-full bg-blue-500"></div>
@@ -169,7 +187,7 @@ function App() {
                     <p class="text-slate-400">Hardened containers, log segregation, backups</p>
                 </div>
             </div>
-            
+
             <div class="bg-slate-800 border border-slate-700 rounded-xl overflow-hidden mb-6">
                 <div class="bg-slate-800/80 border-b border-slate-700 px-4 py-2 flex items-center gap-2">
                     <div class="w-3 h-3 rounded-full bg-purple-500"></div>
@@ -207,7 +225,7 @@ docker-compose up -d
     <section class="py-12 border-b border-slate-800 bg-slate-800/30">
         <div class="container mx-auto px-6 max-w-4xl">
             <h2 class="text-2xl font-bold text-white mb-6 text-center">Complete Architecture</h2>
-            
+
             <div class="space-y-3">
                 <div class="bg-blue-900/30 border border-blue-500/50 rounded-xl p-4 text-center">
                     <span class="text-blue-400 font-semibold">🌐 React Frontend</span>
@@ -236,19 +254,23 @@ docker-compose up -d
         <div class="container mx-auto px-6 max-w-4xl">
             <h2 class="text-2xl font-bold text-white mb-6">What's Next?</h2>
             <div class="grid md:grid-cols-2 gap-4">
-                <a href="../django/" class="bg-slate-800/50 border border-slate-700 hover:border-green-500 rounded-xl p-4 transition">
+                <a href="../django/"
+                    class="bg-slate-800/50 border border-slate-700 hover:border-green-500 rounded-xl p-4 transition">
                     <h3 class="font-semibold text-white mb-1">Django Deep Dive</h3>
                     <p class="text-sm text-slate-400">SIEM integration, custom handlers</p>
                 </a>
-                <a href="../react-guard/" class="bg-slate-800/50 border border-slate-700 hover:border-blue-500 rounded-xl p-4 transition">
+                <a href="../react-guard/"
+                    class="bg-slate-800/50 border border-slate-700 hover:border-blue-500 rounded-xl p-4 transition">
                     <h3 class="font-semibold text-white mb-1">React Components</h3>
                     <p class="text-sm text-slate-400">All hooks and components API</p>
                 </a>
-                <a href="../infrastructure/" class="bg-slate-800/50 border border-slate-700 hover:border-purple-500 rounded-xl p-4 transition">
+                <a href="../infrastructure/"
+                    class="bg-slate-800/50 border border-slate-700 hover:border-purple-500 rounded-xl p-4 transition">
                     <h3 class="font-semibold text-white mb-1">Infrastructure Options</h3>
                     <p class="text-sm text-slate-400">ELK, Grafana, Production config</p>
                 </a>
-                <a href="https://github.com/nis2shield" class="bg-slate-800/50 border border-slate-700 hover:border-teal-500 rounded-xl p-4 transition">
+                <a href="https://github.com/nis2shield"
+                    class="bg-slate-800/50 border border-slate-700 hover:border-teal-500 rounded-xl p-4 transition">
                     <h3 class="font-semibold text-white mb-1">Contribute</h3>
                     <p class="text-sm text-slate-400">Star, fork, and submit PRs</p>
                 </a>
@@ -263,4 +285,5 @@ docker-compose up -d
 
     <script>lucide.createIcons();</script>
 </body>
+
 </html>
