@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About - NIS2 Shield</title>
+    <meta name="description" content="About NIS2 Shield - Open source NIS2 compliance tools.">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+
+        .gradient-text {
+            background: linear-gradient(to right, #2dd4bf, #60a5fa);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+    </style>
+</head>
+
+<body class="bg-slate-900 text-slate-300">
+
+    <!-- Navbar -->
+    <nav class="border-b border-slate-800 bg-slate-900/80 backdrop-blur sticky top-0 z-50">
+        <div class="container mx-auto px-6 py-4 flex justify-between items-center">
+            <a href="../" class="flex items-center space-x-2">
+                <div class="w-8 h-8 rounded bg-teal-500 flex items-center justify-center">
+                    <i data-lucide="shield" class="w-5 h-5 text-white"></i>
+                </div>
+                <span class="text-xl font-bold text-white">NIS2<span class="text-teal-400">Shield</span></span>
+            </a>
+            <div class="hidden md:flex space-x-8">
+                <a href="../" class="hover:text-teal-400 transition">Home</a>
+                <a href="../pricing/" class="hover:text-teal-400 transition">Pricing</a>
+                <a href="../faq/" class="hover:text-teal-400 transition">FAQ</a>
+                <a href="./" class="text-teal-400">About</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Header -->
+    <header class="py-20 border-b border-slate-800">
+        <div class="container mx-auto px-6 text-center">
+            <h1 class="text-4xl md:text-5xl font-bold text-white mb-4">
+                About <span class="gradient-text">NIS2 Shield</span>
+            </h1>
+            <p class="text-xl text-slate-400 max-w-2xl mx-auto">
+                Open source tools for NIS2 compliance. Built by developers, for developers.
+            </p>
+        </div>
+    </header>
+
+    <!-- Mission -->
+    <section class="py-16">
+        <div class="container mx-auto px-6 max-w-3xl">
+            <h2 class="text-2xl font-bold text-white mb-6">Our Mission</h2>
+            <p class="text-slate-300 text-lg leading-relaxed mb-6">
+                NIS2 compliance shouldn't require expensive consultants or proprietary black boxes.
+                We believe security tools should be <strong class="text-white">transparent, auditable, and
+                    accessible</strong>.
+            </p>
+            <p class="text-slate-300 text-lg leading-relaxed">
+                NIS2 Shield provides the technical layer for compliance: forensic logging,
+                session protection, encrypted backups, and SIEM integration. Everything is MIT licensed—use it,
+                modify it, contribute to it.
+            </p>
+        </div>
+    </section>
+
+    <!-- Values -->
+    <section class="py-16 border-t border-slate-800">
+        <div class="container mx-auto px-6 max-w-4xl">
+            <h2 class="text-2xl font-bold text-white text-center mb-12">Our Values</h2>
+
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="text-center">
+                    <div class="w-16 h-16 mx-auto mb-4 bg-teal-900/50 rounded-xl flex items-center justify-center">
+                        <i data-lucide="unlock" class="w-8 h-8 text-teal-400"></i>
+                    </div>
+                    <h3 class="text-lg font-semibold text-white mb-2">Open Source First</h3>
+                    <p class="text-slate-400 text-sm">
+                        All core code is MIT licensed. No feature gates, no "enterprise only" modules.
+                        The code you audit is the code you run.
+                    </p>
+                </div>
+
+                <div class="text-center">
+                    <div class="w-16 h-16 mx-auto mb-4 bg-purple-900/50 rounded-xl flex items-center justify-center">
+                        <i data-lucide="eye" class="w-8 h-8 text-purple-400"></i>
+                    </div>
+                    <h3 class="text-lg font-semibold text-white mb-2">Transparency</h3>
+                    <p class="text-slate-400 text-sm">
+                        Security through obscurity doesn't work. Our cryptographic choices,
+                        hardening config, and threat model are documented publicly.
+                    </p>
+                </div>
+
+                <div class="text-center">
+                    <div class="w-16 h-16 mx-auto mb-4 bg-blue-900/50 rounded-xl flex items-center justify-center">
+                        <i data-lucide="users" class="w-8 h-8 text-blue-400"></i>
+                    </div>
+                    <h3 class="text-lg font-semibold text-white mb-2">Community Driven</h3>
+                    <p class="text-slate-400 text-sm">
+                        Built with feedback from security professionals, IT admins, and compliance officers.
+                        Contributions welcome.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Stats -->
+    <section class="py-16 border-t border-slate-800 bg-slate-800/30">
+        <div class="container mx-auto px-6 max-w-4xl">
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
+                <div>
+                    <div class="text-4xl font-bold text-teal-400">3</div>
+                    <div class="text-slate-400 mt-1">Core Libraries</div>
+                </div>
+                <div>
+                    <div class="text-4xl font-bold text-purple-400">95%</div>
+                    <div class="text-slate-400 mt-1">NIS2 Coverage</div>
+                </div>
+                <div>
+                    <div class="text-4xl font-bold text-blue-400">MIT</div>
+                    <div class="text-slate-400 mt-1">License</div>
+                </div>
+                <div>
+                    <div class="text-4xl font-bold text-green-400">100%</div>
+                    <div class="text-slate-400 mt-1">Open Source</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Tech Stack -->
+    <section class="py-16 border-t border-slate-800">
+        <div class="container mx-auto px-6 max-w-3xl">
+            <h2 class="text-2xl font-bold text-white mb-8">Built With</h2>
+
+            <div class="flex flex-wrap gap-3">
+                <span class="px-4 py-2 bg-slate-800 rounded-lg text-sm">Python</span>
+                <span class="px-4 py-2 bg-slate-800 rounded-lg text-sm">Django</span>
+                <span class="px-4 py-2 bg-slate-800 rounded-lg text-sm">TypeScript</span>
+                <span class="px-4 py-2 bg-slate-800 rounded-lg text-sm">React</span>
+                <span class="px-4 py-2 bg-slate-800 rounded-lg text-sm">Docker</span>
+                <span class="px-4 py-2 bg-slate-800 rounded-lg text-sm">Kubernetes</span>
+                <span class="px-4 py-2 bg-slate-800 rounded-lg text-sm">Terraform</span>
+                <span class="px-4 py-2 bg-slate-800 rounded-lg text-sm">PostgreSQL</span>
+                <span class="px-4 py-2 bg-slate-800 rounded-lg text-sm">Fluent Bit</span>
+                <span class="px-4 py-2 bg-slate-800 rounded-lg text-sm">cryptography</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact -->
+    <section class="py-16 border-t border-slate-800">
+        <div class="container mx-auto px-6 max-w-3xl text-center">
+            <h2 class="text-2xl font-bold text-white mb-4">Get in Touch</h2>
+            <p class="text-slate-400 mb-8">
+                Questions, feedback, or interested in contributing?
+            </p>
+
+            <div class="flex flex-wrap justify-center gap-4">
+                <a href="https://github.com/nis2shield"
+                    class="px-6 py-3 border border-slate-600 text-slate-300 rounded-lg hover:border-teal-500 transition flex items-center gap-2">
+                    <i data-lucide="github" class="w-5 h-5"></i>
+                    GitHub
+                </a>
+                <a href="mailto:hello@nis2shield.com"
+                    class="px-6 py-3 bg-teal-500 text-white font-semibold rounded-lg hover:bg-teal-600 transition flex items-center gap-2">
+                    <i data-lucide="mail" class="w-5 h-5"></i>
+                    hello@nis2shield.com
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="border-t border-slate-800 py-12 text-center text-slate-500">
+        <p class="mb-4">© 2025 NIS2 Shield Contributors. MIT License.</p>
+    </footer>
+
+    <script>lucide.createIcons();</script>
+</body>
+
+</html>

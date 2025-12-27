@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FAQ - NIS2 Shield</title>
+    <meta name="description" content="Frequently asked questions about NIS2 Shield and NIS2 compliance.">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+
+        .gradient-text {
+            background: linear-gradient(to right, #2dd4bf, #60a5fa);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+    </style>
+</head>
+
+<body class="bg-slate-900 text-slate-300">
+
+    <!-- Navbar -->
+    <nav class="border-b border-slate-800 bg-slate-900/80 backdrop-blur sticky top-0 z-50">
+        <div class="container mx-auto px-6 py-4 flex justify-between items-center">
+            <a href="../" class="flex items-center space-x-2">
+                <div class="w-8 h-8 rounded bg-teal-500 flex items-center justify-center">
+                    <i data-lucide="shield" class="w-5 h-5 text-white"></i>
+                </div>
+                <span class="text-xl font-bold text-white">NIS2<span class="text-teal-400">Shield</span></span>
+            </a>
+            <div class="hidden md:flex space-x-8">
+                <a href="../" class="hover:text-teal-400 transition">Home</a>
+                <a href="../pricing/" class="hover:text-teal-400 transition">Pricing</a>
+                <a href="./" class="text-teal-400">FAQ</a>
+                <a href="../about/" class="hover:text-teal-400 transition">About</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Header -->
+    <header class="py-16 border-b border-slate-800">
+        <div class="container mx-auto px-6 text-center">
+            <h1 class="text-4xl md:text-5xl font-bold text-white mb-4">
+                Frequently Asked <span class="gradient-text">Questions</span>
+            </h1>
+            <p class="text-xl text-slate-400 max-w-2xl mx-auto">
+                Everything you need to know about NIS2 Shield and NIS2 compliance.
+            </p>
+        </div>
+    </header>
+
+    <!-- FAQ Categories -->
+    <section class="py-16">
+        <div class="container mx-auto px-6 max-w-3xl">
+
+            <!-- NIS2 Directive -->
+            <div class="mb-12">
+                <h2 class="text-xl font-bold text-white mb-6 flex items-center gap-2">
+                    <i data-lucide="scale" class="w-5 h-5 text-teal-400"></i>
+                    About NIS2 Directive
+                </h2>
+
+                <div class="space-y-4">
+                    <details class="bg-slate-800/50 rounded-xl border border-slate-700 group">
+                        <summary class="p-6 cursor-pointer font-semibold text-white flex justify-between items-center">
+                            What is NIS2?
+                            <i data-lucide="chevron-down"
+                                class="w-5 h-5 text-slate-400 group-open:rotate-180 transition"></i>
+                        </summary>
+                        <div class="px-6 pb-6 text-slate-400">
+                            NIS2 (Network and Information Security Directive 2) is an EU regulation that establishes
+                            cybersecurity requirements for essential and important entities. It came into effect in 2023
+                            and member states must adopt it by October 2024.
+                        </div>
+                    </details>
+
+                    <details class="bg-slate-800/50 rounded-xl border border-slate-700 group">
+                        <summary class="p-6 cursor-pointer font-semibold text-white flex justify-between items-center">
+                            Who must comply with NIS2?
+                            <i data-lucide="chevron-down"
+                                class="w-5 h-5 text-slate-400 group-open:rotate-180 transition"></i>
+                        </summary>
+                        <div class="px-6 pb-6 text-slate-400">
+                            <p class="mb-3">NIS2 applies to:</p>
+                            <ul class="list-disc ml-6 space-y-1">
+                                <li><strong>Essential entities:</strong> Energy, transport, banking, health, water,
+                                    digital infrastructure, public administration</li>
+                                <li><strong>Important entities:</strong> Postal services, waste management, food,
+                                    manufacturing, digital providers</li>
+                            </ul>
+                            <p class="mt-3">Thresholds: 50+ employees OR €10M+ turnover in covered sectors.</p>
+                        </div>
+                    </details>
+
+                    <details class="bg-slate-800/50 rounded-xl border border-slate-700 group">
+                        <summary class="p-6 cursor-pointer font-semibold text-white flex justify-between items-center">
+                            What are the penalties for non-compliance?
+                            <i data-lucide="chevron-down"
+                                class="w-5 h-5 text-slate-400 group-open:rotate-180 transition"></i>
+                        </summary>
+                        <div class="px-6 pb-6 text-slate-400">
+                            <ul class="space-y-2">
+                                <li><strong>Essential entities:</strong> Up to €10M or 2% of global turnover</li>
+                                <li><strong>Important entities:</strong> Up to €7M or 1.4% of global turnover</li>
+                                <li><strong>Personal liability:</strong> C-level executives can be held personally
+                                    responsible</li>
+                            </ul>
+                        </div>
+                    </details>
+                </div>
+            </div>
+
+            <!-- About NIS2 Shield -->
+            <div class="mb-12">
+                <h2 class="text-xl font-bold text-white mb-6 flex items-center gap-2">
+                    <i data-lucide="shield" class="w-5 h-5 text-purple-400"></i>
+                    About NIS2 Shield
+                </h2>
+
+                <div class="space-y-4">
+                    <details class="bg-slate-800/50 rounded-xl border border-slate-700 group">
+                        <summary class="p-6 cursor-pointer font-semibold text-white flex justify-between items-center">
+                            Is NIS2 Shield really free?
+                            <i data-lucide="chevron-down"
+                                class="w-5 h-5 text-slate-400 group-open:rotate-180 transition"></i>
+                        </summary>
+                        <div class="px-6 pb-6 text-slate-400">
+                            Yes. All core libraries are MIT licensed and free to use, even commercially.
+                            We offer optional paid support tiers for organizations that need SLAs,
+                            priority support, or enterprise services.
+                        </div>
+                    </details>
+
+                    <details class="bg-slate-800/50 rounded-xl border border-slate-700 group">
+                        <summary class="p-6 cursor-pointer font-semibold text-white flex justify-between items-center">
+                            What does NIS2 Shield include?
+                            <i data-lucide="chevron-down"
+                                class="w-5 h-5 text-slate-400 group-open:rotate-180 transition"></i>
+                        </summary>
+                        <div class="px-6 pb-6 text-slate-400">
+                            <ul class="space-y-2">
+                                <li><strong>django-nis2-shield:</strong> Backend middleware for Django (logging, rate
+                                    limiting, SIEM)</li>
+                                <li><strong>@nis2shield/react-guard:</strong> Client-side security for React (session
+                                    protection, telemetry)</li>
+                                <li><strong>Infrastructure Kit:</strong> Docker Compose, Helm charts, Terraform modules
+                                </li>
+                                <li><strong>Auditor Kit:</strong> CIS benchmarks, NIS2 self-assessment, cryptographic
+                                    specs</li>
+                            </ul>
+                        </div>
+                    </details>
+
+                    <details class="bg-slate-800/50 rounded-xl border border-slate-700 group">
+                        <summary class="p-6 cursor-pointer font-semibold text-white flex justify-between items-center">
+                            Does NIS2 Shield make me compliant?
+                            <i data-lucide="chevron-down"
+                                class="w-5 h-5 text-slate-400 group-open:rotate-180 transition"></i>
+                        </summary>
+                        <div class="px-6 pb-6 text-slate-400">
+                            NIS2 Shield provides the technical controls to address many NIS2 requirements,
+                            but compliance also requires organizational measures (policies, training, governance).
+                            We cover the technical side; you'll need to pair it with appropriate processes.
+                        </div>
+                    </details>
+                </div>
+            </div>
+
+            <!-- Technical Questions -->
+            <div class="mb-12">
+                <h2 class="text-xl font-bold text-white mb-6 flex items-center gap-2">
+                    <i data-lucide="code" class="w-5 h-5 text-blue-400"></i>
+                    Technical Questions
+                </h2>
+
+                <div class="space-y-4">
+                    <details class="bg-slate-800/50 rounded-xl border border-slate-700 group">
+                        <summary class="p-6 cursor-pointer font-semibold text-white flex justify-between items-center">
+                            What Python/Django versions are supported?
+                            <i data-lucide="chevron-down"
+                                class="w-5 h-5 text-slate-400 group-open:rotate-180 transition"></i>
+                        </summary>
+                        <div class="px-6 pb-6 text-slate-400">
+                            <ul class="space-y-1">
+                                <li><strong>Python:</strong> 3.8, 3.9, 3.10, 3.11, 3.12</li>
+                                <li><strong>Django:</strong> 3.2 LTS, 4.0, 4.1, 4.2 LTS, 5.0</li>
+                            </ul>
+                        </div>
+                    </details>
+
+                    <details class="bg-slate-800/50 rounded-xl border border-slate-700 group">
+                        <summary class="p-6 cursor-pointer font-semibold text-white flex justify-between items-center">
+                            What SIEM integrations are available?
+                            <i data-lucide="chevron-down"
+                                class="w-5 h-5 text-slate-400 group-open:rotate-180 transition"></i>
+                        </summary>
+                        <div class="px-6 pb-6 text-slate-400">
+                            <p class="mb-2">Built-in support for:</p>
+                            <ul class="list-disc ml-6 space-y-1">
+                                <li>Elasticsearch / OpenSearch</li>
+                                <li>Splunk (HEC)</li>
+                                <li>IBM QRadar (Syslog/LEEF)</li>
+                                <li>Graylog (GELF)</li>
+                                <li>Sumo Logic</li>
+                                <li>Datadog</li>
+                            </ul>
+                            <p class="mt-2">Custom integrations possible via Fluent Bit.</p>
+                        </div>
+                    </details>
+
+                    <details class="bg-slate-800/50 rounded-xl border border-slate-700 group">
+                        <summary class="p-6 cursor-pointer font-semibold text-white flex justify-between items-center">
+                            How does the Encrypted Twin work?
+                            <i data-lucide="chevron-down"
+                                class="w-5 h-5 text-slate-400 group-open:rotate-180 transition"></i>
+                        </summary>
+                        <div class="px-6 pb-6 text-slate-400">
+                            <p>The Crypto-Replicator creates zero-trust cloud backups:</p>
+                            <ol class="list-decimal ml-6 mt-2 space-y-1">
+                                <li>Generates a random AES-256 session key</li>
+                                <li>Encrypts data with AES-256-GCM</li>
+                                <li>Wraps session key with RSA-2048-OAEP (public key)</li>
+                                <li>Sends encrypted envelope to cloud (S3, GCS, Azure Blob)</li>
+                            </ol>
+                            <p class="mt-2">The private key stays offline—cloud provider cannot decrypt.</p>
+                        </div>
+                    </details>
+                </div>
+            </div>
+
+            <!-- Deployment -->
+            <div class="mb-12">
+                <h2 class="text-xl font-bold text-white mb-6 flex items-center gap-2">
+                    <i data-lucide="server" class="w-5 h-5 text-green-400"></i>
+                    Deployment
+                </h2>
+
+                <div class="space-y-4">
+                    <details class="bg-slate-800/50 rounded-xl border border-slate-700 group">
+                        <summary class="p-6 cursor-pointer font-semibold text-white flex justify-between items-center">
+                            Can I deploy on-premise?
+                            <i data-lucide="chevron-down"
+                                class="w-5 h-5 text-slate-400 group-open:rotate-180 transition"></i>
+                        </summary>
+                        <div class="px-6 pb-6 text-slate-400">
+                            Yes. NIS2 Shield is designed for on-premise deployment. Use Docker Compose
+                            for smaller deployments or Helm charts for Kubernetes clusters.
+                        </div>
+                    </details>
+
+                    <details class="bg-slate-800/50 rounded-xl border border-slate-700 group">
+                        <summary class="p-6 cursor-pointer font-semibold text-white flex justify-between items-center">
+                            Which clouds are supported?
+                            <i data-lucide="chevron-down"
+                                class="w-5 h-5 text-slate-400 group-open:rotate-180 transition"></i>
+                        </summary>
+                        <div class="px-6 pb-6 text-slate-400">
+                            We provide Terraform modules for:
+                            <ul class="list-disc ml-6 mt-2 space-y-1">
+                                <li><strong>AWS:</strong> EKS, RDS, S3</li>
+                                <li><strong>GCP:</strong> GKE, Cloud SQL, Cloud Storage</li>
+                                <li><strong>Azure:</strong> AKS, PostgreSQL Flexible, Blob Storage</li>
+                            </ul>
+                        </div>
+                    </details>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Still have questions -->
+    <section class="py-16 border-t border-slate-800">
+        <div class="container mx-auto px-6 max-w-2xl text-center">
+            <h2 class="text-2xl font-bold text-white mb-4">Still have questions?</h2>
+            <p class="text-slate-400 mb-8">
+                Can't find the answer you're looking for? Reach out to us.
+            </p>
+            <div class="flex flex-wrap justify-center gap-4">
+                <a href="https://github.com/nis2shield/django-nis2-shield/discussions"
+                    class="px-6 py-3 border border-slate-600 text-slate-300 rounded-lg hover:border-teal-500 transition flex items-center gap-2">
+                    <i data-lucide="message-circle" class="w-5 h-5"></i>
+                    GitHub Discussions
+                </a>
+                <a href="mailto:hello@nis2shield.com"
+                    class="px-6 py-3 bg-teal-500 text-white font-semibold rounded-lg hover:bg-teal-600 transition flex items-center gap-2">
+                    <i data-lucide="mail" class="w-5 h-5"></i>
+                    Email Us
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="border-t border-slate-800 py-12 text-center text-slate-500">
+        <p class="mb-4">© 2025 NIS2 Shield Contributors. MIT License.</p>
+    </footer>
+
+    <script>lucide.createIcons();</script>
+</body>
+
+</html>
