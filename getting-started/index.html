@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Getting Started - NIS2 Shield End-to-End Tutorial</title>
+    <meta name="description" content="Complete guide to setting up NIS2 compliance with Django, React, and Docker infrastructure.">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <style>
+        body { font-family: 'Inter', sans-serif; }
+        .code-block { font-family: 'JetBrains Mono', monospace; }
+        .step-number { 
+            width: 40px; height: 40px; 
+            background: linear-gradient(135deg, #14b8a6, #3b82f6);
+            border-radius: 50%; 
+            display: flex; align-items: center; justify-content: center;
+            color: white; font-weight: bold; flex-shrink: 0;
+        }
+    </style>
+</head>
+<body class="bg-slate-900 text-slate-300">
+
+    <!-- Navbar -->
+    <nav class="border-b border-slate-800 bg-slate-900/80 backdrop-blur sticky top-0 z-50">
+        <div class="container mx-auto px-6 py-4 flex justify-between items-center">
+            <a href="../" class="flex items-center space-x-2">
+                <div class="w-8 h-8 rounded bg-teal-500 flex items-center justify-center">
+                    <i data-lucide="shield" class="w-5 h-5 text-white"></i>
+                </div>
+                <span class="text-xl font-bold text-white">NIS2<span class="text-teal-400">Shield</span></span>
+            </a>
+            <div class="flex space-x-6 text-sm">
+                <a href="../" class="hover:text-teal-400">← Hub</a>
+                <a href="https://github.com/nis2shield" class="hover:text-teal-400">GitHub</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero -->
+    <header class="py-16 border-b border-slate-800 bg-gradient-to-b from-slate-900 to-slate-800">
+        <div class="container mx-auto px-6 text-center">
+            <h1 class="text-4xl md:text-5xl font-bold text-white mb-4">
+                End-to-End Setup Guide
+            </h1>
+            <p class="text-xl text-slate-400 max-w-2xl mx-auto">
+                From zero to NIS2-compliant in 15 minutes. Backend, frontend, and infrastructure.
+            </p>
+        </div>
+    </header>
+
+    <!-- Prerequisites -->
+    <section class="py-12 border-b border-slate-800">
+        <div class="container mx-auto px-6 max-w-4xl">
+            <h2 class="text-2xl font-bold text-white mb-6 flex items-center gap-3">
+                <i data-lucide="check-square" class="w-6 h-6 text-teal-400"></i>
+                Prerequisites
+            </h2>
+            <div class="grid md:grid-cols-3 gap-4">
+                <div class="bg-slate-800/50 border border-slate-700 rounded-lg p-4">
+                    <h3 class="font-semibold text-white mb-2">Python 3.10+</h3>
+                    <p class="text-sm text-slate-400">For Django backend</p>
+                </div>
+                <div class="bg-slate-800/50 border border-slate-700 rounded-lg p-4">
+                    <h3 class="font-semibold text-white mb-2">Node.js 18+</h3>
+                    <p class="text-sm text-slate-400">For React frontend</p>
+                </div>
+                <div class="bg-slate-800/50 border border-slate-700 rounded-lg p-4">
+                    <h3 class="font-semibold text-white mb-2">Docker & Compose</h3>
+                    <p class="text-sm text-slate-400">For infrastructure</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Step 1: Backend -->
+    <section class="py-12 border-b border-slate-800">
+        <div class="container mx-auto px-6 max-w-4xl">
+            <div class="flex items-start gap-4 mb-6">
+                <div class="step-number">1</div>
+                <div>
+                    <h2 class="text-2xl font-bold text-white">Backend: Django NIS2 Shield</h2>
+                    <p class="text-slate-400">Security middleware with forensic logging</p>
+                </div>
+            </div>
+            
+            <div class="bg-slate-800 border border-slate-700 rounded-xl overflow-hidden mb-6">
+                <div class="bg-slate-800/80 border-b border-slate-700 px-4 py-2 flex items-center gap-2">
+                    <div class="w-3 h-3 rounded-full bg-green-500"></div>
+                    <span class="text-xs text-slate-400">Terminal</span>
+                </div>
+                <pre class="p-4 code-block text-sm overflow-x-auto bg-slate-950"><code><span class="text-slate-500"># Install the package</span>
+pip install django-nis2-shield
+
+<span class="text-slate-500"># In settings.py, add the middleware</span>
+MIDDLEWARE = [
+    'django.middleware.security.SecurityMiddleware',
+    <span class="text-teal-400">'django_nis2_shield.middleware.Nis2GuardMiddleware'</span>,
+    # ... other middleware
+]
+
+<span class="text-slate-500"># Configure NIS2 Shield</span>
+NIS2_SHIELD = {
+    'LOG_FORMAT': 'JSON',
+    'ANONYMIZE_IPS': True,
+    'ENFORCE_MFA_ROUTES': ['/admin/'],
+}
+
+<span class="text-slate-500"># Run the audit command</span>
+python manage.py check_nis2</code></pre>
+            </div>
+
+            <div class="flex items-center gap-2 text-green-400">
+                <i data-lucide="check-circle" class="w-5 h-5"></i>
+                <span>Now your Django app has forensic logging, rate limiting, and NIS2 audit</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- Step 2: Frontend -->
+    <section class="py-12 border-b border-slate-800">
+        <div class="container mx-auto px-6 max-w-4xl">
+            <div class="flex items-start gap-4 mb-6">
+                <div class="step-number">2</div>
+                <div>
+                    <h2 class="text-2xl font-bold text-white">Frontend: React NIS2 Guard</h2>
+                    <p class="text-slate-400">Client-side security and telemetry</p>
+                </div>
+            </div>
+            
+            <div class="bg-slate-800 border border-slate-700 rounded-xl overflow-hidden mb-6">
+                <div class="bg-slate-800/80 border-b border-slate-700 px-4 py-2 flex items-center gap-2">
+                    <div class="w-3 h-3 rounded-full bg-blue-500"></div>
+                    <span class="text-xs text-slate-400">Terminal</span>
+                </div>
+                <pre class="p-4 code-block text-sm overflow-x-auto bg-slate-950"><code><span class="text-slate-500"># Install the package</span>
+npm install @nis2shield/react-guard
+
+<span class="text-slate-500"># In your App.tsx</span>
+import { Nis2Provider, SessionWatchdog, AuditBoundary } from '@nis2shield/react-guard';
+
+function App() {
+  return (
+    <span class="text-blue-400">&lt;Nis2Provider</span> config={{ auditEndpoint: '/api/nis2/telemetry/' }}<span class="text-blue-400">&gt;</span>
+      <span class="text-blue-400">&lt;SessionWatchdog</span> idleTimeout={15} /<span class="text-blue-400">&gt;</span>
+      <span class="text-blue-400">&lt;AuditBoundary&gt;</span>
+        &lt;YourApp /&gt;
+      <span class="text-blue-400">&lt;/AuditBoundary&gt;</span>
+    <span class="text-blue-400">&lt;/Nis2Provider&gt;</span>
+  );
+}</code></pre>
+            </div>
+
+            <div class="flex items-center gap-2 text-blue-400">
+                <i data-lucide="check-circle" class="w-5 h-5"></i>
+                <span>Now your React app sends security telemetry to Django</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- Step 3: Infrastructure -->
+    <section class="py-12 border-b border-slate-800">
+        <div class="container mx-auto px-6 max-w-4xl">
+            <div class="flex items-start gap-4 mb-6">
+                <div class="step-number">3</div>
+                <div>
+                    <h2 class="text-2xl font-bold text-white">Infrastructure: Docker Stack</h2>
+                    <p class="text-slate-400">Hardened containers, log segregation, backups</p>
+                </div>
+            </div>
+            
+            <div class="bg-slate-800 border border-slate-700 rounded-xl overflow-hidden mb-6">
+                <div class="bg-slate-800/80 border-b border-slate-700 px-4 py-2 flex items-center gap-2">
+                    <div class="w-3 h-3 rounded-full bg-purple-500"></div>
+                    <span class="text-xs text-slate-400">Terminal</span>
+                </div>
+                <pre class="p-4 code-block text-sm overflow-x-auto bg-slate-950"><code><span class="text-slate-500"># Clone the infrastructure repo</span>
+git clone https://github.com/nis2shield/infrastructure.git
+cd infrastructure
+
+<span class="text-slate-500"># Configure environment</span>
+cp .env.example .env
+nano .env  <span class="text-slate-500"># Set your passwords</span>
+
+<span class="text-slate-500"># Start the base stack</span>
+docker-compose up -d
+
+<span class="text-slate-500"># Or with ELK observability</span>
+./scripts/elk-setup.sh
+
+<span class="text-slate-500"># Or with Prometheus/Grafana</span>
+./scripts/monitoring-setup.sh
+
+<span class="text-slate-500"># Test disaster recovery</span>
+./scripts/restore-test.sh</code></pre>
+            </div>
+
+            <div class="flex items-center gap-2 text-purple-400">
+                <i data-lucide="check-circle" class="w-5 h-5"></i>
+                <span>Now your infrastructure is hardened with logging and backups</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- Architecture Diagram -->
+    <section class="py-12 border-b border-slate-800 bg-slate-800/30">
+        <div class="container mx-auto px-6 max-w-4xl">
+            <h2 class="text-2xl font-bold text-white mb-6 text-center">Complete Architecture</h2>
+            
+            <div class="space-y-3">
+                <div class="bg-blue-900/30 border border-blue-500/50 rounded-xl p-4 text-center">
+                    <span class="text-blue-400 font-semibold">🌐 React Frontend</span>
+                    <p class="text-sm text-slate-400 mt-1">@nis2shield/react-guard • Session, Storage, Telemetry</p>
+                </div>
+                <div class="flex justify-center">
+                    <i data-lucide="arrow-down" class="w-6 h-6 text-slate-500"></i>
+                </div>
+                <div class="bg-green-900/30 border border-green-500/50 rounded-xl p-4 text-center">
+                    <span class="text-green-400 font-semibold">🐍 Django Backend</span>
+                    <p class="text-sm text-slate-400 mt-1">django-nis2-shield • Logging, Rate Limiting, Audit</p>
+                </div>
+                <div class="flex justify-center">
+                    <i data-lucide="arrow-down" class="w-6 h-6 text-slate-500"></i>
+                </div>
+                <div class="bg-purple-900/30 border border-purple-500/50 rounded-xl p-4 text-center">
+                    <span class="text-purple-400 font-semibold">🐳 Docker Infrastructure</span>
+                    <p class="text-sm text-slate-400 mt-1">Fluent Bit → SIEM • Backups • Prometheus/Grafana</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- What's Next -->
+    <section class="py-12">
+        <div class="container mx-auto px-6 max-w-4xl">
+            <h2 class="text-2xl font-bold text-white mb-6">What's Next?</h2>
+            <div class="grid md:grid-cols-2 gap-4">
+                <a href="../django/" class="bg-slate-800/50 border border-slate-700 hover:border-green-500 rounded-xl p-4 transition">
+                    <h3 class="font-semibold text-white mb-1">Django Deep Dive</h3>
+                    <p class="text-sm text-slate-400">SIEM integration, custom handlers</p>
+                </a>
+                <a href="../react-guard/" class="bg-slate-800/50 border border-slate-700 hover:border-blue-500 rounded-xl p-4 transition">
+                    <h3 class="font-semibold text-white mb-1">React Components</h3>
+                    <p class="text-sm text-slate-400">All hooks and components API</p>
+                </a>
+                <a href="../infrastructure/" class="bg-slate-800/50 border border-slate-700 hover:border-purple-500 rounded-xl p-4 transition">
+                    <h3 class="font-semibold text-white mb-1">Infrastructure Options</h3>
+                    <p class="text-sm text-slate-400">ELK, Grafana, Production config</p>
+                </a>
+                <a href="https://github.com/nis2shield" class="bg-slate-800/50 border border-slate-700 hover:border-teal-500 rounded-xl p-4 transition">
+                    <h3 class="font-semibold text-white mb-1">Contribute</h3>
+                    <p class="text-sm text-slate-400">Star, fork, and submit PRs</p>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="border-t border-slate-800 py-8 text-center text-slate-500">
+        <p>Part of the <a href="../" class="text-teal-400 hover:underline">NIS2 Shield</a> ecosystem • MIT License</p>
+    </footer>
+
+    <script>lucide.createIcons();</script>
+</body>
+</html>
