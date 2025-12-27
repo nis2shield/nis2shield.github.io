@@ -24,6 +24,7 @@
         .gradient-text {
             background: linear-gradient(to right, #2dd4bf, #60a5fa);
             -webkit-background-clip: text;
+            background-clip: text;
             -webkit-text-fill-color: transparent;
         }
 
@@ -251,6 +252,101 @@
                     <li>├── RateLimiter, SessionGuard, TorBlocker</li>
                     <li>└── → SIEM <span class="text-slate-500">(Elasticsearch, Splunk, QRadar)</span></li>
                 </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- Blue Ocean: Compliance as Code -->
+    <section class="py-24 bg-slate-900 border-t border-slate-800 relative overflow-hidden">
+        <!-- Background Glow -->
+        <div
+            class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[600px] bg-teal-500/5 rounded-full blur-[100px]">
+        </div>
+
+        <div class="container mx-auto px-6 relative z-10">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-5xl font-bold text-white mb-6">
+                    Don't just <span class="text-slate-500 line-through decoration-red-500">say</span> you're
+                    secure.<br>
+                    <span class="gradient-text">Prove it.</span>
+                </h2>
+                <p class="text-xl text-slate-400 max-w-3xl mx-auto">
+                    Traditional GRC tools digitize bureaucracy. We automate the truth.
+                    Stop relying on signed PDFs and start trusting your infrastructure code.
+                </p>
+            </div>
+
+            <div class="grid md:grid-cols-2 gap-8 max-w-5xl mx-auto">
+                <!-- Old Way -->
+                <div class="bg-slate-800/30 p-8 rounded-2xl border border-red-900/30 relative">
+                    <div
+                        class="absolute -top-4 -left-4 bg-slate-800 border border-slate-700 text-slate-400 px-4 py-1 rounded-full text-sm font-medium">
+                        Traditional GRC
+                    </div>
+                    <h3 class="text-2xl font-bold text-slate-300 mb-6 flex items-center gap-3">
+                        <i data-lucide="file-text" class="w-6 h-6 text-slate-500"></i>
+                        Declarative Compliance
+                    </h3>
+                    <ul class="space-y-4 text-slate-400">
+                        <li class="flex gap-3">
+                            <i data-lucide="x" class="w-5 h-5 text-red-500 shrink-0"></i>
+                            <div>
+                                <strong class="text-slate-300 block">Bureaucratic</strong>
+                                Developers stop coding to fill manual questionnaires.
+                            </div>
+                        </li>
+                        <li class="flex gap-3">
+                            <i data-lucide="x" class="w-5 h-5 text-red-500 shrink-0"></i>
+                            <div>
+                                <strong class="text-slate-300 block">Compliance Drift</strong>
+                                "Secure on paper" in January, vulnerable in production by June.
+                            </div>
+                        </li>
+                        <li class="flex gap-3">
+                            <i data-lucide="x" class="w-5 h-5 text-red-500 shrink-0"></i>
+                            <div>
+                                <strong class="text-slate-300 block">High Liability</strong>
+                                In court, a signed PDF is weak evidence against a data breach.
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- New Way -->
+                <div
+                    class="bg-slate-800/80 p-8 rounded-2xl border border-teal-500/30 relative shadow-2xl shadow-teal-900/20">
+                    <div
+                        class="absolute -top-4 -right-4 bg-teal-600 text-white px-4 py-1 rounded-full text-sm font-medium shadow-lg shadow-teal-900/50">
+                        NIS2 Shield Way
+                    </div>
+                    <h3 class="text-2xl font-bold text-white mb-6 flex items-center gap-3">
+                        <i data-lucide="code-2" class="w-6 h-6 text-teal-400"></i>
+                        Demonstrable Compliance
+                    </h3>
+                    <ul class="space-y-4 text-slate-300">
+                        <li class="flex gap-3">
+                            <i data-lucide="check" class="w-5 h-5 text-teal-400 shrink-0"></i>
+                            <div>
+                                <strong class="text-white block">Engineering First</strong>
+                                Compliance is code. Integrated into CI/CD. Zero friction for devs.
+                            </div>
+                        </li>
+                        <li class="flex gap-3">
+                            <i data-lucide="check" class="w-5 h-5 text-teal-400 shrink-0"></i>
+                            <div>
+                                <strong class="text-white block">Real-Time Verification</strong>
+                                Our engine audits your infra on every commit. No drift possible.
+                            </div>
+                        </li>
+                        <li class="flex gap-3">
+                            <i data-lucide="check" class="w-5 h-5 text-teal-400 shrink-0"></i>
+                            <div>
+                                <strong class="text-white block">Irrefutable Evidence</strong>
+                                Cryptographically signed logs and immutable audit trails.
+                            </div>
+                        </li>
+                    </ul>
+                </div>
             </div>
         </div>
     </section>
