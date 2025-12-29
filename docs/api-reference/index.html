@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>API Reference - Django NIS2 Shield</title>
+    <meta name="description"
+        content="Complete API documentation for Django NIS2 Shield middleware. Configuration, endpoints, and SIEM integration.">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=JetBrains+Mono:wght@400;500&display=swap"
+        rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+
+        .code-block {
+            font-family: 'JetBrains Mono', monospace;
+        }
+    </style>
+</head>
+
+<body class="bg-slate-900 text-slate-300">
+
+    <!-- Navbar -->
+    <nav class="border-b border-slate-800 bg-slate-900/80 backdrop-blur sticky top-0 z-50">
+        <div class="container mx-auto px-6 py-4 flex justify-between items-center">
+            <a href="../" class="flex items-center space-x-2">
+                <div class="w-8 h-8 rounded bg-teal-500 flex items-center justify-center">
+                    <i data-lucide="shield" class="w-5 h-5 text-white"></i>
+                </div>
+                <span class="text-xl font-bold text-white">NIS2<span class="text-teal-400">Shield</span></span>
+            </a>
+            <div class="hidden md:flex space-x-8">
+                <a href="../django/" class="hover:text-teal-400 transition">Django</a>
+                <a href="../react-guard/" class="hover:text-teal-400 transition">React</a>
+                <a href="../getting-started/" class="hover:text-teal-400 transition">Getting Started</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Header -->
+    <header class="py-12 border-b border-slate-800">
+        <div class="container mx-auto px-6 max-w-5xl">
+            <div class="flex items-center gap-3 mb-4">
+                <span class="px-3 py-1 bg-green-900/30 text-green-400 rounded-full text-sm font-medium">Django</span>
+                <span class="text-slate-500">v0.3.0</span>
+            </div>
+            <h1 class="text-4xl font-bold text-white mb-4">API Reference</h1>
+            <p class="text-slate-400 text-lg">Complete documentation for django-nis2-shield middleware configuration and
+                endpoints.</p>
+        </div>
+    </header>
+
+    <!-- Table of Contents -->
+    <section class="py-8 border-b border-slate-800 bg-slate-800/30">
+        <div class="container mx-auto px-6 max-w-5xl">
+            <h2 class="text-sm font-semibold text-slate-400 uppercase tracking-wider mb-4">Contents</h2>
+            <div class="grid md:grid-cols-4 gap-4 text-sm">
+                <a href="#configuration" class="hover:text-teal-400 transition">Configuration</a>
+                <a href="#middleware" class="hover:text-teal-400 transition">Middleware</a>
+                <a href="#commands" class="hover:text-teal-400 transition">Management Commands</a>
+                <a href="#siem" class="hover:text-teal-400 transition">SIEM Presets</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Configuration -->
+    <section id="configuration" class="py-12 border-b border-slate-800">
+        <div class="container mx-auto px-6 max-w-5xl">
+            <h2 class="text-2xl font-bold text-white mb-6 flex items-center gap-3">
+                <i data-lucide="settings" class="w-6 h-6 text-teal-400"></i>
+                Configuration (NIS2_SHIELD)
+            </h2>
+            <p class="text-slate-400 mb-6">Add these settings to your Django settings.py:</p>
+
+            <div class="overflow-x-auto">
+                <table class="w-full text-sm border-collapse">
+                    <thead>
+                        <tr class="border-b border-slate-700 text-left">
+                            <th class="py-3 px-4 text-slate-400 font-medium">Setting</th>
+                            <th class="py-3 px-4 text-slate-400 font-medium">Type</th>
+                            <th class="py-3 px-4 text-slate-400 font-medium">Default</th>
+                            <th class="py-3 px-4 text-slate-400 font-medium">Description</th>
+                        </tr>
+                    </thead>
+                    <tbody class="text-slate-300">
+                        <tr class="border-b border-slate-800">
+                            <td class="py-3 px-4 font-mono text-teal-400">INTEGRITY_KEY</td>
+                            <td class="py-3 px-4">str</td>
+                            <td class="py-3 px-4 text-slate-500">Required</td>
+                            <td class="py-3 px-4">HMAC key for log signing</td>
+                        </tr>
+                        <tr class="border-b border-slate-800">
+                            <td class="py-3 px-4 font-mono text-teal-400">ENCRYPTION_KEY</td>
+                            <td class="py-3 px-4">bytes</td>
+                            <td class="py-3 px-4 text-slate-500">None</td>
+                            <td class="py-3 px-4">Fernet key for PII encryption</td>
+                        </tr>
+                        <tr class="border-b border-slate-800">
+                            <td class="py-3 px-4 font-mono text-teal-400">LOG_FORMAT</td>
+                            <td class="py-3 px-4">str</td>
+                            <td class="py-3 px-4 text-slate-500">"JSON"</td>
+                            <td class="py-3 px-4">"JSON" or "CEF"</td>
+                        </tr>
+                        <tr class="border-b border-slate-800">
+                            <td class="py-3 px-4 font-mono text-teal-400">ANONYMIZE_IPS</td>
+                            <td class="py-3 px-4">bool</td>
+                            <td class="py-3 px-4 text-slate-500">True</td>
+                            <td class="py-3 px-4">Mask last octet of IPs</td>
+                        </tr>
+                        <tr class="border-b border-slate-800">
+                            <td class="py-3 px-4 font-mono text-teal-400">ENCRYPT_PII</td>
+                            <td class="py-3 px-4">bool</td>
+                            <td class="py-3 px-4 text-slate-500">True</td>
+                            <td class="py-3 px-4">Enable PII encryption in logs</td>
+                        </tr>
+                        <tr class="border-b border-slate-800">
+                            <td class="py-3 px-4 font-mono text-teal-400">PII_FIELDS</td>
+                            <td class="py-3 px-4">list</td>
+                            <td class="py-3 px-4 text-slate-500">["user_id", "email", "ip"]</td>
+                            <td class="py-3 px-4">Fields to encrypt</td>
+                        </tr>
+                        <tr class="border-b border-slate-800">
+                            <td class="py-3 px-4 font-mono text-teal-400">ENABLE_RATE_LIMIT</td>
+                            <td class="py-3 px-4">bool</td>
+                            <td class="py-3 px-4 text-slate-500">True</td>
+                            <td class="py-3 px-4">Enable rate limiting</td>
+                        </tr>
+                        <tr class="border-b border-slate-800">
+                            <td class="py-3 px-4 font-mono text-teal-400">RATE_LIMIT_THRESHOLD</td>
+                            <td class="py-3 px-4">int</td>
+                            <td class="py-3 px-4 text-slate-500">100</td>
+                            <td class="py-3 px-4">Requests per window</td>
+                        </tr>
+                        <tr class="border-b border-slate-800">
+                            <td class="py-3 px-4 font-mono text-teal-400">RATE_LIMIT_WINDOW</td>
+                            <td class="py-3 px-4">int</td>
+                            <td class="py-3 px-4 text-slate-500">60</td>
+                            <td class="py-3 px-4">Window in seconds</td>
+                        </tr>
+                        <tr class="border-b border-slate-800">
+                            <td class="py-3 px-4 font-mono text-teal-400">RATE_LIMIT_ALGORITHM</td>
+                            <td class="py-3 px-4">str</td>
+                            <td class="py-3 px-4 text-slate-500">"sliding_window"</td>
+                            <td class="py-3 px-4">"sliding_window" or "fixed_window"</td>
+                        </tr>
+                        <tr class="border-b border-slate-800">
+                            <td class="py-3 px-4 font-mono text-teal-400">BLOCK_TOR_EXIT_NODES</td>
+                            <td class="py-3 px-4">bool</td>
+                            <td class="py-3 px-4 text-slate-500">False</td>
+                            <td class="py-3 px-4">Block Tor exit nodes</td>
+                        </tr>
+                        <tr class="border-b border-slate-800">
+                            <td class="py-3 px-4 font-mono text-teal-400">ENABLE_SESSION_GUARD</td>
+                            <td class="py-3 px-4">bool</td>
+                            <td class="py-3 px-4 text-slate-500">True</td>
+                            <td class="py-3 px-4">Detect session hijacking</td>
+                        </tr>
+                        <tr class="border-b border-slate-800">
+                            <td class="py-3 px-4 font-mono text-teal-400">SESSION_IP_TOLERANCE</td>
+                            <td class="py-3 px-4">str</td>
+                            <td class="py-3 px-4 text-slate-500">"subnet"</td>
+                            <td class="py-3 px-4">"exact", "subnet", or "none"</td>
+                        </tr>
+                        <tr class="border-b border-slate-800">
+                            <td class="py-3 px-4 font-mono text-teal-400">ENFORCE_MFA_ROUTES</td>
+                            <td class="py-3 px-4">list</td>
+                            <td class="py-3 px-4 text-slate-500">[]</td>
+                            <td class="py-3 px-4">Paths requiring MFA</td>
+                        </tr>
+                        <tr class="border-b border-slate-800">
+                            <td class="py-3 px-4 font-mono text-teal-400">MFA_REDIRECT_URL</td>
+                            <td class="py-3 px-4">str</td>
+                            <td class="py-3 px-4 text-slate-500">"/accounts/mfa/"</td>
+                            <td class="py-3 px-4">MFA verification URL</td>
+                        </tr>
+                        <tr class="border-b border-slate-800">
+                            <td class="py-3 px-4 font-mono text-teal-400">ENABLE_WEBHOOKS</td>
+                            <td class="py-3 px-4">bool</td>
+                            <td class="py-3 px-4 text-slate-500">False</td>
+                            <td class="py-3 px-4">Enable webhook notifications</td>
+                        </tr>
+                        <tr class="border-b border-slate-800">
+                            <td class="py-3 px-4 font-mono text-teal-400">WEBHOOKS</td>
+                            <td class="py-3 px-4">list</td>
+                            <td class="py-3 px-4 text-slate-500">[]</td>
+                            <td class="py-3 px-4">[{"url": "...", "format": "slack"}]</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </section>
+
+    <!-- Management Commands -->
+    <section id="commands" class="py-12 border-b border-slate-800">
+        <div class="container mx-auto px-6 max-w-5xl">
+            <h2 class="text-2xl font-bold text-white mb-6 flex items-center gap-3">
+                <i data-lucide="terminal" class="w-6 h-6 text-teal-400"></i>
+                Management Commands
+            </h2>
+
+            <div class="space-y-6">
+                <!-- check_nis2 -->
+                <div class="bg-slate-800/50 border border-slate-700 rounded-xl p-6">
+                    <h3 class="text-xl font-semibold text-white mb-2">check_nis2</h3>
+                    <p class="text-slate-400 mb-4">Audit your Django configuration against NIS2 requirements.</p>
+                    <pre
+                        class="bg-slate-950 rounded-lg p-4 code-block text-sm overflow-x-auto"><code>python manage.py check_nis2</code></pre>
+                    <div class="mt-4 text-sm text-slate-400">
+                        <strong>Output:</strong> Compliance score (0-100) with detailed pass/fail checks.
+                    </div>
+                </div>
+
+                <!-- update_threat_list -->
+                <div class="bg-slate-800/50 border border-slate-700 rounded-xl p-6">
+                    <h3 class="text-xl font-semibold text-white mb-2">update_threat_list</h3>
+                    <p class="text-slate-400 mb-4">Update the Tor exit node blocklist.</p>
+                    <pre
+                        class="bg-slate-950 rounded-lg p-4 code-block text-sm overflow-x-auto"><code>python manage.py update_threat_list</code></pre>
+                </div>
+
+                <!-- generate_incident_report -->
+                <div class="bg-slate-800/50 border border-slate-700 rounded-xl p-6">
+                    <h3 class="text-xl font-semibold text-white mb-2">generate_incident_report</h3>
+                    <p class="text-slate-400 mb-4">Generate a CSIRT-ready incident report.</p>
+                    <pre
+                        class="bg-slate-950 rounded-lg p-4 code-block text-sm overflow-x-auto"><code>python manage.py generate_incident_report --hours=24 --output=incident.json</code></pre>
+                    <div class="mt-4 text-sm text-slate-400">
+                        <strong>Options:</strong> --hours (default: 24), --output (file path)
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SIEM Presets -->
+    <section id="siem" class="py-12 border-b border-slate-800">
+        <div class="container mx-auto px-6 max-w-5xl">
+            <h2 class="text-2xl font-bold text-white mb-6 flex items-center gap-3">
+                <i data-lucide="database" class="w-6 h-6 text-teal-400"></i>
+                SIEM Integration Presets
+            </h2>
+            <p class="text-slate-400 mb-6">Pre-configured logging for major SIEM platforms:</p>
+
+            <div class="grid md:grid-cols-2 gap-4">
+                <div class="bg-slate-800/50 border border-slate-700 rounded-lg p-4">
+                    <h3 class="font-semibold text-white mb-2">Elasticsearch</h3>
+                    <pre class="bg-slate-950 rounded p-2 code-block text-xs overflow-x-auto"><code>from django_nis2_shield import get_elasticsearch_config
+LOGGING = get_elasticsearch_config(host='localhost')</code></pre>
+                </div>
+                <div class="bg-slate-800/50 border border-slate-700 rounded-lg p-4">
+                    <h3 class="font-semibold text-white mb-2">Splunk</h3>
+                    <pre class="bg-slate-950 rounded p-2 code-block text-xs overflow-x-auto"><code>from django_nis2_shield import get_splunk_hec_config
+LOGGING = get_splunk_hec_config(token='...')</code></pre>
+                </div>
+                <div class="bg-slate-800/50 border border-slate-700 rounded-lg p-4">
+                    <h3 class="font-semibold text-white mb-2">QRadar</h3>
+                    <pre class="bg-slate-950 rounded p-2 code-block text-xs overflow-x-auto"><code>from django_nis2_shield import get_qradar_dsm_config
+LOGGING = get_qradar_dsm_config(host='qradar')</code></pre>
+                </div>
+                <div class="bg-slate-800/50 border border-slate-700 rounded-lg p-4">
+                    <h3 class="font-semibold text-white mb-2">Datadog</h3>
+                    <pre class="bg-slate-950 rounded p-2 code-block text-xs overflow-x-auto"><code>from django_nis2_shield import get_datadog_config
+LOGGING = get_datadog_config(api_key='...')</code></pre>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Python API -->
+    <section id="python-api" class="py-12">
+        <div class="container mx-auto px-6 max-w-5xl">
+            <h2 class="text-2xl font-bold text-white mb-6 flex items-center gap-3">
+                <i data-lucide="code" class="w-6 h-6 text-teal-400"></i>
+                Python API
+            </h2>
+
+            <div class="space-y-6">
+                <div class="bg-slate-800/50 border border-slate-700 rounded-xl p-6">
+                    <h3 class="text-lg font-semibold text-white mb-2">ForensicLogger</h3>
+                    <p class="text-slate-400 mb-4">Main logger class with HMAC signing.</p>
+                    <pre class="bg-slate-950 rounded-lg p-4 code-block text-sm overflow-x-auto"><code>from django_nis2_shield import ForensicLogger
+
+logger = ForensicLogger(integrity_key="your-key")
+logger.log_event("user_login", user_id=123, ip="192.168.1.1")</code></pre>
+                </div>
+
+                <div class="bg-slate-800/50 border border-slate-700 rounded-xl p-6">
+                    <h3 class="text-lg font-semibold text-white mb-2">SlidingWindowRateLimiter</h3>
+                    <p class="text-slate-400 mb-4">Rate limiter with sliding window algorithm.</p>
+                    <pre class="bg-slate-950 rounded-lg p-4 code-block text-sm overflow-x-auto"><code>from django_nis2_shield import SlidingWindowRateLimiter
+
+limiter = SlidingWindowRateLimiter(threshold=100, window=60)
+if limiter.is_allowed(client_ip):
+    # Process request
+    pass</code></pre>
+                </div>
+
+                <div class="bg-slate-800/50 border border-slate-700 rounded-xl p-6">
+                    <h3 class="text-lg font-semibold text-white mb-2">WebhookNotifier</h3>
+                    <p class="text-slate-400 mb-4">Send security alerts to Slack, Teams, Discord.</p>
+                    <pre class="bg-slate-950 rounded-lg p-4 code-block text-sm overflow-x-auto"><code>from django_nis2_shield import WebhookNotifier
+
+notifier = WebhookNotifier([
+    {"url": "https://hooks.slack.com/...", "format": "slack"}
+])
+notifier.send("rate_limit_exceeded", details={"ip": "..."})</code></pre>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="border-t border-slate-800 py-8 text-center text-slate-500">
+        <p>Part of the <a href="../" class="text-teal-400 hover:underline">NIS2 Shield</a> ecosystem • MIT License</p>
+    </footer>
+
+    <script>lucide.createIcons();</script>
+</body>
+
+</html>

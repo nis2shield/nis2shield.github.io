@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>API Reference - React NIS2 Guard</title>
+    <meta name="description"
+        content="Complete API documentation for @nis2shield/react-guard. Hooks, components, and TypeScript interfaces.">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=JetBrains+Mono:wght@400;500&display=swap"
+        rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+
+        .code-block {
+            font-family: 'JetBrains Mono', monospace;
+        }
+    </style>
+</head>
+
+<body class="bg-slate-900 text-slate-300">
+
+    <!-- Navbar -->
+    <nav class="border-b border-slate-800 bg-slate-900/80 backdrop-blur sticky top-0 z-50">
+        <div class="container mx-auto px-6 py-4 flex justify-between items-center">
+            <a href="../../" class="flex items-center space-x-2">
+                <div class="w-8 h-8 rounded bg-teal-500 flex items-center justify-center">
+                    <i data-lucide="shield" class="w-5 h-5 text-white"></i>
+                </div>
+                <span class="text-xl font-bold text-white">NIS2<span class="text-teal-400">Shield</span></span>
+            </a>
+            <div class="hidden md:flex space-x-8">
+                <a href="../../django/" class="hover:text-teal-400 transition">Django</a>
+                <a href="../" class="text-blue-400">React</a>
+                <a href="../../docs/api-reference/" class="hover:text-teal-400 transition">Django API</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Header -->
+    <header class="py-12 border-b border-slate-800">
+        <div class="container mx-auto px-6 max-w-5xl">
+            <div class="flex items-center gap-3 mb-4">
+                <span class="px-3 py-1 bg-blue-900/30 text-blue-400 rounded-full text-sm font-medium">React</span>
+                <span class="text-slate-500">v0.2.0</span>
+            </div>
+            <h1 class="text-4xl font-bold text-white mb-4">Hooks & Components API</h1>
+            <p class="text-slate-400 text-lg">TypeScript-first API reference for @nis2shield/react-guard.</p>
+        </div>
+    </header>
+
+    <!-- Table of Contents -->
+    <section class="py-8 border-b border-slate-800 bg-slate-800/30">
+        <div class="container mx-auto px-6 max-w-5xl">
+            <h2 class="text-sm font-semibold text-slate-400 uppercase tracking-wider mb-4">Contents</h2>
+            <div class="grid md:grid-cols-4 gap-4 text-sm">
+                <a href="#provider" class="hover:text-blue-400 transition">Nis2Provider</a>
+                <a href="#components" class="hover:text-blue-400 transition">Components</a>
+                <a href="#hooks" class="hover:text-blue-400 transition">Hooks</a>
+                <a href="#types" class="hover:text-blue-400 transition">TypeScript Types</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Nis2Provider -->
+    <section id="provider" class="py-12 border-b border-slate-800">
+        <div class="container mx-auto px-6 max-w-5xl">
+            <h2 class="text-2xl font-bold text-white mb-6 flex items-center gap-3">
+                <i data-lucide="box" class="w-6 h-6 text-blue-400"></i>
+                Nis2Provider
+            </h2>
+            <p class="text-slate-400 mb-6">Context provider that enables NIS2 Guard features across your app.</p>
+
+            <div class="bg-slate-800 border border-slate-700 rounded-xl overflow-hidden mb-6">
+                <div class="bg-slate-800/80 border-b border-slate-700 px-4 py-2 flex items-center gap-2">
+                    <span class="text-xs text-slate-400">App.tsx</span>
+                </div>
+                <pre class="p-4 code-block text-sm overflow-x-auto bg-slate-950"><code><span class="text-blue-400">import</span> { Nis2Provider } <span class="text-blue-400">from</span> <span class="text-green-400">'@nis2shield/react-guard'</span>;
+
+<span class="text-blue-400">function</span> <span class="text-yellow-400">App</span>() {
+  <span class="text-blue-400">return</span> (
+    <span class="text-purple-400">&lt;Nis2Provider</span>
+      config={{
+        auditEndpoint: <span class="text-green-400">'/api/nis2/telemetry/'</span>,
+        idleTimeoutMinutes: <span class="text-orange-400">15</span>,
+        enableDeviceFingerprint: <span class="text-orange-400">true</span>,
+        debug: process.env.NODE_ENV === <span class="text-green-400">'development'</span>
+      }}
+    <span class="text-purple-400">&gt;</span>
+      <span class="text-purple-400">&lt;YourApp /&gt;</span>
+    <span class="text-purple-400">&lt;/Nis2Provider&gt;</span>
+  );
+}</code></pre>
+            </div>
+
+            <h3 class="text-lg font-semibold text-white mb-4">Config Options</h3>
+            <div class="overflow-x-auto">
+                <table class="w-full text-sm border-collapse">
+                    <thead>
+                        <tr class="border-b border-slate-700 text-left">
+                            <th class="py-3 px-4 text-slate-400 font-medium">Prop</th>
+                            <th class="py-3 px-4 text-slate-400 font-medium">Type</th>
+                            <th class="py-3 px-4 text-slate-400 font-medium">Default</th>
+                            <th class="py-3 px-4 text-slate-400 font-medium">Description</th>
+                        </tr>
+                    </thead>
+                    <tbody class="text-slate-300">
+                        <tr class="border-b border-slate-800">
+                            <td class="py-3 px-4 font-mono text-blue-400">auditEndpoint</td>
+                            <td class="py-3 px-4">string</td>
+                            <td class="py-3 px-4 text-slate-500">Required</td>
+                            <td class="py-3 px-4">Backend telemetry URL</td>
+                        </tr>
+                        <tr class="border-b border-slate-800">
+                            <td class="py-3 px-4 font-mono text-blue-400">idleTimeoutMinutes</td>
+                            <td class="py-3 px-4">number</td>
+                            <td class="py-3 px-4 text-slate-500">15</td>
+                            <td class="py-3 px-4">Idle detection timeout</td>
+                        </tr>
+                        <tr class="border-b border-slate-800">
+                            <td class="py-3 px-4 font-mono text-blue-400">enableDeviceFingerprint</td>
+                            <td class="py-3 px-4">boolean</td>
+                            <td class="py-3 px-4 text-slate-500">true</td>
+                            <td class="py-3 px-4">Collect device fingerprint</td>
+                        </tr>
+                        <tr class="border-b border-slate-800">
+                            <td class="py-3 px-4 font-mono text-blue-400">debug</td>
+                            <td class="py-3 px-4">boolean</td>
+                            <td class="py-3 px-4 text-slate-500">false</td>
+                            <td class="py-3 px-4">Console logging</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </section>
+
+    <!-- Components -->
+    <section id="components" class="py-12 border-b border-slate-800">
+        <div class="container mx-auto px-6 max-w-5xl">
+            <h2 class="text-2xl font-bold text-white mb-6 flex items-center gap-3">
+                <i data-lucide="layers" class="w-6 h-6 text-blue-400"></i>
+                Components
+            </h2>
+
+            <div class="space-y-8">
+                <!-- SessionWatchdog -->
+                <div class="bg-slate-800/50 border border-slate-700 rounded-xl p-6">
+                    <h3 class="text-xl font-semibold text-white mb-2">SessionWatchdog</h3>
+                    <p class="text-slate-400 mb-4">Detects user inactivity and tab napping (background hijacking).</p>
+                    <pre class="bg-slate-950 rounded-lg p-4 code-block text-sm overflow-x-auto"><code>&lt;SessionWatchdog
+  onIdle={() =&gt; window.location.href = '/logout'}
+  onTabNap={() =&gt; console.warn('Tab nap detected')}
+  warningBeforeMinutes={2}
+/&gt;</code></pre>
+                    <div class="mt-4">
+                        <h4 class="text-sm font-semibold text-slate-400 mb-2">Props</h4>
+                        <ul class="text-sm space-y-1 text-slate-300">
+                            <li><code class="text-blue-400">onIdle</code>: () => void - Called when idle timeout</li>
+                            <li><code class="text-blue-400">onTabNap</code>: () => void - Called on background tab wake
+                            </li>
+                            <li><code class="text-blue-400">warningBeforeMinutes</code>: number - Warning before timeout
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- AuditBoundary -->
+                <div class="bg-slate-800/50 border border-slate-700 rounded-xl p-6">
+                    <h3 class="text-xl font-semibold text-white mb-2">AuditBoundary</h3>
+                    <p class="text-slate-400 mb-4">Error boundary that reports crashes to your audit endpoint.</p>
+                    <pre class="bg-slate-950 rounded-lg p-4 code-block text-sm overflow-x-auto"><code>&lt;AuditBoundary fallback={&lt;ErrorPage /&gt;}&gt;
+  &lt;YourComponent /&gt;
+&lt;/AuditBoundary&gt;</code></pre>
+                </div>
+
+                <!-- SecurityBanner -->
+                <div class="bg-slate-800/50 border border-slate-700 rounded-xl p-6">
+                    <h3 class="text-xl font-semibold text-white mb-2">SecurityBanner</h3>
+                    <p class="text-slate-400 mb-4">Warns users about insecure connections and outdated browsers.</p>
+                    <pre class="bg-slate-950 rounded-lg p-4 code-block text-sm overflow-x-auto"><code>&lt;SecurityBanner
+  checkHttps={true}
+  checkBrowser={true}
+  minChromeVersion={90}
+/&gt;</code></pre>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Hooks -->
+    <section id="hooks" class="py-12 border-b border-slate-800">
+        <div class="container mx-auto px-6 max-w-5xl">
+            <h2 class="text-2xl font-bold text-white mb-6 flex items-center gap-3">
+                <i data-lucide="anchor" class="w-6 h-6 text-blue-400"></i>
+                Hooks
+            </h2>
+
+            <div class="space-y-8">
+                <!-- useSecureStorage -->
+                <div class="bg-slate-800/50 border border-slate-700 rounded-xl p-6">
+                    <h3 class="text-xl font-semibold text-white mb-2">useSecureStorage</h3>
+                    <p class="text-slate-400 mb-4">AES-GCM encrypted localStorage/sessionStorage.</p>
+                    <pre class="bg-slate-950 rounded-lg p-4 code-block text-sm overflow-x-auto"><code>const { value, setValue, clearValue } = useSecureStorage&lt;string&gt;(
+  'user_iban',  // key
+  ''            // default value
+);
+
+// Automatically encrypted in storage
+setValue('DE89370400440532013000');</code></pre>
+                    <div class="mt-4">
+                        <h4 class="text-sm font-semibold text-slate-400 mb-2">Returns</h4>
+                        <ul class="text-sm space-y-1 text-slate-300">
+                            <li><code class="text-blue-400">value</code>: T - Decrypted current value</li>
+                            <li><code class="text-blue-400">setValue</code>: (val: T) => void - Set and encrypt</li>
+                            <li><code class="text-blue-400">clearValue</code>: () => void - Remove from storage</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- useSecureInput -->
+                <div class="bg-slate-800/50 border border-slate-700 rounded-xl p-6">
+                    <h3 class="text-xl font-semibold text-white mb-2">useSecureInput</h3>
+                    <p class="text-slate-400 mb-4">Returns hardened input props (anti-paste, no autocomplete).</p>
+                    <pre class="bg-slate-950 rounded-lg p-4 code-block text-sm overflow-x-auto"><code>const secureProps = useSecureInput({ 
+  type: 'password',
+  blockPaste: true,
+  blockCopy: true 
+});
+
+&lt;input {...secureProps} placeholder="Password" /&gt;</code></pre>
+                </div>
+
+                <!-- useDeviceFingerprint -->
+                <div class="bg-slate-800/50 border border-slate-700 rounded-xl p-6">
+                    <h3 class="text-xl font-semibold text-white mb-2">useDeviceFingerprint</h3>
+                    <p class="text-slate-400 mb-4">Collect passive device fingerprint for session hijacking detection.
+                    </p>
+                    <pre class="bg-slate-950 rounded-lg p-4 code-block text-sm overflow-x-auto"><code>const { fingerprint, isLoading, sendToBackend } = useDeviceFingerprint();
+
+// fingerprint contains:
+// - screenResolution, colorDepth
+// - timezone, language, platform
+// - hardwareConcurrency, deviceMemory
+// - canvasHash (SHA-256)
+// - webglRenderer, webglVendor</code></pre>
+                </div>
+
+                <!-- useNis2Log -->
+                <div class="bg-slate-800/50 border border-slate-700 rounded-xl p-6">
+                    <h3 class="text-xl font-semibold text-white mb-2">useNis2Log</h3>
+                    <p class="text-slate-400 mb-4">Manual event logging to the audit endpoint.</p>
+                    <pre class="bg-slate-950 rounded-lg p-4 code-block text-sm overflow-x-auto"><code>const { logInfo, logWarning, logError } = useNis2Log();
+
+// Log a security event
+logWarning('HIGH_VALUE_TRANSACTION', {
+  amount: 50000,
+  currency: 'EUR'
+});</code></pre>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- TypeScript Types -->
+    <section id="types" class="py-12">
+        <div class="container mx-auto px-6 max-w-5xl">
+            <h2 class="text-2xl font-bold text-white mb-6 flex items-center gap-3">
+                <i data-lucide="file-code" class="w-6 h-6 text-blue-400"></i>
+                TypeScript Interfaces
+            </h2>
+
+            <pre class="bg-slate-800 border border-slate-700 rounded-xl p-6 code-block text-sm overflow-x-auto"><code><span class="text-blue-400">interface</span> <span class="text-yellow-400">Nis2Config</span> {
+  auditEndpoint: <span class="text-green-400">string</span>;
+  idleTimeoutMinutes?: <span class="text-green-400">number</span>;
+  enableDeviceFingerprint?: <span class="text-green-400">boolean</span>;
+  debug?: <span class="text-green-400">boolean</span>;
+}
+
+<span class="text-blue-400">interface</span> <span class="text-yellow-400">DeviceFingerprint</span> {
+  screenResolution: <span class="text-green-400">string</span>;
+  colorDepth: <span class="text-green-400">number</span>;
+  timezone: <span class="text-green-400">string</span>;
+  language: <span class="text-green-400">string</span>;
+  platform: <span class="text-green-400">string</span>;
+  hardwareConcurrency: <span class="text-green-400">number</span>;
+  deviceMemory?: <span class="text-green-400">number</span>;
+  canvasHash: <span class="text-green-400">string</span>;
+  webglRenderer?: <span class="text-green-400">string</span>;
+  webglVendor?: <span class="text-green-400">string</span>;
+}
+
+<span class="text-blue-400">interface</span> <span class="text-yellow-400">AuditEvent</span> {
+  type: <span class="text-green-400">'info'</span> | <span class="text-green-400">'warning'</span> | <span class="text-green-400">'error'</span>;
+  event: <span class="text-green-400">string</span>;
+  payload?: <span class="text-green-400">Record&lt;string, unknown&gt;</span>;
+  timestamp: <span class="text-green-400">string</span>;
+  fingerprint?: <span class="text-yellow-400">DeviceFingerprint</span>;
+}</code></pre>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="border-t border-slate-800 py-8 text-center text-slate-500">
+        <p>Part of the <a href="../../" class="text-teal-400 hover:underline">NIS2 Shield</a> ecosystem • MIT License
+        </p>
+    </footer>
+
+    <script>lucide.createIcons();</script>
+</body>
+
+</html>
