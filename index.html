@@ -75,31 +75,31 @@
                 <i data-lucide="menu" class="w-8 h-8"></i>
             </button>
         </div>
-
-        <!-- Mobile Menu Overlay -->
-        <div id="mobile-menu"
-            class="fixed inset-0 z-40 bg-[#0f172a] transform translate-x-full transition-transform duration-300 ease-in-out md:hidden flex flex-col items-center justify-center space-y-8">
-            <button id="close-menu-btn" class="absolute top-6 right-6 text-slate-400 hover:text-white">
-                <i data-lucide="x" class="w-8 h-8"></i>
-            </button>
-            <a href="#projects" class="text-2xl text-slate-300 hover:text-teal-400 transition"
-                onclick="toggleMenu()">Projects</a>
-            <a href="./pricing/" class="text-2xl text-slate-300 hover:text-teal-400 transition"
-                onclick="toggleMenu()">Pricing</a>
-            <a href="./auditor-kit/" class="text-2xl text-slate-300 hover:text-teal-400 transition"
-                onclick="toggleMenu()">Auditor Kit</a>
-            <a href="./demo/" class="text-2xl text-slate-300 hover:text-teal-400 transition" onclick="toggleMenu()">Demo
-                Guide</a>
-            <a href="./docs/api-reference/" class="text-2xl text-slate-300 hover:text-teal-400 transition"
-                onclick="toggleMenu()">Docs</a>
-            <a href="./faq/" class="text-2xl text-slate-300 hover:text-teal-400 transition"
-                onclick="toggleMenu()">FAQ</a>
-            <a href="./about/" class="text-2xl text-slate-300 hover:text-teal-400 transition"
-                onclick="toggleMenu()">About</a>
-            <a href="https://github.com/nis2shield" class="text-2xl text-teal-400 font-bold"
-                onclick="toggleMenu()">GitHub</a>
-        </div>
     </nav>
+
+    <!-- Mobile Menu Overlay (outside nav to avoid glass-effect inheritance) -->
+    <div id="mobile-menu"
+        class="fixed inset-0 z-[9999] bg-slate-900 transform translate-x-full transition-transform duration-300 ease-in-out md:hidden flex flex-col items-center justify-center space-y-6"
+        style="background-color: #0f172a !important;">
+        <button id="close-menu-btn" class="absolute top-6 right-6 text-slate-400 hover:text-white">
+            <i data-lucide="x" class="w-8 h-8"></i>
+        </button>
+        <a href="#projects" class="text-2xl text-slate-300 hover:text-teal-400 transition"
+            onclick="toggleMenu()">Projects</a>
+        <a href="./pricing/" class="text-2xl text-slate-300 hover:text-teal-400 transition"
+            onclick="toggleMenu()">Pricing</a>
+        <a href="./auditor-kit/" class="text-2xl text-slate-300 hover:text-teal-400 transition"
+            onclick="toggleMenu()">Auditor Kit</a>
+        <a href="./demo/" class="text-2xl text-slate-300 hover:text-teal-400 transition" onclick="toggleMenu()">Demo
+            Guide</a>
+        <a href="./docs/api-reference/" class="text-2xl text-slate-300 hover:text-teal-400 transition"
+            onclick="toggleMenu()">Docs</a>
+        <a href="./faq/" class="text-2xl text-slate-300 hover:text-teal-400 transition" onclick="toggleMenu()">FAQ</a>
+        <a href="./about/" class="text-2xl text-slate-300 hover:text-teal-400 transition"
+            onclick="toggleMenu()">About</a>
+        <a href="https://github.com/nis2shield" class="text-2xl text-teal-400 font-bold"
+            onclick="toggleMenu()">GitHub</a>
+    </div>
 
     <script>
         const mobileMenuBtn = document.getElementById('mobile-menu-btn');
