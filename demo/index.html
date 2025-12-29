@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Demo Guide - NIS2 Shield</title>
+    <meta name="description" content="Operational scenarios and testing guide for the NIS2 Shield live demo.">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=JetBrains+Mono:wght@400;500&display=swap"
+        rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+
+        .gradient-text {
+            background: linear-gradient(to right, #2dd4bf, #60a5fa);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .glass-effect {
+            background: rgba(30, 41, 59, 0.8);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+    </style>
+</head>
+
+<body class="bg-slate-900 text-slate-300">
+
+    <!-- Navbar -->
+    <nav class="fixed w-full z-50 glass-effect">
+        <div class="container mx-auto px-6 py-4 flex justify-between items-center">
+            <div class="flex items-center space-x-2">
+                <a href="../" class="flex items-center space-x-2">
+                    <div class="w-8 h-8 rounded bg-teal-500 flex items-center justify-center">
+                        <i data-lucide="shield" class="w-5 h-5 text-white"></i>
+                    </div>
+                    <span class="text-xl font-bold text-white">NIS2<span class="text-teal-400">Shield</span></span>
+                </a>
+            </div>
+            <div class="hidden md:flex space-x-8">
+                <a href="../#projects" class="hover:text-teal-400 transition">Projects</a>
+                <a href="../docs/api-reference/" class="hover:text-teal-400 transition">Docs</a>
+                <a href="../" class="hover:text-teal-400 transition">Home</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Header -->
+    <header class="pt-32 pb-16 container mx-auto px-6 text-center">
+        <h1 class="text-4xl md:text-5xl font-bold text-white mb-6">
+            <span class="gradient-text">Live Demo</span> Guide
+        </h1>
+        <p class="text-xl text-slate-400 max-w-2xl mx-auto mb-8">
+            Verify NIS2 compliance controls in real-time. Follow these scenarios to test the resilience of our
+            infrastructure.
+        </p>
+
+        <a href="https://nis2-shield-demo-production.up.railway.app" target="_blank"
+            class="inline-flex items-center gap-2 px-6 py-3 bg-teal-500 text-white font-semibold rounded-lg hover:bg-teal-600 transition-colors">
+            <i data-lucide="play-circle" class="w-5 h-5"></i>
+            Launch Live Demo
+        </a>
+    </header>
+
+    <!-- Scenarios -->
+    <main class="container mx-auto px-6 py-10 max-w-4xl space-y-12">
+
+        <!-- Scenario 1 -->
+        <section class="bg-slate-800/50 p-8 rounded-2xl border border-slate-700">
+            <div class="flex items-center gap-4 mb-6">
+                <div class="w-12 h-12 bg-red-900/50 rounded-lg flex items-center justify-center">
+                    <i data-lucide="activity" class="w-6 h-6 text-red-400"></i>
+                </div>
+                <div>
+                    <h2 class="text-2xl font-bold text-white">Scenario 1: Business Continuity (DoS Protection)</h2>
+                    <p class="text-slate-400 text-sm font-mono">NIS2 Art. 21.2.c</p>
+                </div>
+            </div>
+            <p class="mb-4">
+                Test the **Rate Limiter** which protects the infrastructure from flooding attacks, ensuring service
+                continuity.
+            </p>
+            <div class="bg-slate-900 p-4 rounded-lg border border-slate-800 font-mono text-sm mb-4">
+                <ol class="list-decimal list-inside space-y-2 text-slate-300">
+                    <li>Navigate to the <a href="https://nis2-shield-demo-production.up.railway.app/spam/"
+                            target="_blank" class="text-teal-400 hover:underline">/spam/</a> endpoint.</li>
+                    <li>Refresh the page rapidly (5-10 times in 5 seconds).</li>
+                    <li>Observe the response change from "Spam Me!" to <strong>429 Too Many Requests</strong>.</li>
+                </ol>
+            </div>
+            <div class="flex items-center gap-2 text-sm text-green-400 bg-green-900/20 px-4 py-2 rounded">
+                <i data-lucide="check-circle" class="w-4 h-4"></i>
+                <span>Demonstrates resilience against Denial of Service attempts.</span>
+            </div>
+        </section>
+
+        <!-- Scenario 2 -->
+        <section class="bg-slate-800/50 p-8 rounded-2xl border border-slate-700">
+            <div class="flex items-center gap-4 mb-6">
+                <div class="w-12 h-12 bg-blue-900/50 rounded-lg flex items-center justify-center">
+                    <i data-lucide="heart-pulse" class="w-6 h-6 text-blue-400"></i>
+                </div>
+                <div>
+                    <h2 class="text-2xl font-bold text-white">Scenario 2: Monitoring & Healthchecks</h2>
+                    <p class="text-slate-400 text-sm font-mono">NIS2 Art. 21.2.a</p>
+                </div>
+            </div>
+            <p class="mb-4">
+                Verify the automated monitoring endpoint used by orchestration systems (Kubernetes/Railway) to ensure
+                availability.
+            </p>
+            <div class="bg-slate-900 p-4 rounded-lg border border-slate-800 font-mono text-sm mb-4">
+                <ol class="list-decimal list-inside space-y-2 text-slate-300">
+                    <li>Navigate to <a href="https://nis2-shield-demo-production.up.railway.app/health/" target="_blank"
+                            class="text-teal-400 hover:underline">/health/</a>.</li>
+                    <li>Verify the JSON response <code>{"status": "ok"}</code>.</li>
+                </ol>
+            </div>
+        </section>
+
+        <!-- Scenario 3 -->
+        <section class="bg-slate-800/50 p-8 rounded-2xl border border-slate-700">
+            <div class="flex items-center gap-4 mb-6">
+                <div class="w-12 h-12 bg-purple-900/50 rounded-lg flex items-center justify-center">
+                    <i data-lucide="lock" class="w-6 h-6 text-purple-400"></i>
+                </div>
+                <div>
+                    <h2 class="text-2xl font-bold text-white">Scenario 3: Access Control & Forensics</h2>
+                    <p class="text-slate-400 text-sm font-mono">NIS2 Art. 21.2.i (MFA) & Art. 21.2.f (Logging)</p>
+                </div>
+            </div>
+            <p class="mb-4">
+                Test the secure login flow which generates forensic logs (HMAC signed) for every access attempt.
+            </p>
+            <div class="bg-slate-900 p-4 rounded-lg border border-slate-800 font-mono text-sm mb-4">
+                <p class="mb-2 text-slate-400 uppercase text-xs font-bold">Credentials:</p>
+                <ul class="space-y-1 text-slate-300 mb-4">
+                    <li>User: <span class="text-white select-all">demo</span></li>
+                    <li>Pass: <span class="text-white select-all">Nis2Demo2024!</span></li>
+                </ul>
+                <ol class="list-decimal list-inside space-y-2 text-slate-300">
+                    <li>Go to <a href="https://nis2-shield-demo-production.up.railway.app/admin/login/" target="_blank"
+                            class="text-teal-400 hover:underline">/admin/login/</a>.</li>
+                    <li>Log in with the credentials above.</li>
+                    <li>Access the protected area. <em>(Note: In a real deployment, these actions generate signed logs
+                            in Fluent Bit/SIEM)</em>.</li>
+                </ol>
+            </div>
+        </section>
+
+        <!-- Scenario 4 -->
+        <section class="bg-slate-800/50 p-8 rounded-2xl border border-slate-700">
+            <div class="flex items-center gap-4 mb-6">
+                <div class="w-12 h-12 bg-green-900/50 rounded-lg flex items-center justify-center">
+                    <i data-lucide="shield-check" class="w-6 h-6 text-green-400"></i>
+                </div>
+                <div>
+                    <h2 class="text-2xl font-bold text-white">Scenario 4: Infrastructure Hardening</h2>
+                    <p class="text-slate-400 text-sm font-mono">NIS2 Art. 21.2.g (Hygiene)</p>
+                </div>
+            </div>
+            <p class="mb-4">
+                Inspect the HTTP headers to verify security hardening applied automatically by the middleware.
+            </p>
+            <div class="bg-slate-900 p-4 rounded-lg border border-slate-800 font-mono text-sm mb-4">
+                <ol class="list-decimal list-inside space-y-2 text-slate-300">
+                    <li>Open Developer Tools (F12) -> Network tab.</li>
+                    <li>Refresh any page.</li>
+                    <li>Inspect the Response Headers for:</li>
+                </ol>
+                <ul class="ml-8 mt-2 space-y-1 text-teal-400">
+                    <li>X-Content-Type-Options: nosniff</li>
+                    <li>X-Frame-Options: DENY</li>
+                    <li>Strict-Transport-Security (HSTS)</li>
+                    <li>Referrer-Policy: same-origin</li>
+                </ul>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="border-t border-slate-800 py-12 text-center text-slate-500 mt-12">
+        <p class="mb-4">© 2025 NIS2 Shield Contributors. MIT License.</p>
+    </footer>
+
+    <script>lucide.createIcons();</script>
+</body>
+
+</html>
