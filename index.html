@@ -239,7 +239,7 @@
             coverage.
         </p>
 
-        <div class="grid md:grid-cols-3 gap-6 max-w-6xl mx-auto">
+        <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6 max-w-7xl mx-auto">
             <!-- Django Card -->
             <a href="django/"
                 class="bg-slate-800/50 p-8 rounded-2xl border border-slate-700 hover:border-green-500 transition-all duration-300 card-hover block">
@@ -260,6 +260,30 @@
                     <span class="px-3 py-1 bg-slate-700 text-slate-300 rounded-full text-sm">SIEM Ready</span>
                 </div>
                 <div class="flex items-center text-green-400 font-semibold">Explore Django Shield →</div>
+            </a>
+
+            <!-- Spring Card -->
+            <a href="spring-shield/"
+                class="bg-slate-800/50 p-8 rounded-2xl border border-slate-700 hover:border-green-500 transition-all duration-300 card-hover block">
+                <div class="flex items-center gap-4 mb-6">
+                    <div class="w-14 h-14 bg-green-900/50 rounded-xl flex items-center justify-center">
+                        <svg class="w-8 h-8 text-green-400" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M12 2L2 7l10 5 10-5-10-5zm0 9l2-1-2-1-2 1 2 1zm0 2l-2 1 2 1 2-1-2-1z" />
+                        </svg>
+                    </div>
+                    <div>
+                        <h3 class="text-2xl font-bold text-white">Spring NIS2 Shield</h3>
+                        <p class="text-slate-400">Java/Spring Starter</p>
+                    </div>
+                </div>
+                <p class="text-slate-300 mb-6">Security-first starter for Spring Boot. Audit logging, rate limiting, and
+                    Actuator integration.</p>
+                <div class="flex flex-wrap gap-2 mb-6">
+                    <span class="px-3 py-1 bg-green-900/30 text-green-400 rounded-full text-sm">Java 21</span>
+                    <span class="px-3 py-1 bg-slate-700 text-slate-300 rounded-full text-sm">Spring Boot 3</span>
+                    <span class="px-3 py-1 bg-slate-700 text-slate-300 rounded-full text-sm">Bucket4j</span>
+                </div>
+                <div class="flex items-center text-green-400 font-semibold">Explore Spring Shield →</div>
             </a>
 
             <!-- React Card -->
@@ -341,6 +365,22 @@
                     <li>├── ForensicLogger <span class="text-slate-500">(HMAC signed logs)</span></li>
                     <li>├── RateLimiter, SessionGuard, TorBlocker</li>
                     <li>└── → SIEM <span class="text-slate-500">(Elasticsearch, Splunk, QRadar)</span></li>
+                </ul>
+                </ul>
+            </div>
+
+            <div class="flex justify-center text-slate-500 font-mono text-sm py-2">OR</div>
+
+            <div class="bg-slate-800/60 border border-green-500/50 rounded-xl p-6">
+                <div class="flex items-center gap-3 mb-4">
+                    <div class="w-3 h-3 bg-green-500 rounded-full"></div>
+                    <span class="text-green-500 font-semibold">Backend (Spring Boot)</span>
+                </div>
+                <p class="text-slate-300 font-mono text-sm mb-3">nis2-spring-shield</p>
+                <ul class="text-slate-400 text-sm space-y-1 ml-4">
+                    <li>├── Nis2AuditingFilter <span class="text-slate-500">(HMAC signed logs)</span></li>
+                    <li>├── ActiveDefenseFilter <span class="text-slate-500">(Bucket4j / Tor)</span></li>
+                    <li>└── → Actuator <span class="text-slate-500">(/health)</span></li>
                 </ul>
             </div>
         </div>
@@ -672,7 +712,9 @@
     </footer>
 
     <script>lucide.createIcons();</script>
-<!-- Cloudflare Web Analytics --><script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "4b9d7f2a1da44d62a75457bc2d38af01"}'></script><!-- End Cloudflare Web Analytics -->
+    <!-- Cloudflare Web Analytics -->
+    <script defer src='https://static.cloudflareinsights.com/beacon.min.js'
+        data-cf-beacon='{"token": "4b9d7f2a1da44d62a75457bc2d38af01"}'></script><!-- End Cloudflare Web Analytics -->
 </body>
 
 </html>
