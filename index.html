@@ -565,18 +565,24 @@
 
     <!-- Installation -->
     <section class="py-20 bg-slate-800/30 border-t border-slate-800">
-        <div class="max-w-4xl mx-auto px-4 text-center">
+        <div class="max-w-5xl mx-auto px-4 text-center">
             <h2 class="text-3xl font-bold text-white mb-8">Get Started in Seconds</h2>
-            <div class="grid md:grid-cols-2 gap-6">
+            <div class="grid md:grid-cols-3 gap-6">
                 <div
                     class="bg-slate-900 border border-slate-700 rounded-xl p-6 text-left hover:border-green-500 transition-colors">
-                    <div class="text-xs text-green-500 font-bold mb-2 uppercase tracking-wider">Backend</div>
+                    <div class="text-xs text-green-500 font-bold mb-2 uppercase tracking-wider">Python / Django</div>
                     <code class="font-mono text-lg text-white">pip install django-nis2-shield</code>
                 </div>
                 <div
+                    class="bg-slate-900 border border-slate-700 rounded-xl p-6 text-left hover:border-green-400 transition-colors">
+                    <div class="text-xs text-green-400 font-bold mb-2 uppercase tracking-wider">Java / Spring Boot</div>
+                    <code
+                        class="font-mono text-sm text-white">&lt;artifactId&gt;<span class="text-green-400">nis2-spring-shield</span>&lt;/artifactId&gt;</code>
+                </div>
+                <div
                     class="bg-slate-900 border border-slate-700 rounded-xl p-6 text-left hover:border-blue-500 transition-colors">
-                    <div class="text-xs text-blue-500 font-bold mb-2 uppercase tracking-wider">Frontend</div>
-                    <code class="font-mono text-lg text-white">npm install @nis2shield/react-guard</code>
+                    <div class="text-xs text-blue-500 font-bold mb-2 uppercase tracking-wider">Frontend / React</div>
+                    <code class="font-mono text-lg text-white">npm i @nis2shield/react-guard</code>
                 </div>
             </div>
         </div>
@@ -700,11 +706,13 @@
     <!-- Footer -->
     <footer class="border-t border-slate-800 py-12 text-center text-slate-500">
         <p class="mb-4">© 2025 NIS2 Shield Contributors. MIT License.</p>
-        <div class="flex justify-center space-x-6">
+        <div class="flex flex-wrap justify-center gap-x-6 gap-y-2">
             <a href="https://github.com/nis2shield" class="hover:text-white transition">GitHub</a>
             <a href="./" class="hover:text-white transition">Home</a>
             <a href="./legal/" class="hover:text-white transition">Legal</a>
             <a href="https://pypi.org/project/django-nis2-shield/" class="hover:text-white transition">PyPI</a>
+            <a href="https://github.com/nis2shield/nis2-spring-shield/packages"
+                class="hover:text-white transition">Maven</a>
             <a href="https://www.npmjs.com/package/@nis2shield/react-guard" class="hover:text-white transition">npm</a>
             <span class="text-slate-700">|</span>
             <a href="./enterprise/" class="hover:text-white transition">Enterprise Guide</a>
