@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Express NIS2 Middleware - NIS2 Compliance for Node.js</title>
+    <meta name="description"
+        content="NIS2 compliance middleware for Express.js. Forensic logging, active defense, rate limiting, and security headers in a single app.use().">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <!-- Cloudflare Web Analytics -->
+    <script defer src='https://static.cloudflareinsights.com/beacon.min.js'
+        data-cf-beacon='{"token": "your-token-here"}'></script>
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+
+        .gradient-text {
+            background: linear-gradient(to right, #f97316, #eab308);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .code-block {
+            background: #1e293b;
+            border-radius: 8px;
+            padding: 1.5rem;
+            overflow-x: auto;
+        }
+
+        .code-block code {
+            color: #e2e8f0;
+            font-family: 'Monaco', 'Menlo', monospace;
+            font-size: 0.875rem;
+        }
+
+        .feature-card {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        .feature-card:hover {
+            background: rgba(255, 255, 255, 0.08);
+            border-color: #f97316;
+            transform: translateY(-2px);
+        }
+    </style>
+</head>
+
+<body class="bg-slate-900 text-white">
+
+    <!-- Navbar -->
+    <nav class="container mx-auto px-6 py-4 flex justify-between items-center relative z-50">
+        <div class="flex items-center space-x-2">
+            <a href="../" class="flex items-center space-x-2">
+                <div class="w-8 h-8 rounded bg-orange-500 flex items-center justify-center">
+                    <svg class="w-5 h-5 text-white" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                        stroke-width="2">
+                        <path d="M12 2L2 7l10 5 10-5-10-5z" />
+                        <path d="M2 17l10 5 10-5" />
+                        <path d="M2 12l10 5 10-5" />
+                    </svg>
+                </div>
+                <span class="text-xl font-bold">Express NIS2 Middleware</span>
+            </a>
+        </div>
+        <div class="hidden md:flex space-x-8">
+            <a href="https://github.com/nis2shield/express-nis2-middleware#readme"
+                class="hover:text-orange-400 transition">Documentation</a>
+            <a href="https://github.com/nis2shield/express-nis2-middleware"
+                class="hover:text-orange-400 transition">GitHub</a>
+            <a href="https://www.npmjs.com/package/@nis2shield/express-middleware"
+                class="hover:text-orange-400 transition">npm</a>
+        </div>
+        <a href="https://www.npmjs.com/package/@nis2shield/express-middleware"
+            class="hidden md:inline-block bg-orange-500 hover:bg-orange-600 px-5 py-2 rounded-full font-semibold transition">
+            Get Started
+        </a>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="container mx-auto px-6 py-20 text-center">
+        <!-- Badges -->
+        <div class="flex justify-center gap-3 mb-8">
+            <img src="https://img.shields.io/npm/v/@nis2shield/express-middleware?color=orange&style=flat-square"
+                alt="npm version">
+            <img src="https://img.shields.io/badge/Node.js-18+-green?style=flat-square" alt="Node.js">
+            <img src="https://img.shields.io/badge/TypeScript-First-blue?style=flat-square" alt="TypeScript">
+            <img src="https://img.shields.io/badge/License-MIT-yellow?style=flat-square" alt="License">
+        </div>
+
+        <h1 class="text-5xl md:text-6xl font-bold mb-6">
+            NIS2 Compliance for <span class="gradient-text">Express.js</span>
+        </h1>
+        <p class="text-xl text-slate-400 max-w-2xl mx-auto mb-10">
+            Forensic logging, active defense, and security headers in a single
+            <code class="bg-slate-800 px-2 py-1 rounded">app.use()</code>.
+            Production-ready NIS2 compliance middleware for Node.js applications.
+        </p>
+
+        <!-- Installation -->
+        <div class="max-w-xl mx-auto mb-10">
+            <div class="code-block">
+                <code>npm install @nis2shield/express-middleware</code>
+            </div>
+        </div>
+
+        <!-- Quick Start -->
+        <div class="max-w-2xl mx-auto text-left">
+            <h3 class="text-lg font-semibold mb-3 text-orange-400">Quick Start</h3>
+            <div class="code-block">
+                <pre><code><span class="text-purple-400">import</span> express <span class="text-purple-400">from</span> <span class="text-green-400">'express'</span>;
+<span class="text-purple-400">import</span> { nis2Shield } <span class="text-purple-400">from</span> <span class="text-green-400">'@nis2shield/express-middleware'</span>;
+
+<span class="text-purple-400">const</span> app = express();
+
+<span class="text-slate-500">// One line to NIS2 compliance</span>
+app.use(nis2Shield());
+
+app.listen(<span class="text-orange-400">3000</span>);</code></pre>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Grid -->
+    <section class="container mx-auto px-6 py-16">
+        <h2 class="text-3xl font-bold text-center mb-12">What's Included</h2>
+
+        <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <!-- Feature 1 -->
+            <div class="feature-card rounded-xl p-6">
+                <div class="w-12 h-12 bg-orange-500/20 rounded-lg flex items-center justify-center mb-4">
+                    <i data-lucide="file-text" class="w-6 h-6 text-orange-400"></i>
+                </div>
+                <h3 class="text-xl font-semibold mb-2">Forensic Logging</h3>
+                <p class="text-slate-400">Structured JSON logs with HMAC-SHA256 signing for tamper-proof audit trails.
+                    SIEM-ready format.</p>
+            </div>
+
+            <!-- Feature 2 -->
+            <div class="feature-card rounded-xl p-6">
+                <div class="w-12 h-12 bg-orange-500/20 rounded-lg flex items-center justify-center mb-4">
+                    <i data-lucide="shield" class="w-6 h-6 text-orange-400"></i>
+                </div>
+                <h3 class="text-xl font-semibold mb-2">Security Headers</h3>
+                <p class="text-slate-400">HSTS, CSP, X-Frame-Options, Referrer-Policy, and Permissions-Policy
+                    out-of-the-box.</p>
+            </div>
+
+            <!-- Feature 3 -->
+            <div class="feature-card rounded-xl p-6">
+                <div class="w-12 h-12 bg-orange-500/20 rounded-lg flex items-center justify-center mb-4">
+                    <i data-lucide="gauge" class="w-6 h-6 text-orange-400"></i>
+                </div>
+                <h3 class="text-xl font-semibold mb-2">Rate Limiting</h3>
+                <p class="text-slate-400">In-memory token bucket algorithm. Configurable windows, limits, and custom
+                    key generators.</p>
+            </div>
+
+            <!-- Feature 4 -->
+            <div class="feature-card rounded-xl p-6">
+                <div class="w-12 h-12 bg-orange-500/20 rounded-lg flex items-center justify-center mb-4">
+                    <i data-lucide="lock" class="w-6 h-6 text-orange-400"></i>
+                </div>
+                <h3 class="text-xl font-semibold mb-2">PII Protection</h3>
+                <p class="text-slate-400">AES-256 encryption for sensitive fields. IP anonymization for GDPR
+                    compliance.</p>
+            </div>
+
+            <!-- Feature 5 -->
+            <div class="feature-card rounded-xl p-6">
+                <div class="w-12 h-12 bg-orange-500/20 rounded-lg flex items-center justify-center mb-4">
+                    <i data-lucide="ban" class="w-6 h-6 text-orange-400"></i>
+                </div>
+                <h3 class="text-xl font-semibold mb-2">Active Defense</h3>
+                <p class="text-slate-400">IP blocking, Tor exit node detection, and automatic threat mitigation.</p>
+            </div>
+
+            <!-- Feature 6 -->
+            <div class="feature-card rounded-xl p-6">
+                <div class="w-12 h-12 bg-orange-500/20 rounded-lg flex items-center justify-center mb-4">
+                    <i data-lucide="code" class="w-6 h-6 text-orange-400"></i>
+                </div>
+                <h3 class="text-xl font-semibold mb-2">TypeScript First</h3>
+                <p class="text-slate-400">Full type definitions, augmented Express types, and IDE autocompletion
+                    support.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Configuration Example -->
+    <section class="container mx-auto px-6 py-16">
+        <h2 class="text-3xl font-bold text-center mb-12">Full Configuration</h2>
+
+        <div class="max-w-3xl mx-auto">
+            <div class="code-block">
+                <pre><code><span class="text-purple-400">import</span> { nis2Shield } <span class="text-purple-400">from</span> <span class="text-green-400">'@nis2shield/express-middleware'</span>;
+
+app.use(nis2Shield({
+  <span class="text-blue-400">enabled</span>: <span class="text-orange-400">true</span>,
+  <span class="text-blue-400">encryptionKey</span>: process.env.<span class="text-yellow-400">NIS2_ENCRYPTION_KEY</span>,
+  <span class="text-blue-400">integrityKey</span>: process.env.<span class="text-yellow-400">NIS2_HMAC_KEY</span>,
+  
+  <span class="text-blue-400">logging</span>: {
+    <span class="text-blue-400">enabled</span>: <span class="text-orange-400">true</span>,
+    <span class="text-blue-400">anonymizeIP</span>: <span class="text-orange-400">true</span>,
+    <span class="text-blue-400">encryptPII</span>: <span class="text-orange-400">true</span>,
+    <span class="text-blue-400">piiFields</span>: [<span class="text-green-400">'userId'</span>, <span class="text-green-400">'email'</span>],
+  },
+  
+  <span class="text-blue-400">activeDefense</span>: {
+    <span class="text-blue-400">rateLimit</span>: {
+      <span class="text-blue-400">enabled</span>: <span class="text-orange-400">true</span>,
+      <span class="text-blue-400">windowMs</span>: <span class="text-orange-400">60000</span>,
+      <span class="text-blue-400">max</span>: <span class="text-orange-400">100</span>,
+    },
+    <span class="text-blue-400">blockTor</span>: <span class="text-orange-400">true</span>,
+  },
+  
+  <span class="text-blue-400">securityHeaders</span>: {
+    <span class="text-blue-400">enabled</span>: <span class="text-orange-400">true</span>,
+    <span class="text-blue-400">hsts</span>: <span class="text-orange-400">true</span>,
+    <span class="text-blue-400">csp</span>: <span class="text-green-400">"default-src 'self'"</span>,
+  },
+}));</code></pre>
+            </div>
+        </div>
+    </section>
+
+    <!-- Related Projects -->
+    <section class="container mx-auto px-6 py-16">
+        <h2 class="text-3xl font-bold text-center mb-12">Part of the NIS2 Shield Family</h2>
+
+        <div class="grid md:grid-cols-4 gap-6 max-w-4xl mx-auto">
+            <a href="../django/" class="feature-card rounded-xl p-6 text-center hover:border-blue-500">
+                <div class="text-3xl mb-2">🐍</div>
+                <h3 class="font-semibold">Django</h3>
+                <p class="text-sm text-slate-400">Python</p>
+            </a>
+            <a href="../spring-shield/" class="feature-card rounded-xl p-6 text-center hover:border-green-500">
+                <div class="text-3xl mb-2">🍃</div>
+                <h3 class="font-semibold">Spring Boot</h3>
+                <p class="text-sm text-slate-400">Java</p>
+            </a>
+            <a href="../react-guard/" class="feature-card rounded-xl p-6 text-center hover:border-cyan-500">
+                <div class="text-3xl mb-2">⚛️</div>
+                <h3 class="font-semibold">React Guard</h3>
+                <p class="text-sm text-slate-400">Frontend</p>
+            </a>
+            <a href="../infrastructure/" class="feature-card rounded-xl p-6 text-center hover:border-purple-500">
+                <div class="text-3xl mb-2">🐳</div>
+                <h3 class="font-semibold">Infrastructure</h3>
+                <p class="text-sm text-slate-400">Docker/K8s</p>
+            </a>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="border-t border-slate-800 py-12">
+        <div class="container mx-auto px-6">
+            <div class="flex flex-col md:flex-row justify-between items-center">
+                <div class="flex items-center space-x-2 mb-4 md:mb-0">
+                    <div class="w-6 h-6 bg-orange-500 rounded flex items-center justify-center">
+                        <svg class="w-4 h-4 text-white" fill="currentColor" viewBox="0 0 24 24">
+                            <path d="M12 2L2 7l10 5 10-5-10-5z" />
+                        </svg>
+                    </div>
+                    <span class="font-semibold">NIS2 Shield</span>
+                </div>
+                <div class="flex space-x-6 text-slate-400">
+                    <a href="https://github.com/nis2shield/express-nis2-middleware" class="hover:text-white">GitHub</a>
+                    <a href="https://www.npmjs.com/package/@nis2shield/express-middleware"
+                        class="hover:text-white">npm</a>
+                    <a href="../" class="hover:text-white">Home</a>
+                    <a href="../pricing/" class="hover:text-white">Pricing</a>
+                </div>
+            </div>
+            <div class="text-center text-slate-500 mt-8">
+                <p>© 2025 NIS2 Shield. Open source under MIT License.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        lucide.createIcons();
+    </script>
+</body>
+
+</html>
