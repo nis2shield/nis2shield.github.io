@@ -116,33 +116,41 @@
     <!-- Features Grid -->
     <section class="container mx-auto px-6 py-20 border-t border-slate-800">
         <h2 class="text-3xl font-bold text-center mb-16">Enterprise Grade Protection</h2>
-        <div class="grid md:grid-cols-3 gap-8">
+        <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
             <!-- Feature 1 -->
-            <div class="bg-slate-800/50 p-8 rounded-2xl border border-slate-700 hover:border-green-500 transition">
-                <div class="w-12 h-12 bg-green-900/50 rounded-lg flex items-center justify-center mb-6">
+            <div class="bg-slate-800/50 p-6 rounded-2xl border border-slate-700 hover:border-green-500 transition">
+                <div class="w-12 h-12 bg-green-900/50 rounded-lg flex items-center justify-center mb-4">
                     <i data-lucide="shield-check" class="w-6 h-6 text-green-400"></i>
                 </div>
-                <h3 class="text-xl font-bold mb-3">Auditing Filter</h3>
-                <p class="text-slate-400">Servlet Filter that captures requests/responses in JSON. Signs logs with
-                    HMAC-SHA256 for immutability.</p>
+                <h3 class="text-lg font-bold mb-2">Auditing Filter</h3>
+                <p class="text-slate-400 text-sm">Servlet Filter for JSON logs. HMAC-SHA256 signing for immutability.
+                </p>
             </div>
             <!-- Feature 2 -->
-            <div class="bg-slate-800/50 p-8 rounded-2xl border border-slate-700 hover:border-green-500 transition">
-                <div class="w-12 h-12 bg-blue-900/50 rounded-lg flex items-center justify-center mb-6">
+            <div class="bg-slate-800/50 p-6 rounded-2xl border border-slate-700 hover:border-green-500 transition">
+                <div class="w-12 h-12 bg-blue-900/50 rounded-lg flex items-center justify-center mb-4">
                     <i data-lucide="lock" class="w-6 h-6 text-blue-400"></i>
                 </div>
-                <h3 class="text-xl font-bold mb-3">Active Defense</h3>
-                <p class="text-slate-400">Integrated **Bucket4j** Rate Limiter and Tor Exit Node blocker. Configurable
-                    via `application.yml`.</p>
+                <h3 class="text-lg font-bold mb-2">Active Defense</h3>
+                <p class="text-slate-400 text-sm">Bucket4j Rate Limiter + Tor Exit Node blocker. Configurable via YAML.
+                </p>
             </div>
             <!-- Feature 3 -->
-            <div class="bg-slate-800/50 p-8 rounded-2xl border border-slate-700 hover:border-green-500 transition">
-                <div class="w-12 h-12 bg-purple-900/50 rounded-lg flex items-center justify-center mb-6">
+            <div class="bg-slate-800/50 p-6 rounded-2xl border border-slate-700 hover:border-green-500 transition">
+                <div class="w-12 h-12 bg-purple-900/50 rounded-lg flex items-center justify-center mb-4">
                     <i data-lucide="activity" class="w-6 h-6 text-purple-400"></i>
                 </div>
-                <h3 class="text-xl font-bold mb-3">Actuator Ready</h3>
-                <p class="text-slate-400">Exposes health metrics via `/actuator/health`. Seamless integration with
-                    Prometheus and Grafana.</p>
+                <h3 class="text-lg font-bold mb-2">Actuator Ready</h3>
+                <p class="text-slate-400 text-sm">Health metrics via <code>/actuator/health</code>. Prometheus & Grafana
+                    ready.</p>
+            </div>
+            <!-- Feature 4 - NEW -->
+            <div class="bg-slate-800/50 p-6 rounded-2xl border border-slate-700 hover:border-green-500 transition">
+                <div class="w-12 h-12 bg-orange-900/50 rounded-lg flex items-center justify-center mb-4">
+                    <i data-lucide="shield-alert" class="w-6 h-6 text-orange-400"></i>
+                </div>
+                <h3 class="text-lg font-bold mb-2">Security Headers</h3>
+                <p class="text-slate-400 text-sm">Auto-set HSTS, CSP, X-Frame-Options, Referrer-Policy & more.</p>
             </div>
         </div>
     </section>
