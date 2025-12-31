@@ -128,7 +128,8 @@ app.listen(<span class="text-orange-400">3000</span>);</code></pre>
 
     <!-- Features Grid -->
     <section class="container mx-auto px-6 py-16">
-        <h2 class="text-3xl font-bold text-center mb-12">What's Included</h2>
+        <h2 class="text-3xl font-bold text-center mb-4">What's Included</h2>
+        <p class="text-center text-orange-400 mb-12">v0.2.0 Features</p>
 
         <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
             <!-- Feature 1 -->
@@ -137,8 +138,8 @@ app.listen(<span class="text-orange-400">3000</span>);</code></pre>
                     <i data-lucide="file-text" class="w-6 h-6 text-orange-400"></i>
                 </div>
                 <h3 class="text-xl font-semibold mb-2">Forensic Logging</h3>
-                <p class="text-slate-400">Structured JSON logs with HMAC-SHA256 signing for tamper-proof audit trails.
-                    SIEM-ready format.</p>
+                <p class="text-slate-400">Structured JSON logs with HMAC-SHA256 signing. <span
+                        class="text-orange-400">NEW: File output with rotation.</span></p>
             </div>
 
             <!-- Feature 2 -->
@@ -161,7 +162,28 @@ app.listen(<span class="text-orange-400">3000</span>);</code></pre>
                     key generators.</p>
             </div>
 
-            <!-- Feature 4 -->
+            <!-- Feature 4 - NEW -->
+            <div class="feature-card rounded-xl p-6 border-orange-500/50">
+                <div class="w-12 h-12 bg-orange-500/20 rounded-lg flex items-center justify-center mb-4">
+                    <i data-lucide="globe" class="w-6 h-6 text-orange-400"></i>
+                </div>
+                <h3 class="text-xl font-semibold mb-2">GeoIP Blocking <span
+                        class="text-xs bg-orange-500 px-2 py-0.5 rounded-full ml-2">NEW</span></h3>
+                <p class="text-slate-400">Block or allow traffic by country using MaxMind GeoLite2. Blocklist and
+                    allowlist modes.</p>
+            </div>
+
+            <!-- Feature 5 - NEW -->
+            <div class="feature-card rounded-xl p-6 border-orange-500/50">
+                <div class="w-12 h-12 bg-orange-500/20 rounded-lg flex items-center justify-center mb-4">
+                    <i data-lucide="eye-off" class="w-6 h-6 text-orange-400"></i>
+                </div>
+                <h3 class="text-xl font-semibold mb-2">Tor Detection <span
+                        class="text-xs bg-orange-500 px-2 py-0.5 rounded-full ml-2">NEW</span></h3>
+                <p class="text-slate-400">Real Tor exit node detection using TorProject API with 6-hour caching.</p>
+            </div>
+
+            <!-- Feature 6 -->
             <div class="feature-card rounded-xl p-6">
                 <div class="w-12 h-12 bg-orange-500/20 rounded-lg flex items-center justify-center mb-4">
                     <i data-lucide="lock" class="w-6 h-6 text-orange-400"></i>
@@ -169,25 +191,6 @@ app.listen(<span class="text-orange-400">3000</span>);</code></pre>
                 <h3 class="text-xl font-semibold mb-2">PII Protection</h3>
                 <p class="text-slate-400">AES-256 encryption for sensitive fields. IP anonymization for GDPR
                     compliance.</p>
-            </div>
-
-            <!-- Feature 5 -->
-            <div class="feature-card rounded-xl p-6">
-                <div class="w-12 h-12 bg-orange-500/20 rounded-lg flex items-center justify-center mb-4">
-                    <i data-lucide="ban" class="w-6 h-6 text-orange-400"></i>
-                </div>
-                <h3 class="text-xl font-semibold mb-2">Active Defense</h3>
-                <p class="text-slate-400">IP blocking, Tor exit node detection, and automatic threat mitigation.</p>
-            </div>
-
-            <!-- Feature 6 -->
-            <div class="feature-card rounded-xl p-6">
-                <div class="w-12 h-12 bg-orange-500/20 rounded-lg flex items-center justify-center mb-4">
-                    <i data-lucide="code" class="w-6 h-6 text-orange-400"></i>
-                </div>
-                <h3 class="text-xl font-semibold mb-2">TypeScript First</h3>
-                <p class="text-slate-400">Full type definitions, augmented Express types, and IDE autocompletion
-                    support.</p>
             </div>
         </div>
     </section>
