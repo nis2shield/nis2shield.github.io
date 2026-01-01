@@ -86,7 +86,7 @@
     <section class="container mx-auto px-6 py-20 text-center">
         <!-- Badges -->
         <div class="flex justify-center gap-3 mb-8">
-            <img src="https://img.shields.io/npm/v/@nis2shield/express-middleware?color=orange&style=flat-square"
+            <img src="https://img.shields.io/npm/v/@nis2shield/express-middleware?color=orange&style=flat-square&label=v0.4.0"
                 alt="npm version">
             <img src="https://img.shields.io/badge/Node.js-18+-green?style=flat-square" alt="Node.js">
             <img src="https://img.shields.io/badge/TypeScript-First-blue?style=flat-square" alt="TypeScript">
@@ -143,7 +143,7 @@ app.listen(<span class="text-orange-400">3000</span>);</code></pre>
     <!-- Features Grid -->
     <section class="container mx-auto px-6 py-16">
         <h2 class="text-3xl font-bold text-center mb-4">What's Included</h2>
-        <p class="text-center text-orange-400 mb-12">v0.3.0 Features</p>
+        <p class="text-center text-orange-400 mb-12">v0.4.0 Features</p>
 
         <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
             <!-- Feature 1: Forensic Logging -->
@@ -177,7 +177,17 @@ app.listen(<span class="text-orange-400">3000</span>);</code></pre>
                 <p class="text-slate-400">Anti-hijacking middleware that fingerprints sessions by IP and User-Agent.</p>
             </div>
 
-            <!-- Feature 4: Compliance Engine (NEW) -->
+            <div class="feature-card rounded-xl p-6 border-orange-500/50">
+                <div class="w-12 h-12 bg-orange-500/20 rounded-lg flex items-center justify-center mb-4">
+                    <i data-lucide="bell" class="w-6 h-6 text-orange-400"></i>
+                </div>
+                <h3 class="text-xl font-semibold mb-2">Webhooks <span
+                        class="text-xs bg-orange-500 px-2 py-0.5 rounded-full ml-2">NEW</span></h3>
+                <p class="text-slate-400">Real-time alerts via Slack, Teams, and Discord for critical security events.
+                </p>
+            </div>
+
+            <!-- Feature 5: Compliance Engine (NEW) -->
             <div class="feature-card rounded-xl p-6 border-orange-500/50">
                 <div class="w-12 h-12 bg-orange-500/20 rounded-lg flex items-center justify-center mb-4">
                     <i data-lucide="clipboard-check" class="w-6 h-6 text-orange-400"></i>
@@ -237,6 +247,11 @@ app.use(nis2Shield({
       <span class="text-blue-400">max</span>: <span class="text-orange-400">100</span>,
     },
     <span class="text-blue-400">blockTor</span>: <span class="text-orange-400">true</span>,
+    <span class="text-blue-400">sessionGuard</span>: { <span class="text-blue-400">enabled</span>: <span class="text-orange-400">true</span> },
+  },
+  
+  <span class="text-blue-400">webhooks</span>: {
+    <span class="text-blue-400">url</span>: <span class="text-green-400">"https://hooks.slack.com/..."</span>,
   },
   
   <span class="text-blue-400">securityHeaders</span>: {
