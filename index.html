@@ -359,6 +359,50 @@
                 </div>
                 <div class="flex items-center text-blue-400 font-semibold">Explore React Guard →</div>
             </a>
+
+            <!-- Angular Card -->
+            <a href="angular-guard/"
+                class="bg-slate-800/50 p-8 rounded-2xl border border-slate-700 hover:border-red-500 transition-all duration-300 card-hover block">
+                <div class="flex items-center gap-4 mb-6">
+                    <div class="w-14 h-14 bg-red-900/50 rounded-xl flex items-center justify-center">
+                        <i data-lucide="shield-check" class="w-8 h-8 text-red-400"></i>
+                    </div>
+                    <div>
+                        <h3 class="text-2xl font-bold text-white">Angular NIS2 Guard</h3>
+                        <p class="text-slate-400">Client-Side Protection</p>
+                    </div>
+                </div>
+                <p class="text-slate-300 mb-6">Client-side security telemetry for Angular. Session protection, encrypted
+                    storage, device fingerprinting.</p>
+                <div class="flex flex-wrap gap-2 mb-6">
+                    <span class="px-3 py-1 bg-red-900/30 text-red-400 rounded-full text-sm">TypeScript</span>
+                    <span class="px-3 py-1 bg-slate-700 text-slate-300 rounded-full text-sm">Angular 14+</span>
+                    <span class="px-3 py-1 bg-slate-700 text-slate-300 rounded-full text-sm">AES-GCM</span>
+                </div>
+                <div class="flex items-center text-red-400 font-semibold">Explore Angular Guard →</div>
+            </a>
+
+            <!-- Vue Card -->
+            <a href="vue-guard/"
+                class="bg-slate-800/50 p-8 rounded-2xl border border-slate-700 hover:border-green-500 transition-all duration-300 card-hover block">
+                <div class="flex items-center gap-4 mb-6">
+                    <div class="w-14 h-14 bg-green-900/50 rounded-xl flex items-center justify-center">
+                        <i data-lucide="layers" class="w-8 h-8 text-green-400"></i>
+                    </div>
+                    <div>
+                        <h3 class="text-2xl font-bold text-white">Vue NIS2 Guard</h3>
+                        <p class="text-slate-400">Client-Side Protection</p>
+                    </div>
+                </div>
+                <p class="text-slate-300 mb-6">Client-side security telemetry for Vue 3. Session protection, encrypted
+                    storage, device fingerprinting.</p>
+                <div class="flex flex-wrap gap-2 mb-6">
+                    <span class="px-3 py-1 bg-green-900/30 text-green-400 rounded-full text-sm">Vue 3</span>
+                    <span class="px-3 py-1 bg-slate-700 text-slate-300 rounded-full text-sm">Composition API</span>
+                    <span class="px-3 py-1 bg-slate-700 text-slate-300 rounded-full text-sm">AES-GCM</span>
+                </div>
+                <div class="flex items-center text-green-400 font-semibold">Explore Vue Guard →</div>
+            </a>
             <!-- Infrastructure Card -->
             <a href="https://github.com/nis2shield/infrastructure"
                 class="bg-slate-800/50 p-8 rounded-2xl border border-slate-700 hover:border-purple-500 transition-all duration-300 card-hover block">
@@ -394,9 +438,9 @@
             <div class="bg-slate-800/60 border border-blue-500/50 rounded-xl p-6">
                 <div class="flex items-center gap-3 mb-4">
                     <div class="w-3 h-3 bg-blue-400 rounded-full"></div>
-                    <span class="text-blue-400 font-semibold">Frontend (React)</span>
+                    <span class="text-blue-400 font-semibold">Frontend (React / Angular / Vue)</span>
                 </div>
-                <p class="text-slate-300 font-mono text-sm mb-3">@nis2shield/react-guard</p>
+                <p class="text-slate-300 font-mono text-sm mb-3">@nis2shield/{react,angular,vue}-guard</p>
                 <ul class="text-slate-400 text-sm space-y-1 ml-4">
                     <li>├── SessionWatchdog <span class="text-slate-500">(idle detection)</span></li>
                     <li>├── AuditBoundary <span class="text-slate-500">(crash reports)</span></li>
@@ -633,33 +677,50 @@
         <div class="max-w-5xl mx-auto px-4 text-center">
             <h2 class="text-3xl font-bold text-white mb-8">Get Started in Seconds</h2>
             <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+                <!-- Django -->
                 <div
                     class="bg-slate-900 border border-slate-700 rounded-xl p-6 text-left hover:border-green-500 transition-colors">
                     <div class="text-xs text-green-500 font-bold mb-2 uppercase tracking-wider">Python / Django</div>
                     <code class="font-mono text-sm text-white">pip install django-nis2-shield</code>
                 </div>
+                <!-- Spring -->
                 <div
                     class="bg-slate-900 border border-slate-700 rounded-xl p-6 text-left hover:border-green-400 transition-colors">
                     <div class="text-xs text-green-400 font-bold mb-2 uppercase tracking-wider">Java / Spring Boot</div>
                     <code
                         class="font-mono text-xs text-white">&lt;artifactId&gt;<span class="text-green-400">nis2-spring-shield</span>&lt;/artifactId&gt;</code>
                 </div>
+                <!-- Express -->
                 <div
                     class="bg-slate-900 border border-slate-700 rounded-xl p-6 text-left hover:border-orange-500 transition-colors">
                     <div class="text-xs text-orange-400 font-bold mb-2 uppercase tracking-wider">Node.js / Express</div>
                     <code class="font-mono text-sm text-white">npm i nis2-express-middleware</code>
                 </div>
+                <!-- .NET -->
+                <div
+                    class="bg-slate-900 border border-slate-700 rounded-xl p-6 text-left hover:border-purple-500 transition-colors">
+                    <div class="text-xs text-purple-400 font-bold mb-2 uppercase tracking-wider">.NET / ASP.NET Core
+                    </div>
+                    <code class="font-mono text-sm text-white">dotnet add package Nis2Shield.AspNetCore</code>
+                </div>
+                <!-- Frontend Row -->
+                <!-- React -->
                 <div
                     class="bg-slate-900 border border-slate-700 rounded-xl p-6 text-left hover:border-blue-500 transition-colors">
                     <div class="text-xs text-blue-500 font-bold mb-2 uppercase tracking-wider">Frontend / React</div>
                     <code class="font-mono text-sm text-white">npm i @nis2shield/react-guard</code>
                 </div>
-                <!-- .NET -->
+                <!-- Angular -->
                 <div
-                    class="bg-slate-900 border border-slate-700 rounded-xl p-6 text-left hover:border-purple-500 transition-colors md:col-span-2 lg:col-span-4">
-                    <div class="text-xs text-purple-400 font-bold mb-2 uppercase tracking-wider">.NET / ASP.NET Core
-                    </div>
-                    <code class="font-mono text-sm text-white">dotnet add package Nis2Shield.AspNetCore</code>
+                    class="bg-slate-900 border border-slate-700 rounded-xl p-6 text-left hover:border-red-500 transition-colors">
+                    <div class="text-xs text-red-500 font-bold mb-2 uppercase tracking-wider">Frontend / Angular</div>
+                    <code class="font-mono text-sm text-white">npm i @nis2shield/angular-guard</code>
+                </div>
+                <!-- Vue -->
+                <div
+                    class="bg-slate-900 border border-slate-700 rounded-xl p-6 text-left hover:border-green-500 transition-colors">
+                    <div class="text-xs text-green-500 font-bold mb-2 uppercase tracking-wider">Frontend / Vue</div>
+                    <code class="font-mono text-sm text-white">npm i @nis2shield/vue-guard</code>
                 </div>
             </div>
         </div>
@@ -790,7 +851,12 @@
             <a href="https://pypi.org/project/django-nis2-shield/" class="hover:text-white transition">PyPI</a>
             <a href="https://github.com/nis2shield/nis2-spring-shield/packages"
                 class="hover:text-white transition">Maven</a>
-            <a href="https://www.npmjs.com/package/@nis2shield/react-guard" class="hover:text-white transition">npm</a>
+            <a href="https://www.npmjs.com/package/@nis2shield/react-guard" class="hover:text-white transition">npm
+                (React)</a>
+            <a href="https://www.npmjs.com/package/@nis2shield/angular-guard" class="hover:text-white transition">npm
+                (Angular)</a>
+            <a href="https://www.npmjs.com/package/@nis2shield/vue-guard" class="hover:text-white transition">npm
+                (Vue)</a>
             <a href="https://www.nuget.org/packages/Nis2Shield.AspNetCore" class="hover:text-white transition">NuGet</a>
             <span class="text-slate-700">|</span>
             <a href="./enterprise/" class="hover:text-white transition">Enterprise Guide</a>
