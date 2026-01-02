@@ -21,7 +21,7 @@
 This website aggregates documentation for:
 1.  **[Infrastructure Kit](https://github.com/nis2shield/infrastructure)**: Secure-by-design Docker/K8s stack.
 2.  **[Django Middleware](https://github.com/nis2shield/django-nis2-shield)**: Backend auditing and protection.
-3.  **[React Guard](https://github.com/nis2shield/react-guard)**: Client-side telemetry.
+3.  **[React Guard](https://github.com/nis2shield/frontend/tree/main/packages/react)**: Client-side telemetry.
 
 ## 🤝 Contributing
 
