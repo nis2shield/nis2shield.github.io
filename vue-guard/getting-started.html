@@ -4,8 +4,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Getting Started - React NIS2 Guard</title>
-    <meta name="description" content="Quick start guide for React NIS2 Guard.">
+    <title>Getting Started - Vue NIS2 Guard</title>
+    <meta name="description" content="Quick start guide for Vue NIS2 Guard.">
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
     <style>
@@ -29,61 +29,21 @@
 <body class="bg-slate-900 text-white">
 
     <!-- Navbar -->
-    <!-- Navbar -->
     <nav class="container mx-auto px-6 py-4 flex justify-between items-center border-b border-slate-800 relative z-50">
         <a href="./" class="flex items-center space-x-2">
-            <svg class="w-6 h-6 text-blue-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <svg class="w-6 h-6 text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                     d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z">
                 </path>
             </svg>
-            <span class="text-lg font-bold">React NIS2 Guard</span>
+            <span class="text-lg font-bold">Vue NIS2 Guard</span>
         </a>
         <div class="hidden md:flex space-x-6 text-sm">
             <a href="./" class="text-slate-400 hover:text-white transition">Overview</a>
-            <a href="getting-started.html" class="text-blue-400">Getting Started</a>
-            <a href="components.html" class="text-slate-400 hover:text-white transition">Components</a>
+            <a href="getting-started.html" class="text-green-400">Getting Started</a>
+            <a href="api/" class="text-slate-400 hover:text-white transition">API</a>
         </div>
-
-        <!-- Mobile Menu Button -->
-        <button id="mobile-menu-btn" class="md:hidden text-white focus:outline-none">
-            <i data-lucide="menu" class="w-8 h-8"></i>
-        </button>
     </nav>
-
-    <!-- Mobile Menu Overlay -->
-    <div id="mobile-menu"
-        class="fixed inset-0 z-[9999] bg-slate-900 transform translate-x-full transition-transform duration-300 ease-in-out md:hidden flex flex-col items-center justify-center space-y-6"
-        style="background-color: #0f172a !important;">
-        <button id="close-menu-btn" class="absolute top-6 right-6 text-slate-400 hover:text-white">
-            <i data-lucide="x" class="w-8 h-8"></i>
-        </button>
-        <a href="../" class="text-xl text-slate-400 hover:text-blue-400 transition mb-4" onclick="toggleMenu()">← Back
-            to Hub</a>
-        <a href="./" class="text-2xl text-slate-300 hover:text-blue-400 transition" onclick="toggleMenu()">Overview</a>
-        <a href="getting-started.html" class="text-2xl text-blue-400 font-bold" onclick="toggleMenu()">Getting
-            Started</a>
-        <a href="components.html" class="text-2xl text-slate-300 hover:text-blue-400 transition"
-            onclick="toggleMenu()">Components</a>
-    </div>
-
-    <script>
-        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
-        const closeMenuBtn = document.getElementById('close-menu-btn');
-        const mobileMenu = document.getElementById('mobile-menu');
-
-        function toggleMenu() {
-            mobileMenu.classList.toggle('translate-x-full');
-            if (!mobileMenu.classList.contains('translate-x-full')) {
-                document.body.style.overflow = 'hidden';
-            } else {
-                document.body.style.overflow = 'auto';
-            }
-        }
-
-        mobileMenuBtn.addEventListener('click', toggleMenu);
-        closeMenuBtn.addEventListener('click', toggleMenu);
-    </script>
 
     <!-- Content -->
     <main class="container mx-auto px-6 py-12 max-w-4xl">
@@ -91,56 +51,69 @@
 
         <!-- Installation -->
         <section class="mb-12">
-            <h2 class="text-2xl font-bold mb-4 text-blue-400">Installation</h2>
-            <pre class="text-slate-300"><code>npm install @nis2shield/react-guard
+            <h2 class="text-2xl font-bold mb-4 text-green-400">Installation</h2>
+            <pre class="text-slate-300"><code>npm install @nis2shield/vue-guard
 # or
-yarn add @nis2shield/react-guard</code></pre>
+yarn add @nis2shield/vue-guard</code></pre>
         </section>
 
         <!-- Peer Dependencies -->
         <section class="mb-12">
-            <h2 class="text-2xl font-bold mb-4 text-blue-400">Requirements</h2>
+            <h2 class="text-2xl font-bold mb-4 text-green-400">Requirements</h2>
             <ul class="list-disc list-inside text-slate-300 space-y-2">
-                <li>React 18.2.0 or higher</li>
-                <li>React DOM 18.2.0 or higher</li>
+                <li>Vue 3.3+ or higher</li>
+                <li>@nis2shield/core (automatically installed)</li>
             </ul>
         </section>
 
         <!-- Basic Setup -->
         <section class="mb-12">
-            <h2 class="text-2xl font-bold mb-4 text-blue-400">Basic Setup</h2>
-            <p class="text-slate-400 mb-4">Wrap your application with <code
-                    class="text-blue-300 bg-slate-800 px-2 py-0.5 rounded">Nis2Provider</code> to enable security
-                features:</p>
-            <pre class="text-slate-300"><code><span class="text-purple-400">import</span> {
-  Nis2Provider,
-  SessionWatchdog,
-  AuditBoundary
-} <span class="text-purple-400">from</span> <span class="text-green-400">'@nis2shield/react-guard'</span>;
+            <h2 class="text-2xl font-bold mb-4 text-green-400">Basic Setup</h2>
+            <p class="text-slate-400 mb-4">Use <code
+                    class="text-green-300 bg-slate-800 px-2 py-0.5 rounded">createNis2Plugin</code> in your main entry
+                file:</p>
+            <pre class="text-slate-300"><code><span class="text-purple-400">import</span> { createApp } <span class="text-purple-400">from</span> <span class="text-green-400">'vue'</span>;
+<span class="text-purple-400">import</span> { createNis2Plugin } <span class="text-purple-400">from</span> <span class="text-green-400">'@nis2shield/vue-guard'</span>;
+<span class="text-purple-400">import</span> App <span class="text-purple-400">from</span> <span class="text-green-400">'./App.vue'</span>;
 
-<span class="text-purple-400">function</span> <span class="text-blue-400">App</span>() {
-  <span class="text-purple-400">return</span> (
-    &lt;Nis2Provider
-      config={{
-        auditEndpoint: <span class="text-green-400">'/api/nis2/telemetry/'</span>,
-        idleTimeoutMinutes: <span class="text-yellow-300">15</span>,
-        debug: process.env.NODE_ENV === <span class="text-green-400">'development'</span>
-      }}
-    &gt;
-      &lt;AuditBoundary fallback={&lt;ErrorPage /&gt;}&gt;
-        &lt;SessionWatchdog
-          onIdle={() =&gt; window.location.href = <span class="text-green-400">'/logout'</span>}
-        /&gt;
-        &lt;YourApp /&gt;
-      &lt;/AuditBoundary&gt;
-    &lt;/Nis2Provider&gt;
-  );
-}</code></pre>
+const app = createApp(App);
+
+app.use(createNis2Plugin({
+  auditEndpoint: <span class="text-green-400">'/api/nis2/telemetry/'</span>,
+  idleTimeoutMinutes: <span class="text-yellow-300">15</span>,
+  debug: <span class="text-purple-400">import</span>.meta.env.DEV
+}));
+
+app.mount(<span class="text-green-400">'#app'</span>);</code></pre>
+        </section>
+
+        <!-- Using the Composable -->
+        <section class="mb-12">
+            <h2 class="text-2xl font-bold mb-4 text-green-400">Using the useNis2 Composable</h2>
+            <p class="text-slate-400 mb-4">Use the composable to react to session state:</p>
+            <pre class="text-slate-300"><code>&lt;<span class="text-purple-400">script</span> setup lang="ts"&gt;
+<span class="text-purple-400">import</span> { watch } <span class="text-purple-400">from</span> <span class="text-green-400">'vue'</span>;
+<span class="text-purple-400">import</span> { useNis2 } <span class="text-purple-400">from</span> <span class="text-green-400">'@nis2shield/vue-guard'</span>;
+
+const { isIdle, warningSeconds, logWarning } = useNis2();
+
+watch(isIdle, (idle) => {
+  if (idle) {
+    window.location.href = <span class="text-green-400">'/logout?reason=idle'</span>;
+  }
+});
+&lt;/<span class="text-purple-400">script</span>&gt;
+
+&lt;<span class="text-purple-400">template</span>&gt;
+  &lt;div v-if="warningSeconds" class="warning-banner"&gt;
+    ⚠️ Session expires in {{ warningSeconds }} seconds
+  &lt;/div&gt;
+&lt;/<span class="text-purple-400">template</span>&gt;</code></pre>
         </section>
 
         <!-- Configuration -->
         <section class="mb-12">
-            <h2 class="text-2xl font-bold mb-4 text-blue-400">Configuration Options</h2>
+            <h2 class="text-2xl font-bold mb-4 text-green-400">Configuration Options</h2>
             <div class="overflow-x-auto">
                 <table class="w-full text-left text-slate-300">
                     <thead class="text-slate-400 border-b border-slate-700">
@@ -153,19 +126,19 @@ yarn add @nis2shield/react-guard</code></pre>
                     </thead>
                     <tbody class="divide-y divide-slate-800">
                         <tr>
-                            <td class="py-3 pr-4 font-mono text-sm text-blue-300">auditEndpoint</td>
+                            <td class="py-3 pr-4 font-mono text-sm text-green-300">auditEndpoint</td>
                             <td class="py-3 pr-4">string</td>
                             <td class="py-3 pr-4 text-slate-500">required</td>
                             <td class="py-3">URL to send telemetry reports</td>
                         </tr>
                         <tr>
-                            <td class="py-3 pr-4 font-mono text-sm text-blue-300">idleTimeoutMinutes</td>
+                            <td class="py-3 pr-4 font-mono text-sm text-green-300">idleTimeoutMinutes</td>
                             <td class="py-3 pr-4">number</td>
                             <td class="py-3 pr-4 text-slate-500">15</td>
                             <td class="py-3">Minutes before idle timeout</td>
                         </tr>
                         <tr>
-                            <td class="py-3 pr-4 font-mono text-sm text-blue-300">debug</td>
+                            <td class="py-3 pr-4 font-mono text-sm text-green-300">debug</td>
                             <td class="py-3 pr-4">boolean</td>
                             <td class="py-3 pr-4 text-slate-500">false</td>
                             <td class="py-3">Enable console logging</td>
@@ -177,15 +150,15 @@ yarn add @nis2shield/react-guard</code></pre>
 
         <!-- Next Steps -->
         <section class="mb-12">
-            <h2 class="text-2xl font-bold mb-4 text-blue-400">Next Steps</h2>
+            <h2 class="text-2xl font-bold mb-4 text-green-400">Next Steps</h2>
             <div class="grid md:grid-cols-2 gap-4">
-                <a href="components.html"
-                    class="bg-slate-800 p-4 rounded-lg border border-slate-700 hover:border-blue-500 transition">
-                    <h3 class="font-bold mb-1">Components & Hooks →</h3>
-                    <p class="text-slate-400 text-sm">Learn about all available components</p>
+                <a href="api/"
+                    class="bg-slate-800 p-4 rounded-lg border border-slate-700 hover:border-green-500 transition">
+                    <h3 class="font-bold mb-1">API Reference →</h3>
+                    <p class="text-slate-400 text-sm">Full API documentation</p>
                 </a>
                 <a href="https://github.com/nis2shield/frontend"
-                    class="bg-slate-800 p-4 rounded-lg border border-slate-700 hover:border-blue-500 transition">
+                    class="bg-slate-800 p-4 rounded-lg border border-slate-700 hover:border-green-500 transition">
                     <h3 class="font-bold mb-1">View on GitHub →</h3>
                     <p class="text-slate-400 text-sm">Source code and examples</p>
                 </a>
