@@ -424,7 +424,6 @@
                 background: #e5e7eb;
             }
 
-            .cover-page,
             .toc-page,
             .content {
                 background: white;
@@ -432,8 +431,17 @@
                 margin-bottom: 20px;
             }
 
+            .toc-page {
+                padding: 60px;
+            }
+
             .content {
                 padding: 40px;
+            }
+
+            .cover-page {
+                box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+                margin-bottom: 20px;
             }
         }
     </style>
@@ -443,13 +451,7 @@
 
     <!-- COVER PAGE -->
     <div class="cover-page">
-        <svg class="cover-logo" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <circle cx="50" cy="50" r="45" stroke="#14b8a6" stroke-width="3" fill="none" />
-            <path d="M50 20V50L70 65" stroke="#14b8a6" stroke-width="4" stroke-linecap="round" />
-            <circle cx="50" cy="50" r="8" fill="#14b8a6" />
-            <path d="M30 75L50 55L70 75" stroke="#3b82f6" stroke-width="3" stroke-linecap="round"
-                stroke-linejoin="round" />
-        </svg>
+        <img src="../../logo/logo_color.svg" alt="NIS2 Shield Logo" class="cover-logo" />
 
         <h1 class="cover-title">NIS2<span>Shield</span></h1>
         <p class="cover-subtitle">Enterprise Compliance Infrastructure</p>
