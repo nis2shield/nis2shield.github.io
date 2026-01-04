@@ -1,0 +1,869 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cryptographic Specification Guide - NIS2 Shield</title>
+    <meta name="description" content="Professional Cryptographic Specification Guide for NIS2 Shield.">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=JetBrains+Mono:wght@400&display=swap"
+        rel="stylesheet">
+
+    <style>
+        :root {
+            --primary: #14b8a6;
+            --secondary: #3b82f6;
+            --dark-bg: #1e293b;
+            --darker-bg: #0f172a;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            font-size: 11pt;
+            line-height: 1.6;
+            color: #1e293b;
+        }
+
+        code {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 9pt;
+        }
+
+        /* Cover Page */
+        .cover-page {
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, var(--darker-bg) 0%, var(--dark-bg) 100%);
+            color: white;
+            text-align: center;
+            page-break-after: always;
+        }
+
+        .cover-logo {
+            width: 120px;
+            height: 120px;
+            margin-bottom: 40px;
+        }
+
+        .cover-title {
+            font-size: 42pt;
+            font-weight: 700;
+            margin-bottom: 10px;
+            letter-spacing: -1px;
+        }
+
+        .cover-title .gradient {
+            background: linear-gradient(90deg, var(--secondary), var(--primary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .cover-title span {
+            color: white;
+        }
+
+        .cover-subtitle {
+            font-size: 20pt;
+            font-weight: 300;
+            color: #94a3b8;
+            margin-bottom: 60px;
+        }
+
+        .cover-document-title {
+            font-size: 28pt;
+            font-weight: 600;
+            margin-bottom: 20px;
+            color: white;
+        }
+
+        .cover-version {
+            font-size: 14pt;
+            color: #64748b;
+        }
+
+        .cover-footer {
+            position: absolute;
+            bottom: 60px;
+            font-size: 10pt;
+            color: #475569;
+        }
+
+        /* TOC Page */
+        .toc-page {
+            padding: 60px;
+            page-break-after: always;
+        }
+
+        .toc-title {
+            font-size: 24pt;
+            font-weight: 700;
+            margin-bottom: 30px;
+            padding-bottom: 10px;
+            border-bottom: 3px solid var(--primary);
+        }
+
+        .toc-list {
+            list-style: none;
+        }
+
+        .toc-item {
+            display: flex;
+            justify-content: space-between;
+            padding: 12px 0;
+            border-bottom: 1px dotted #cbd5e1;
+        }
+
+        .toc-section {
+            font-weight: 600;
+            font-size: 12pt;
+        }
+
+        .toc-subsection {
+            padding-left: 20px;
+            font-size: 11pt;
+        }
+
+        /* Content Pages */
+        .content {
+            padding: 40px 60px;
+        }
+
+        h1 {
+            font-size: 22pt;
+            font-weight: 700;
+            margin-bottom: 20px;
+            color: var(--darker-bg);
+            page-break-after: avoid;
+        }
+
+        h2 {
+            font-size: 16pt;
+            font-weight: 600;
+            margin: 30px 0 15px;
+            color: var(--dark-bg);
+            page-break-after: avoid;
+        }
+
+        h3 {
+            font-size: 13pt;
+            font-weight: 600;
+            margin: 20px 0 10px;
+            color: #334155;
+        }
+
+        p {
+            margin-bottom: 12px;
+        }
+
+        /* Stats Grid */
+        .algo-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 15px;
+            margin: 30px 0;
+        }
+
+        .algo-card {
+            background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
+            border: 1px solid #e2e8f0;
+            border-radius: 12px;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .algo-label {
+            font-size: 9pt;
+            color: #64748b;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 8px;
+        }
+
+        .algo-value {
+            font-size: 14pt;
+            font-weight: 700;
+            color: var(--secondary);
+        }
+
+        .algo-sublabel {
+            font-size: 9pt;
+            color: #94a3b8;
+            margin-top: 4px;
+        }
+
+        /* Tables */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            font-size: 10pt;
+        }
+
+        th {
+            background: #f1f5f9;
+            padding: 12px;
+            text-align: left;
+            font-weight: 600;
+            border-bottom: 2px solid #e2e8f0;
+        }
+
+        td {
+            padding: 10px 12px;
+            border-bottom: 1px solid #e2e8f0;
+        }
+
+        tr:hover {
+            background: #f8fafc;
+        }
+
+        .algo-aes {
+            color: #3b82f6;
+            font-weight: 600;
+        }
+
+        .algo-rsa {
+            color: #a855f7;
+            font-weight: 600;
+        }
+
+        .algo-hmac {
+            color: #22c55e;
+            font-weight: 600;
+        }
+
+        /* Diagram */
+        .diagram {
+            background: #f8fafc;
+            border: 1px solid #e2e8f0;
+            border-radius: 8px;
+            padding: 20px;
+            margin: 20px 0;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 9pt;
+            white-space: pre;
+            overflow-x: auto;
+        }
+
+        /* Code Block */
+        .code-block {
+            background: #1e293b;
+            color: #e2e8f0;
+            border-radius: 8px;
+            padding: 20px;
+            margin: 20px 0;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 9pt;
+            overflow-x: auto;
+        }
+
+        .code-comment {
+            color: #64748b;
+        }
+
+        /* Key Cards */
+        .key-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+            margin: 20px 0;
+        }
+
+        .key-card {
+            background: #f8fafc;
+            border: 1px solid #e2e8f0;
+            border-radius: 8px;
+            padding: 20px;
+        }
+
+        .key-card h3 {
+            margin-top: 0;
+        }
+
+        .key-row {
+            display: flex;
+            justify-content: space-between;
+            padding: 8px 0;
+            border-bottom: 1px solid #e2e8f0;
+        }
+
+        .key-row:last-child {
+            border-bottom: none;
+        }
+
+        .key-label {
+            color: #64748b;
+        }
+
+        .key-value-green {
+            color: #22c55e;
+            font-weight: 600;
+        }
+
+        .key-value-red {
+            color: #ef4444;
+            font-weight: 600;
+        }
+
+        /* Compliance Grid */
+        .compliance-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
+            margin: 20px 0;
+        }
+
+        .compliance-card {
+            background: #f8fafc;
+            border: 1px solid #e2e8f0;
+            border-radius: 8px;
+            padding: 16px;
+        }
+
+        .compliance-standard {
+            font-size: 9pt;
+            color: #64748b;
+        }
+
+        .compliance-status {
+            font-weight: 600;
+            color: #22c55e;
+        }
+
+        /* Check List */
+        .check-list {
+            list-style: none;
+            margin: 20px 0;
+        }
+
+        .check-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+            padding: 8px 0;
+        }
+
+        .check-icon {
+            color: #22c55e;
+            font-weight: bold;
+        }
+
+        /* Certification */
+        .certification {
+            margin-top: 60px;
+            padding-top: 40px;
+            border-top: 2px solid #e2e8f0;
+            page-break-inside: avoid;
+        }
+
+        .signature-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 40px;
+            margin-top: 40px;
+        }
+
+        .signature-block {
+            border-top: 1px solid #1e293b;
+            padding-top: 10px;
+        }
+
+        .signature-label {
+            font-size: 9pt;
+            color: #64748b;
+        }
+
+        /* Print Styles */
+        @media print {
+            body {
+                -webkit-print-color-adjust: exact !important;
+                print-color-adjust: exact !important;
+            }
+
+            .cover-page {
+                background: linear-gradient(135deg, var(--darker-bg) 0%, var(--dark-bg) 100%) !important;
+            }
+
+            .content {
+                padding: 30px 40px;
+            }
+
+            h1 {
+                page-break-after: avoid;
+            }
+
+            table {
+                page-break-inside: auto;
+            }
+
+            tr {
+                page-break-inside: avoid;
+            }
+        }
+
+        /* Screen Preview */
+        @media screen {
+            body {
+                max-width: 210mm;
+                margin: 0 auto;
+                background: #e5e7eb;
+            }
+
+            .toc-page,
+            .content {
+                background: white;
+                box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+                margin-bottom: 20px;
+            }
+
+            .cover-page {
+                box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+                margin-bottom: 20px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- COVER PAGE -->
+    <div class="cover-page">
+        <img src="../../logo/logo.svg" alt="NIS2 Shield Logo" class="cover-logo" />
+
+        <h1 class="cover-title"><span class="gradient">NIS2</span><span>Shield</span></h1>
+        <p class="cover-subtitle">Enterprise Compliance Infrastructure</p>
+
+        <h2 class="cover-document-title">Cryptographic Specification</h2>
+        <p class="cover-version">Version 1.0.0 • January 2026</p>
+
+        <div class="cover-footer">
+            <p>nis2shield.com • Official Compliance Documentation</p>
+        </div>
+    </div>
+
+    <!-- TABLE OF CONTENTS -->
+    <div class="toc-page">
+        <h1 class="toc-title">Table of Contents</h1>
+
+        <ul class="toc-list">
+            <li class="toc-item toc-section">
+                <span>1. Executive Summary</span>
+                <span>3</span>
+            </li>
+            <li class="toc-item toc-section">
+                <span>2. Algorithm Overview</span>
+                <span>4</span>
+            </li>
+            <li class="toc-item toc-section">
+                <span>3. Hybrid Encryption (Zero-Trust)</span>
+                <span>5</span>
+            </li>
+            <li class="toc-item toc-subsection">
+                <span>3.1 Encryption Flow</span>
+                <span>5</span>
+            </li>
+            <li class="toc-item toc-subsection">
+                <span>3.2 Security Properties</span>
+                <span>5</span>
+            </li>
+            <li class="toc-item toc-section">
+                <span>4. Key Management</span>
+                <span>6</span>
+            </li>
+            <li class="toc-item toc-subsection">
+                <span>4.1 Key Generation Commands</span>
+                <span>6</span>
+            </li>
+            <li class="toc-item toc-section">
+                <span>5. TLS Requirements</span>
+                <span>7</span>
+            </li>
+            <li class="toc-item toc-section">
+                <span>6. Standards Compliance</span>
+                <span>8</span>
+            </li>
+            <li class="toc-item toc-section">
+                <span>7. Certification Statement</span>
+                <span>9</span>
+            </li>
+        </ul>
+    </div>
+
+    <!-- EXECUTIVE SUMMARY -->
+    <div class="content">
+        <h1>1. Executive Summary</h1>
+
+        <p>
+            This document provides a comprehensive specification of the cryptographic algorithms,
+            key management practices, and security configurations used in NIS2 Shield. All cryptographic
+            implementations follow industry best practices and comply with NIS2 Directive Article 21.2.f
+            requirements for cryptography policies.
+        </p>
+
+        <div class="algo-grid">
+            <div class="algo-card">
+                <div class="algo-label">Symmetric</div>
+                <div class="algo-value">AES-256</div>
+                <div class="algo-sublabel">GCM Mode</div>
+            </div>
+            <div class="algo-card">
+                <div class="algo-label">Asymmetric</div>
+                <div class="algo-value">RSA-2048</div>
+                <div class="algo-sublabel">OAEP-SHA256</div>
+            </div>
+            <div class="algo-card">
+                <div class="algo-label">Signing</div>
+                <div class="algo-value">HMAC</div>
+                <div class="algo-sublabel">SHA-256</div>
+            </div>
+            <div class="algo-card">
+                <div class="algo-label">Transport</div>
+                <div class="algo-value">TLS 1.2+</div>
+                <div class="algo-sublabel">Required</div>
+            </div>
+        </div>
+
+        <h2>Design Principles</h2>
+        <ul class="check-list">
+            <li class="check-item"><span class="check-icon">✓</span> <strong>Defense in Depth:</strong> Multiple
+                encryption layers</li>
+            <li class="check-item"><span class="check-icon">✓</span> <strong>Zero-Trust:</strong> Private keys never in
+                cloud</li>
+            <li class="check-item"><span class="check-icon">✓</span> <strong>Forward Secrecy:</strong> Unique session
+                keys per message</li>
+            <li class="check-item"><span class="check-icon">✓</span> <strong>Audit Ready:</strong> All operations logged
+                with HMAC integrity</li>
+        </ul>
+    </div>
+
+    <!-- ALGORITHM OVERVIEW -->
+    <div class="content">
+        <h1>2. Algorithm Overview</h1>
+
+        <p>
+            NIS2 Shield uses a combination of symmetric and asymmetric encryption to provide both
+            performance and security. The following table summarizes all cryptographic components.
+        </p>
+
+        <table>
+            <thead>
+                <tr>
+                    <th>Component</th>
+                    <th>Algorithm</th>
+                    <th>Key Size</th>
+                    <th>Mode</th>
+                    <th>Purpose</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Log field encryption</td>
+                    <td class="algo-aes">AES</td>
+                    <td>128-bit</td>
+                    <td>Fernet (CBC+HMAC)</td>
+                    <td>PII protection in logs</td>
+                </tr>
+                <tr>
+                    <td>Cloud backup payload</td>
+                    <td class="algo-aes">AES</td>
+                    <td>256-bit</td>
+                    <td>GCM</td>
+                    <td>Data confidentiality</td>
+                </tr>
+                <tr>
+                    <td>Cloud backup key wrap</td>
+                    <td class="algo-rsa">RSA</td>
+                    <td>2048-bit</td>
+                    <td>OAEP-SHA256</td>
+                    <td>Session key protection</td>
+                </tr>
+                <tr>
+                    <td>Log signing</td>
+                    <td class="algo-hmac">HMAC</td>
+                    <td>256-bit</td>
+                    <td>SHA-256</td>
+                    <td>Integrity verification</td>
+                </tr>
+                <tr>
+                    <td>Password hashing</td>
+                    <td class="algo-hmac">Argon2id</td>
+                    <td>N/A</td>
+                    <td>OWASP recommended</td>
+                    <td>Credential storage</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <!-- HYBRID ENCRYPTION -->
+    <div class="content">
+        <h1>3. Hybrid Encryption (Zero-Trust)</h1>
+
+        <p>
+            NIS2 Shield implements a hybrid encryption scheme for cloud backups that ensures
+            data remains encrypted even if the cloud provider is compromised. The private key
+            never leaves the customer's secure environment.
+        </p>
+
+        <h2>3.1 Encryption Flow</h2>
+
+        <div class="diagram">┌─────────────────────────────────────────────────────────────┐
+            │ Encryption Flow │
+            │ │
+            │ Plaintext → [Generate Session Key] → AES-256-GCM Encrypt │
+            │ │ │ │
+            │ ▼ ▼ │
+            │ RSA-OAEP Wrap Key Ciphertext │
+            │ │ │ │
+            │ └────────┬───────────────┘ │
+            │ ▼ │
+            │ Encrypted Envelope (JSON) │
+            │ { encrypted_data, encrypted_key, iv, tag, key_id } │
+            └─────────────────────────────────────────────────────────────┘</div>
+
+        <h2>3.2 Security Properties</h2>
+
+        <ul class="check-list">
+            <li class="check-item">
+                <span class="check-icon">✓</span>
+                <div>
+                    <strong>Forward Secrecy:</strong> Each message uses a unique randomly-generated
+                    session key. Compromise of one key does not affect other messages.
+                </div>
+            </li>
+            <li class="check-item">
+                <span class="check-icon">✓</span>
+                <div>
+                    <strong>Authenticated Encryption:</strong> AES-GCM provides both confidentiality
+                    and integrity. Any tampering is detected during decryption.
+                </div>
+            </li>
+            <li class="check-item">
+                <span class="check-icon">✓</span>
+                <div>
+                    <strong>Zero-Trust Cloud:</strong> The RSA private key is kept offline. The cloud
+                    provider cannot decrypt data even with full system access.
+                </div>
+            </li>
+            <li class="check-item">
+                <span class="check-icon">✓</span>
+                <div>
+                    <strong>Key Rotation:</strong> The key_id field enables decryption with historical
+                    keys after rotation. Old data remains accessible.
+                </div>
+            </li>
+        </ul>
+    </div>
+
+    <!-- KEY MANAGEMENT -->
+    <div class="content">
+        <h1>4. Key Management</h1>
+
+        <div class="key-grid">
+            <div class="key-card">
+                <h3>RSA Key Pair</h3>
+                <div class="key-row">
+                    <span class="key-label">Public Key</span>
+                    <span class="key-value-green">In container</span>
+                </div>
+                <div class="key-row">
+                    <span class="key-label">Private Key</span>
+                    <span class="key-value-red">OFFLINE only</span>
+                </div>
+                <div class="key-row">
+                    <span class="key-label">Rotation</span>
+                    <span>Annual</span>
+                </div>
+                <div class="key-row">
+                    <span class="key-label">Storage</span>
+                    <span>HSM recommended</span>
+                </div>
+            </div>
+            <div class="key-card">
+                <h3>Session Keys</h3>
+                <div class="key-row">
+                    <span class="key-label">Generation</span>
+                    <span>CSPRNG</span>
+                </div>
+                <div class="key-row">
+                    <span class="key-label">Lifetime</span>
+                    <span>Single message</span>
+                </div>
+                <div class="key-row">
+                    <span class="key-label">Storage</span>
+                    <span>Wrapped in envelope</span>
+                </div>
+                <div class="key-row">
+                    <span class="key-label">Length</span>
+                    <span>256 bits</span>
+                </div>
+            </div>
+        </div>
+
+        <h2>4.1 Key Generation Commands</h2>
+
+        <div class="code-block"><span class="code-comment"># Generate RSA private key (KEEP OFFLINE!)</span>
+            openssl genrsa -out private.pem 2048
+
+            <span class="code-comment"># Extract public key</span>
+            openssl rsa -in private.pem -pubout -out public.pem
+
+            <span class="code-comment"># Verify key integrity</span>
+            openssl rsa -in private.pem -check
+
+            <span class="code-comment"># Generate Fernet key for Django middleware</span>
+            python -c "from cryptography.fernet import Fernet; print(Fernet.generate_key().decode())"
+
+            <span class="code-comment"># Generate HMAC secret</span>
+            python -c "import secrets; print(secrets.token_hex(32))"
+        </div>
+    </div>
+
+    <!-- TLS REQUIREMENTS -->
+    <div class="content">
+        <h1>5. TLS Requirements</h1>
+
+        <p>
+            All network communications in NIS2 Shield require TLS encryption. The following
+            table specifies the minimum TLS version for each connection type.
+        </p>
+
+        <table>
+            <thead>
+                <tr>
+                    <th>Connection</th>
+                    <th>Protocol</th>
+                    <th>Min Version</th>
+                    <th>Cipher Suites</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>HTTPS (Ingress)</td>
+                    <td>TLS</td>
+                    <td>1.2</td>
+                    <td>ECDHE+AESGCM, DHE+AESGCM</td>
+                </tr>
+                <tr>
+                    <td>Database (PostgreSQL)</td>
+                    <td>TLS</td>
+                    <td>1.2</td>
+                    <td>Server default</td>
+                </tr>
+                <tr>
+                    <td>SIEM forwarding</td>
+                    <td>TLS</td>
+                    <td>1.2</td>
+                    <td>Mutual TLS supported</td>
+                </tr>
+                <tr>
+                    <td>Cloud backup API</td>
+                    <td>TLS</td>
+                    <td>1.2</td>
+                    <td>Cloudflare managed</td>
+                </tr>
+                <tr>
+                    <td>Inter-service (K8s)</td>
+                    <td>mTLS</td>
+                    <td>1.3</td>
+                    <td>Service mesh (optional)</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <h2>Certificate Management</h2>
+        <p>
+            NIS2 Shield supports automatic certificate management via cert-manager for Kubernetes
+            deployments. For Docker Compose, certificates should be provisioned via Let's Encrypt
+            or your organization's PKI.
+        </p>
+    </div>
+
+    <!-- STANDARDS COMPLIANCE -->
+    <div class="content">
+        <h1>6. Standards Compliance</h1>
+
+        <p>
+            All cryptographic implementations in NIS2 Shield comply with the following standards
+            and regulations.
+        </p>
+
+        <div class="compliance-grid">
+            <div class="compliance-card">
+                <div class="compliance-standard">NIST SP 800-38D</div>
+                <div class="compliance-status">GCM Mode ✓</div>
+            </div>
+            <div class="compliance-card">
+                <div class="compliance-standard">NIST SP 800-57</div>
+                <div class="compliance-status">Key Management ✓</div>
+            </div>
+            <div class="compliance-card">
+                <div class="compliance-standard">FIPS 140-2</div>
+                <div class="compliance-status">Approved Algorithms ✓</div>
+            </div>
+            <div class="compliance-card">
+                <div class="compliance-standard">NIS2 Art. 21.2.f</div>
+                <div class="compliance-status">Cryptography Policies ✓</div>
+            </div>
+            <div class="compliance-card">
+                <div class="compliance-standard">GDPR Art. 32</div>
+                <div class="compliance-status">Encryption at Rest ✓</div>
+            </div>
+            <div class="compliance-card">
+                <div class="compliance-standard">PCI DSS 4.0</div>
+                <div class="compliance-status">Strong Cryptography ✓</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- CERTIFICATION -->
+    <div class="content">
+        <h1>7. Certification Statement</h1>
+
+        <p>
+            This document certifies that the NIS2 Shield cryptographic implementation follows
+            the specifications described above. All algorithms, key sizes, and modes meet or
+            exceed industry standards for enterprise security.
+        </p>
+
+        <p>
+            <strong>Document Version:</strong> 1.0.0<br>
+            <strong>Effective Date:</strong> January 2026<br>
+            <strong>Review Schedule:</strong> Annual or upon significant changes<br>
+            <strong>Classification:</strong> Public
+        </p>
+
+        <div class="certification">
+            <h2>Authorized Signatures</h2>
+            <div class="signature-grid">
+                <div class="signature-block">
+                    <div class="signature-label">Security Architect</div>
+                </div>
+                <div class="signature-block">
+                    <div class="signature-label">Date</div>
+                </div>
+                <div class="signature-block">
+                    <div class="signature-label">Compliance Officer</div>
+                </div>
+                <div class="signature-block">
+                    <div class="signature-label">Date</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</body>
+
+</html>
