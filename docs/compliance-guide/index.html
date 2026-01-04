@@ -1,0 +1,1335 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NIS2 Compliance Guide - NIS2 Shield</title>
+    <meta name="description"
+        content="Official NIS2 Directive compliance guide for NIS2 Shield infrastructure and middleware.">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --primary: #14b8a6;
+            --primary-dark: #0d9488;
+            --secondary: #3b82f6;
+            --dark: #0f172a;
+            --gray-100: #f1f5f9;
+            --gray-200: #e2e8f0;
+            --gray-300: #cbd5e1;
+            --gray-600: #475569;
+            --gray-800: #1e293b;
+            --success: #22c55e;
+            --warning: #f59e0b;
+            --danger: #ef4444;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            font-size: 11pt;
+            line-height: 1.6;
+            color: #1e293b;
+            background: white;
+        }
+
+        /* Page Setup for Print */
+        @page {
+            size: A4;
+            margin: 20mm 15mm 25mm 15mm;
+        }
+
+        @page :first {
+            margin: 0;
+        }
+
+        /* Cover Page */
+        .cover-page {
+            height: 100vh;
+            background: linear-gradient(135deg, var(--dark) 0%, #1e3a5f 100%);
+            color: white;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 40px;
+            page-break-after: always;
+        }
+
+        .cover-logo {
+            width: 120px;
+            height: 120px;
+            margin-bottom: 40px;
+        }
+
+        .cover-title {
+            font-size: 42pt;
+            font-weight: 700;
+            margin-bottom: 10px;
+            letter-spacing: -1px;
+        }
+
+        .cover-title span {
+            color: var(--primary);
+        }
+
+        .cover-subtitle {
+            font-size: 20pt;
+            font-weight: 300;
+            color: #94a3b8;
+            margin-bottom: 60px;
+        }
+
+        .cover-document-title {
+            font-size: 28pt;
+            font-weight: 600;
+            margin-bottom: 20px;
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .cover-version {
+            font-size: 14pt;
+            color: #64748b;
+            margin-bottom: 80px;
+        }
+
+        .cover-footer {
+            position: absolute;
+            bottom: 60px;
+            font-size: 10pt;
+            color: #64748b;
+        }
+
+        /* Table of Contents */
+        .toc-page {
+            page-break-after: always;
+            padding: 40px 0;
+        }
+
+        .toc-title {
+            font-size: 24pt;
+            font-weight: 700;
+            color: var(--dark);
+            margin-bottom: 30px;
+            padding-bottom: 15px;
+            border-bottom: 3px solid var(--primary);
+        }
+
+        .toc-list {
+            list-style: none;
+        }
+
+        .toc-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            padding: 12px 0;
+            border-bottom: 1px dotted var(--gray-300);
+        }
+
+        .toc-item a {
+            color: var(--gray-800);
+            text-decoration: none;
+            font-weight: 500;
+        }
+
+        .toc-section {
+            font-size: 14pt;
+            font-weight: 600;
+            color: var(--dark);
+            margin-top: 20px;
+            padding-top: 10px;
+        }
+
+        .toc-page-num {
+            color: var(--gray-600);
+            font-size: 10pt;
+        }
+
+        /* Content Pages */
+        .content {
+            padding: 0;
+        }
+
+        h1.section-title {
+            font-size: 22pt;
+            font-weight: 700;
+            color: var(--dark);
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 3px solid var(--primary);
+            page-break-after: avoid;
+        }
+
+        h2.article-title {
+            font-size: 16pt;
+            font-weight: 600;
+            color: var(--primary-dark);
+            margin: 30px 0 15px 0;
+            page-break-after: avoid;
+        }
+
+        h3.requirement-title {
+            font-size: 12pt;
+            font-weight: 600;
+            color: var(--gray-800);
+            margin: 20px 0 10px 0;
+        }
+
+        p {
+            margin-bottom: 12px;
+            text-align: justify;
+        }
+
+        .intro-text {
+            font-size: 12pt;
+            color: var(--gray-600);
+            margin-bottom: 25px;
+            font-style: italic;
+        }
+
+        /* Info Boxes */
+        .info-box {
+            background: var(--gray-100);
+            border-left: 4px solid var(--primary);
+            padding: 15px 20px;
+            margin: 20px 0;
+            border-radius: 0 8px 8px 0;
+        }
+
+        .info-box.warning {
+            border-left-color: var(--warning);
+            background: #fffbeb;
+        }
+
+        .info-box.success {
+            border-left-color: var(--success);
+            background: #f0fdf4;
+        }
+
+        .info-box-title {
+            font-weight: 600;
+            font-size: 11pt;
+            margin-bottom: 5px;
+            color: var(--dark);
+        }
+
+        .info-box p {
+            margin: 0;
+            font-size: 10pt;
+        }
+
+        /* Tables */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            font-size: 10pt;
+        }
+
+        thead {
+            background: var(--dark);
+            color: white;
+        }
+
+        th {
+            padding: 12px 15px;
+            text-align: left;
+            font-weight: 600;
+        }
+
+        td {
+            padding: 10px 15px;
+            border-bottom: 1px solid var(--gray-200);
+        }
+
+        tbody tr:nth-child(even) {
+            background: var(--gray-100);
+        }
+
+        .status-pass {
+            color: var(--success);
+            font-weight: 600;
+        }
+
+        .status-warn {
+            color: var(--warning);
+            font-weight: 600;
+        }
+
+        .status-fail {
+            color: var(--danger);
+            font-weight: 600;
+        }
+
+        /* Article Sections */
+        .article-section {
+            margin-bottom: 40px;
+            page-break-inside: avoid;
+        }
+
+        .article-quote {
+            font-style: italic;
+            color: var(--gray-600);
+            padding-left: 20px;
+            border-left: 3px solid var(--gray-300);
+            margin: 15px 0;
+        }
+
+        .implementation-list {
+            list-style: none;
+            margin: 15px 0;
+        }
+
+        .implementation-list li {
+            padding: 8px 0 8px 30px;
+            position: relative;
+        }
+
+        .implementation-list li::before {
+            content: "✓";
+            position: absolute;
+            left: 0;
+            color: var(--success);
+            font-weight: bold;
+        }
+
+        /* Summary Stats */
+        .summary-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px;
+            margin: 30px 0;
+        }
+
+        .summary-card {
+            text-align: center;
+            padding: 25px 15px;
+            background: var(--gray-100);
+            border-radius: 12px;
+        }
+
+        .summary-number {
+            font-size: 32pt;
+            font-weight: 700;
+            color: var(--primary);
+        }
+
+        .summary-number.success {
+            color: var(--success);
+        }
+
+        .summary-number.warning {
+            color: var(--warning);
+        }
+
+        .summary-number.danger {
+            color: var(--danger);
+        }
+
+        .summary-label {
+            font-size: 10pt;
+            color: var(--gray-600);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        /* Page Break Utilities */
+        .page-break {
+            page-break-before: always;
+        }
+
+        .avoid-break {
+            page-break-inside: avoid;
+        }
+
+        /* Footer for Print */
+        .page-footer {
+            position: fixed;
+            bottom: 10mm;
+            left: 15mm;
+            right: 15mm;
+            font-size: 9pt;
+            color: var(--gray-600);
+            display: flex;
+            justify-content: space-between;
+            border-top: 1px solid var(--gray-200);
+            padding-top: 10px;
+        }
+
+        /* Signature Block */
+        .signature-section {
+            margin-top: 60px;
+            padding: 30px;
+            background: var(--gray-100);
+            border-radius: 12px;
+        }
+
+        .signature-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+            margin-top: 20px;
+        }
+
+        .signature-field {
+            border-bottom: 2px solid var(--gray-300);
+            padding-bottom: 5px;
+            margin-top: 40px;
+        }
+
+        .signature-label {
+            font-size: 9pt;
+            color: var(--gray-600);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        /* Print Styles */
+        @media print {
+            .cover-page {
+                -webkit-print-color-adjust: exact !important;
+                print-color-adjust: exact !important;
+            }
+
+            thead {
+                -webkit-print-color-adjust: exact !important;
+                print-color-adjust: exact !important;
+            }
+
+            .summary-card,
+            .info-box {
+                -webkit-print-color-adjust: exact !important;
+                print-color-adjust: exact !important;
+            }
+        }
+
+        /* Screen preview adjustments */
+        @media screen {
+            body {
+                max-width: 210mm;
+                margin: 0 auto;
+                background: #e5e7eb;
+            }
+
+            .cover-page,
+            .toc-page,
+            .content {
+                background: white;
+                box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+                margin-bottom: 20px;
+            }
+
+            .content {
+                padding: 40px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- COVER PAGE -->
+    <div class="cover-page">
+        <svg class="cover-logo" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="50" cy="50" r="45" stroke="#14b8a6" stroke-width="3" fill="none" />
+            <path d="M50 20V50L70 65" stroke="#14b8a6" stroke-width="4" stroke-linecap="round" />
+            <circle cx="50" cy="50" r="8" fill="#14b8a6" />
+            <path d="M30 75L50 55L70 75" stroke="#3b82f6" stroke-width="3" stroke-linecap="round"
+                stroke-linejoin="round" />
+        </svg>
+
+        <h1 class="cover-title">NIS2<span>Shield</span></h1>
+        <p class="cover-subtitle">Enterprise Compliance Infrastructure</p>
+
+        <h2 class="cover-document-title">NIS2 Directive Compliance Guide</h2>
+        <p class="cover-version">Version 1.0.0 • January 2026</p>
+
+        <div class="cover-footer">
+            <p>nis2shield.com • Official Compliance Documentation</p>
+        </div>
+    </div>
+
+    <!-- TABLE OF CONTENTS -->
+    <div class="toc-page">
+        <h1 class="toc-title">Table of Contents</h1>
+
+        <ul class="toc-list">
+            <li class="toc-item toc-section">
+                <a href="#executive-summary">1. Executive Summary</a>
+                <span class="toc-page-num">3</span>
+            </li>
+            <li class="toc-item toc-section">
+                <a href="#nis2-overview">2. NIS2 Directive Overview</a>
+                <span class="toc-page-num">4</span>
+            </li>
+            <li class="toc-item toc-section">
+                <a href="#article21">3. Article 21 Compliance</a>
+                <span class="toc-page-num">5</span>
+            </li>
+            <li class="toc-item">
+                <a href="#art21a">3.1 Risk Analysis (Art. 21.2.a)</a>
+                <span class="toc-page-num">5</span>
+            </li>
+            <li class="toc-item">
+                <a href="#art21b">3.2 Incident Handling (Art. 21.2.b)</a>
+                <span class="toc-page-num">6</span>
+            </li>
+            <li class="toc-item">
+                <a href="#art21c">3.3 Business Continuity (Art. 21.2.c)</a>
+                <span class="toc-page-num">7</span>
+            </li>
+            <li class="toc-item">
+                <a href="#art21d">3.4 Supply Chain Security (Art. 21.2.d)</a>
+                <span class="toc-page-num">8</span>
+            </li>
+            <li class="toc-item">
+                <a href="#art21e">3.5 Vulnerability Management (Art. 21.2.e)</a>
+                <span class="toc-page-num">9</span>
+            </li>
+            <li class="toc-item">
+                <a href="#art21f">3.6 Cryptography (Art. 21.2.f)</a>
+                <span class="toc-page-num">10</span>
+            </li>
+            <li class="toc-item">
+                <a href="#art21g">3.7 Access Control (Art. 21.2.g)</a>
+                <span class="toc-page-num">11</span>
+            </li>
+            <li class="toc-item">
+                <a href="#art21h">3.8 Multi-Factor Authentication (Art. 21.2.h)</a>
+                <span class="toc-page-num">12</span>
+            </li>
+            <li class="toc-item toc-section">
+                <a href="#article23">4. Article 23 - Reporting Obligations</a>
+                <span class="toc-page-num">13</span>
+            </li>
+            <li class="toc-item toc-section">
+                <a href="#verification">5. Verification & Audit</a>
+                <span class="toc-page-num">14</span>
+            </li>
+            <li class="toc-item toc-section">
+                <a href="#certification">6. Certification Statement</a>
+                <span class="toc-page-num">15</span>
+            </li>
+        </ul>
+    </div>
+
+    <!-- CONTENT -->
+    <div class="content">
+
+        <!-- EXECUTIVE SUMMARY -->
+        <section id="executive-summary" class="page-break">
+            <h1 class="section-title">1. Executive Summary</h1>
+
+            <p class="intro-text">
+                This document provides a comprehensive mapping of NIS2 Shield's compliance with the
+                EU NIS2 Directive (2022/2555), specifically addressing Article 21 cybersecurity risk-management
+                measures and Article 23 reporting obligations.
+            </p>
+
+            <div class="summary-grid">
+                <div class="summary-card">
+                    <div class="summary-number">42</div>
+                    <div class="summary-label">Total Requirements</div>
+                </div>
+                <div class="summary-card">
+                    <div class="summary-number success">40</div>
+                    <div class="summary-label">Fully Compliant</div>
+                </div>
+                <div class="summary-card">
+                    <div class="summary-number warning">2</div>
+                    <div class="summary-label">Partial</div>
+                </div>
+                <div class="summary-card">
+                    <div class="summary-number danger">0</div>
+                    <div class="summary-label">Gaps</div>
+                </div>
+            </div>
+
+            <div class="info-box success">
+                <div class="info-box-title">✓ Overall Compliance Score: 95%</div>
+                <p>NIS2 Shield infrastructure meets or exceeds NIS2 Directive requirements across all mandatory domains.
+                </p>
+            </div>
+
+            <h3 class="requirement-title">Key Compliance Highlights</h3>
+            <ul class="implementation-list">
+                <li>Zero-trust architecture with encryption at rest (AES-256-GCM) and in transit (TLS 1.2+)</li>
+                <li>SIEM-ready structured logging with HMAC integrity signatures</li>
+                <li>Automated backup with GPG encryption and cloud replication</li>
+                <li>OPA Gatekeeper for policy-as-code enforcement</li>
+                <li>CIS Kubernetes Benchmark validation via automated probes</li>
+                <li>Multi-Factor Authentication enforcement middleware</li>
+            </ul>
+        </section>
+
+        <!-- NIS2 OVERVIEW -->
+        <section id="nis2-overview" class="page-break">
+            <h1 class="section-title">2. NIS2 Directive Overview</h1>
+
+            <p>
+                The NIS2 Directive (EU 2022/2555) establishes a high common level of cybersecurity across
+                the European Union. It replaces the original NIS Directive of 2016 and significantly
+                expands the scope of organizations and sectors covered.
+            </p>
+
+            <h2 class="article-title">Scope & Applicability</h2>
+            <p>
+                NIS2 applies to entities in essential and important sectors, including energy, transport,
+                banking, healthcare, digital infrastructure, and public administration. Organizations must
+                implement appropriate cybersecurity risk-management measures and report significant incidents.
+            </p>
+
+            <div class="info-box">
+                <div class="info-box-title">Deadline Reminder</div>
+                <p>Member States must transpose NIS2 into national law by <strong>17 October 2024</strong>.
+                    Organizations in scope should be compliant by this date.</p>
+            </div>
+
+            <h2 class="article-title">NIS2 Shield Approach</h2>
+            <p>
+                NIS2 Shield provides open-source infrastructure components (Docker Compose, Helm charts,
+                Terraform modules) and backend middleware (Django, Spring, Express, .NET) that implement
+                NIS2 requirements by design. This "compliance-by-architecture" approach ensures that
+                organizations deploying NIS2 Shield automatically inherit compliant security controls.
+            </p>
+
+            <table>
+                <thead>
+                    <tr>
+                        <th>Component</th>
+                        <th>Technology</th>
+                        <th>NIS2 Coverage</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Infrastructure</td>
+                        <td>Docker, Kubernetes, Terraform</td>
+                        <td>Art. 21.2.a, c, f, g</td>
+                    </tr>
+                    <tr>
+                        <td>Django Middleware</td>
+                        <td>Python / Django</td>
+                        <td>Art. 21.2.b, h, Art. 23</td>
+                    </tr>
+                    <tr>
+                        <td>Spring Shield</td>
+                        <td>Java / Spring Boot</td>
+                        <td>Art. 21.2.b, h, Art. 23</td>
+                    </tr>
+                    <tr>
+                        <td>Express Middleware</td>
+                        <td>Node.js / Express</td>
+                        <td>Art. 21.2.b, h, Art. 23</td>
+                    </tr>
+                    <tr>
+                        <td>Compliance Engine</td>
+                        <td>Python CLI</td>
+                        <td>Verification & Audit</td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+
+        <!-- ARTICLE 21 COMPLIANCE -->
+        <section id="article21" class="page-break">
+            <h1 class="section-title">3. Article 21 Compliance</h1>
+
+            <p class="intro-text">
+                Article 21 of the NIS2 Directive mandates that essential and important entities
+                take appropriate and proportionate technical, operational, and organisational measures
+                to manage cybersecurity risks.
+            </p>
+        </section>
+
+        <!-- Article 21.2.a - Risk Analysis -->
+        <section id="art21a" class="article-section">
+            <h2 class="article-title">3.1 Risk Analysis (Article 21.2.a)</h2>
+
+            <div class="article-quote">
+                "Policies on risk analysis and information system security"
+            </div>
+
+            <p>
+                NIS2 Shield implements comprehensive risk analysis through documented threat models,
+                hardened container configurations, and automated vulnerability management.
+            </p>
+
+            <table>
+                <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>Requirement</th>
+                        <th>Implementation</th>
+                        <th>Status</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>21a.1</td>
+                        <td>Risk analysis performed</td>
+                        <td>Documented threat model in SECURITY.md</td>
+                        <td class="status-pass">✓ PASS</td>
+                    </tr>
+                    <tr>
+                        <td>21a.2</td>
+                        <td>Security policies defined</td>
+                        <td>CIS_COMPLIANCE.md with policy mappings</td>
+                        <td class="status-pass">✓ PASS</td>
+                    </tr>
+                    <tr>
+                        <td>21a.3</td>
+                        <td>Attack surface minimized</td>
+                        <td>Read-only root filesystem in containers</td>
+                        <td class="status-pass">✓ PASS</td>
+                    </tr>
+                    <tr>
+                        <td>21a.4</td>
+                        <td>Configuration hardening</td>
+                        <td>Non-root users, no-new-privileges flag</td>
+                        <td class="status-pass">✓ PASS</td>
+                    </tr>
+                    <tr>
+                        <td>21a.5</td>
+                        <td>Vulnerability management</td>
+                        <td>CI pipeline with tfsec, trivy, gitleaks</td>
+                        <td class="status-pass">✓ PASS</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <div class="info-box">
+                <div class="info-box-title">Automated Verification</div>
+                <p>Risk posture is continuously validated via Probe F (CIS Kubernetes Benchmark)
+                    in the NIS2 Compliance Engine.</p>
+            </div>
+        </section>
+
+        <!-- Article 21.2.b - Incident Handling -->
+        <section id="art21b" class="article-section page-break">
+            <h2 class="article-title">3.2 Incident Handling (Article 21.2.b)</h2>
+
+            <div class="article-quote">
+                "Incident handling"
+            </div>
+
+            <p>
+                NIS2 Shield provides comprehensive incident detection and response capabilities through
+                structured logging, SIEM integration, and automated alerting mechanisms.
+            </p>
+
+            <table>
+                <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>Requirement</th>
+                        <th>Implementation</th>
+                        <th>Status</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>21b.1</td>
+                        <td>Incident detection</td>
+                        <td>SIEM-ready logging via Fluent Bit</td>
+                        <td class="status-pass">✓ PASS</td>
+                    </tr>
+                    <tr>
+                        <td>21b.2</td>
+                        <td>Structured audit logs</td>
+                        <td>JSON and CEF format with HMAC signatures</td>
+                        <td class="status-pass">✓ PASS</td>
+                    </tr>
+                    <tr>
+                        <td>21b.3</td>
+                        <td>Log integrity</td>
+                        <td>HMAC-SHA256 signing per log entry</td>
+                        <td class="status-pass">✓ PASS</td>
+                    </tr>
+                    <tr>
+                        <td>21b.4</td>
+                        <td>Incident response plan</td>
+                        <td>Documented vulnerability disclosure process</td>
+                        <td class="status-pass">✓ PASS</td>
+                    </tr>
+                    <tr>
+                        <td>21b.5</td>
+                        <td>24-hour notification capability</td>
+                        <td>SIEM integration + webhook notifications</td>
+                        <td class="status-pass">✓ PASS</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <h3 class="requirement-title">Implementation Details</h3>
+            <ul class="implementation-list">
+                <li><strong>Nis2AuditLogger</strong>: Django/Spring/Express middleware capturing all security events
+                </li>
+                <li><strong>Multi-SIEM Connectors</strong>: Native support for Splunk, Elastic, Sentinel, QRadar</li>
+                <li><strong>Webhook Notifications</strong>: Real-time alerts to Slack, Teams, email</li>
+                <li><strong>Forensic Export</strong>: Tamper-evident log packages for incident investigation</li>
+            </ul>
+        </section>
+
+        <!-- Article 21.2.c - Business Continuity -->
+        <section id="art21c" class="article-section">
+            <h2 class="article-title">3.3 Business Continuity (Article 21.2.c)</h2>
+
+            <div class="article-quote">
+                "Business continuity, such as backup management and disaster recovery, and crisis management"
+            </div>
+
+            <p>
+                The Crypto-Replicator component ensures data sovereignty while enabling secure
+                cloud backup with zero-trust encryption.
+            </p>
+
+            <table>
+                <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>Requirement</th>
+                        <th>Implementation</th>
+                        <th>Status</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>21c.1</td>
+                        <td>Automated backups</td>
+                        <td>Every 6 hours, 7-day retention</td>
+                        <td class="status-pass">✓ PASS</td>
+                    </tr>
+                    <tr>
+                        <td>21c.2</td>
+                        <td>Backup encryption</td>
+                        <td>GPG encryption at source</td>
+                        <td class="status-pass">✓ PASS</td>
+                    </tr>
+                    <tr>
+                        <td>21c.3</td>
+                        <td>Offsite backup</td>
+                        <td>Crypto-Replicator to S3/Azure/GCS</td>
+                        <td class="status-pass">✓ PASS</td>
+                    </tr>
+                    <tr>
+                        <td>21c.4</td>
+                        <td>Zero-trust cloud storage</td>
+                        <td>AES-256-GCM + RSA-OAEP key wrapping</td>
+                        <td class="status-pass">✓ PASS</td>
+                    </tr>
+                    <tr>
+                        <td>21c.5</td>
+                        <td>DR testing</td>
+                        <td>restore-test.sh validation script</td>
+                        <td class="status-pass">✓ PASS</td>
+                    </tr>
+                    <tr>
+                        <td>21c.6</td>
+                        <td>DR documentation</td>
+                        <td>CRYPTOGRAPHY.md with procedures</td>
+                        <td class="status-pass">✓ PASS</td>
+                    </tr>
+                    <tr>
+                        <td>21c.7</td>
+                        <td>Key rotation</td>
+                        <td>KeyRotationManager with versioning</td>
+                        <td class="status-pass">✓ PASS</td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+
+        <!-- Article 21.2.d - Supply Chain -->
+        <section id="art21d" class="article-section page-break">
+            <h2 class="article-title">3.4 Supply Chain Security (Article 21.2.d)</h2>
+
+            <div class="article-quote">
+                "Supply chain security, including security-related aspects concerning the relationships
+                between each entity and its direct suppliers or service providers"
+            </div>
+
+            <table>
+                <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>Requirement</th>
+                        <th>Implementation</th>
+                        <th>Status</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>21d.1</td>
+                        <td>Verified base images</td>
+                        <td>Official Docker Hub images only</td>
+                        <td class="status-pass">✓ PASS</td>
+                    </tr>
+                    <tr>
+                        <td>21d.2</td>
+                        <td>Dependency pinning</td>
+                        <td>Versioned requirements.txt, package-lock.json</td>
+                        <td class="status-pass">✓ PASS</td>
+                    </tr>
+                    <tr>
+                        <td>21d.3</td>
+                        <td>Open source transparency</td>
+                        <td>MIT license, public GitHub repositories</td>
+                        <td class="status-pass">✓ PASS</td>
+                    </tr>
+                    <tr>
+                        <td>21d.4</td>
+                        <td>SBOM generation</td>
+                        <td>Recommended in CI (organizational)</td>
+                        <td class="status-warn">⚠ PARTIAL</td>
+                    </tr>
+                    <tr>
+                        <td>21d.5</td>
+                        <td>Vulnerability scanning</td>
+                        <td>Trivy in CI, Hadolint for Dockerfiles</td>
+                        <td class="status-pass">✓ PASS</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <div class="info-box warning">
+                <div class="info-box-title">⚠ Partial Compliance: SBOM Generation</div>
+                <p>Software Bill of Materials generation is supported but must be configured
+                    by the deploying organization. Sample CI/CD templates are provided.</p>
+            </div>
+        </section>
+
+        <!-- Article 21.2.e - Vulnerability Management -->
+        <section id="art21e" class="article-section">
+            <h2 class="article-title">3.5 Vulnerability Management (Article 21.2.e)</h2>
+
+            <div class="article-quote">
+                "Security in network and information systems acquisition, development and maintenance,
+                including vulnerability handling and disclosure"
+            </div>
+
+            <table>
+                <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>Requirement</th>
+                        <th>Implementation</th>
+                        <th>Status</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>21e.1</td>
+                        <td>Secure development</td>
+                        <td>Code review, CI/CD pipelines</td>
+                        <td class="status-pass">✓ PASS</td>
+                    </tr>
+                    <tr>
+                        <td>21e.2</td>
+                        <td>Vulnerability disclosure</td>
+                        <td>SECURITY.md, security@nis2shield.com</td>
+                        <td class="status-pass">✓ PASS</td>
+                    </tr>
+                    <tr>
+                        <td>21e.3</td>
+                        <td>Response timelines</td>
+                        <td>SLAs by severity in SECURITY.md</td>
+                        <td class="status-pass">✓ PASS</td>
+                    </tr>
+                    <tr>
+                        <td>21e.4</td>
+                        <td>Patch management</td>
+                        <td>Monthly recommended (organizational)</td>
+                        <td class="status-warn">⚠ PARTIAL</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <div class="info-box warning">
+                <div class="info-box-title">⚠ Partial Compliance: Patch Management</div>
+                <p>NIS2 Shield provides updated images, but patch scheduling must be
+                    managed by the deploying organization according to their change management process.</p>
+            </div>
+        </section>
+
+        <!-- Article 21.2.f - Cryptography -->
+        <section id="art21f" class="article-section page-break">
+            <h2 class="article-title">3.6 Cryptography (Article 21.2.f)</h2>
+
+            <div class="article-quote">
+                "Policies and procedures regarding the use of cryptography and, where appropriate, encryption"
+            </div>
+
+            <p>
+                NIS2 Shield implements NIST-approved cryptographic algorithms with documented
+                key management procedures.
+            </p>
+
+            <table>
+                <thead>
+                    <tr>
+                        <th>Component</th>
+                        <th>Algorithm</th>
+                        <th>Key Size</th>
+                        <th>Mode</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Log field encryption</td>
+                        <td>AES</td>
+                        <td>128-bit</td>
+                        <td>Fernet (CBC+HMAC)</td>
+                    </tr>
+                    <tr>
+                        <td>Cloud backup payload</td>
+                        <td>AES</td>
+                        <td>256-bit</td>
+                        <td>GCM (AEAD)</td>
+                    </tr>
+                    <tr>
+                        <td>Backup key wrapping</td>
+                        <td>RSA</td>
+                        <td>2048-bit</td>
+                        <td>OAEP-SHA256</td>
+                    </tr>
+                    <tr>
+                        <td>Log signing</td>
+                        <td>HMAC</td>
+                        <td>256-bit</td>
+                        <td>SHA-256</td>
+                    </tr>
+                    <tr>
+                        <td>Transport</td>
+                        <td>TLS</td>
+                        <td>-</td>
+                        <td>1.2+ minimum</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <h3 class="requirement-title">Compliance Status</h3>
+            <table>
+                <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>Requirement</th>
+                        <th>Implementation</th>
+                        <th>Status</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>21f.1</td>
+                        <td>Encryption at rest</td>
+                        <td>AES-256, Fernet</td>
+                        <td class="status-pass">✓ PASS</td>
+                    </tr>
+                    <tr>
+                        <td>21f.2</td>
+                        <td>Encryption in transit</td>
+                        <td>TLS 1.2+ mandatory</td>
+                        <td class="status-pass">✓ PASS</td>
+                    </tr>
+                    <tr>
+                        <td>21f.3</td>
+                        <td>Key management</td>
+                        <td>Rotation, separation, versioning</td>
+                        <td class="status-pass">✓ PASS</td>
+                    </tr>
+                    <tr>
+                        <td>21f.4</td>
+                        <td>Algorithm selection</td>
+                        <td>NIST SP 800-38D, FIPS 140-2 approved</td>
+                        <td class="status-pass">✓ PASS</td>
+                    </tr>
+                    <tr>
+                        <td>21f.5</td>
+                        <td>PII protection</td>
+                        <td>Field-level Fernet encryption</td>
+                        <td class="status-pass">✓ PASS</td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+
+        <!-- Article 21.2.g - Access Control -->
+        <section id="art21g" class="article-section">
+            <h2 class="article-title">3.7 Access Control (Article 21.2.g)</h2>
+
+            <div class="article-quote">
+                "Human resources security, access control policies and asset management"
+            </div>
+
+            <table>
+                <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>Requirement</th>
+                        <th>Implementation</th>
+                        <th>Status</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>21g.1</td>
+                        <td>Access control policies</td>
+                        <td>RBAC, database user separation</td>
+                        <td class="status-pass">✓ PASS</td>
+                    </tr>
+                    <tr>
+                        <td>21g.2</td>
+                        <td>Least privilege</td>
+                        <td>Minimal container capabilities</td>
+                        <td class="status-pass">✓ PASS</td>
+                    </tr>
+                    <tr>
+                        <td>21g.3</td>
+                        <td>Secrets management</td>
+                        <td>Vault-ready architecture</td>
+                        <td class="status-pass">✓ PASS</td>
+                    </tr>
+                    <tr>
+                        <td>21g.4</td>
+                        <td>Audit logging</td>
+                        <td>All access attempts logged</td>
+                        <td class="status-pass">✓ PASS</td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+
+        <!-- Article 21.2.h - MFA -->
+        <section id="art21h" class="article-section page-break">
+            <h2 class="article-title">3.8 Multi-Factor Authentication (Article 21.2.h)</h2>
+
+            <div class="article-quote">
+                "The use of multi-factor authentication or continuous authentication solutions"
+            </div>
+
+            <p>
+                NIS2 Shield middleware provides MFA enforcement capabilities that integrate
+                with existing identity providers.
+            </p>
+
+            <table>
+                <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>Requirement</th>
+                        <th>Implementation</th>
+                        <th>Status</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>21h.1</td>
+                        <td>MFA support</td>
+                        <td>MFAEnforcer middleware</td>
+                        <td class="status-pass">✓ PASS</td>
+                    </tr>
+                    <tr>
+                        <td>21h.2</td>
+                        <td>Session security</td>
+                        <td>SessionGuard with fingerprinting</td>
+                        <td class="status-pass">✓ PASS</td>
+                    </tr>
+                    <tr>
+                        <td>21h.3</td>
+                        <td>Device validation</td>
+                        <td>Device fingerprint binding</td>
+                        <td class="status-pass">✓ PASS</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <h3 class="requirement-title">MFA Middleware Features</h3>
+            <ul class="implementation-list">
+                <li>Configurable enforcement per route or user role</li>
+                <li>Session invalidation on device fingerprint mismatch</li>
+                <li>TOTP and WebAuthn support (organizational configuration)</li>
+                <li>Audit logging of all MFA events</li>
+            </ul>
+        </section>
+
+        <!-- ARTICLE 23 - REPORTING -->
+        <section id="article23" class="page-break">
+            <h1 class="section-title">4. Article 23 - Reporting Obligations</h1>
+
+            <div class="article-quote">
+                "Where essential and important entities become aware of a significant incident, they shall
+                submit... an early warning within 24 hours..."
+            </div>
+
+            <table>
+                <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>Requirement</th>
+                        <th>Implementation</th>
+                        <th>Status</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>23.1</td>
+                        <td>Early warning (24h)</td>
+                        <td>Timestamped logs, SIEM alerts</td>
+                        <td class="status-pass">✓ PASS</td>
+                    </tr>
+                    <tr>
+                        <td>23.2</td>
+                        <td>Structured reports</td>
+                        <td>JSON and CEF format</td>
+                        <td class="status-pass">✓ PASS</td>
+                    </tr>
+                    <tr>
+                        <td>23.3</td>
+                        <td>CSIRT integration</td>
+                        <td>SIEM forwarding to national CSIRTs</td>
+                        <td class="status-pass">✓ PASS</td>
+                    </tr>
+                    <tr>
+                        <td>23.4</td>
+                        <td>Evidence preservation</td>
+                        <td>Immutable logs with HMAC signatures</td>
+                        <td class="status-pass">✓ PASS</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <div class="info-box success">
+                <div class="info-box-title">Forensic Package Export</div>
+                <p>The NIS2 Compliance Engine can generate tamper-evident forensic packages
+                    suitable for submission to competent authorities and CSIRTs.</p>
+            </div>
+        </section>
+
+        <!-- VERIFICATION -->
+        <section id="verification" class="page-break">
+            <h1 class="section-title">5. Verification & Audit</h1>
+
+            <p>
+                NIS2 Shield includes the Compliance Engine, a commercial tool that automates
+                compliance verification and generates audit-ready PDF reports.
+            </p>
+
+            <h2 class="article-title">Automated Probes</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Probe</th>
+                        <th>Tool</th>
+                        <th>NIS2 Article</th>
+                        <th>Description</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Probe A</td>
+                        <td>tfsec</td>
+                        <td>21.2.f</td>
+                        <td>Infrastructure encryption verification</td>
+                    </tr>
+                    <tr>
+                        <td>Probe B</td>
+                        <td>trivy</td>
+                        <td>21.2.d</td>
+                        <td>Supply chain CVE detection</td>
+                    </tr>
+                    <tr>
+                        <td>Probe C</td>
+                        <td>gitleaks</td>
+                        <td>-</td>
+                        <td>Secrets detection in code</td>
+                    </tr>
+                    <tr>
+                        <td>Probe D</td>
+                        <td>GitHub API</td>
+                        <td>21.2.c</td>
+                        <td>Operational continuity checks</td>
+                    </tr>
+                    <tr>
+                        <td>Probe E</td>
+                        <td>HMAC Verifier</td>
+                        <td>21.2.h</td>
+                        <td>Log integrity verification</td>
+                    </tr>
+                    <tr>
+                        <td>Probe F</td>
+                        <td>kube-bench</td>
+                        <td>21.2.a</td>
+                        <td>CIS Kubernetes Benchmark</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <h2 class="article-title">Usage</h2>
+            <div class="info-box">
+                <div class="info-box-title">Generate Compliance Report</div>
+                <p><code>python nis2_audit.py report --org "Your Organization" --period "Q1 2026"</code></p>
+            </div>
+        </section>
+
+        <!-- CERTIFICATION -->
+        <section id="certification" class="page-break">
+            <h1 class="section-title">6. Certification Statement</h1>
+
+            <p>
+                This compliance assessment was conducted against NIS2 Shield Infrastructure v1.0.0
+                and associated middleware packages. The assessment reflects the state of the
+                open-source components as documented in the respective GitHub repositories.
+            </p>
+
+            <div class="signature-section">
+                <h3 class="requirement-title">Assessment Details</h3>
+
+                <div class="signature-grid">
+                    <div>
+                        <div class="signature-label">Organization Name</div>
+                        <div class="signature-field"></div>
+                    </div>
+                    <div>
+                        <div class="signature-label">Assessor Name</div>
+                        <div class="signature-field"></div>
+                    </div>
+                    <div>
+                        <div class="signature-label">Assessment Date</div>
+                        <div class="signature-field"></div>
+                    </div>
+                    <div>
+                        <div class="signature-label">Next Review Date</div>
+                        <div class="signature-field"></div>
+                    </div>
+                </div>
+
+                <div style="margin-top: 40px;">
+                    <div class="signature-label">Signature</div>
+                    <div class="signature-field" style="height: 60px;"></div>
+                </div>
+
+                <div style="margin-top: 30px; text-align: center; color: var(--gray-600); font-size: 9pt;">
+                    <p>This document was generated from NIS2 Shield compliance tools.</p>
+                    <p>© 2026 NIS2 Shield Contributors • nis2shield.com</p>
+                </div>
+            </div>
+        </section>
+
+    </div>
+
+</body>
+
+</html>
