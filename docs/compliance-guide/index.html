@@ -79,7 +79,14 @@
         }
 
         .cover-title span {
-            color: var(--primary);
+            color: white;
+        }
+
+        .cover-title .gradient {
+            background: linear-gradient(90deg, var(--secondary), var(--primary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
         }
 
         .cover-subtitle {
@@ -453,7 +460,7 @@
     <div class="cover-page">
         <img src="../../logo/logo_color.svg" alt="NIS2 Shield Logo" class="cover-logo" />
 
-        <h1 class="cover-title">NIS2<span>Shield</span></h1>
+        <h1 class="cover-title"><span class="gradient">NIS2</span><span>Shield</span></h1>
         <p class="cover-subtitle">Enterprise Compliance Infrastructure</p>
 
         <h2 class="cover-document-title">NIS2 Directive Compliance Guide</h2>
