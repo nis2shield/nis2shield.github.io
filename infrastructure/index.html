@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Infrastructure Kit - NIS2 Shield</title>
-    <meta name="description" content="Secure Docker infrastructure for NIS2 compliance.">
+    <meta name="description" content="Secure Docker, Kubernetes & Terraform infrastructure for NIS2 compliance.">
     <link
         href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=JetBrains+Mono:wght@400;500&display=swap"
         rel="stylesheet">
@@ -19,21 +19,31 @@
         .code-block {
             font-family: 'JetBrains Mono', monospace;
         }
+
+        .gradient-text {
+            background: linear-gradient(to right, #a855f7, #ec4899);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            color: transparent;
+        }
     </style>
 </head>
 
 <body class="bg-slate-900 text-slate-300">
     <nav class="border-b border-slate-800 bg-slate-900/80 backdrop-blur sticky top-0 z-50">
         <div class="container mx-auto px-6 py-4 flex justify-between items-center relative z-50">
-            <a href="../" class="flex items-center space-x-2">
-                <div class="w-8 h-8 rounded bg-purple-500 flex items-center justify-center">
-                    <i data-lucide="container" class="w-5 h-5 text-white"></i>
-                </div>
-                <span class="text-xl font-bold text-white">Infrastructure Kit</span>
+            <a href="../" class="flex items-center space-x-0.5">
+                <img src="../logo/logo_color.svg" alt="NIS2 Shield" class="w-9 h-9 p-1.5">
+                <span class="text-xl font-bold text-white"><span class="gradient-text">NIS2</span>Shield</span>
             </a>
             <div class="hidden md:flex space-x-6 text-sm">
-                <a href="../" class="hover:text-purple-400">← Back to Hub</a>
-                <a href="https://github.com/nis2shield/infrastructure" class="hover:text-purple-400">GitHub</a>
+                <a href="../" class="hover:text-purple-400 text-slate-400 transition">Overview</a>
+                <a href="#terraform" class="hover:text-purple-400 text-slate-400 transition">Terraform</a>
+                <a href="#helm" class="hover:text-purple-400 text-slate-400 transition">Helm</a>
+                <a href="#opa" class="hover:text-purple-400 text-slate-400 transition">OPA Policies</a>
+                <a href="https://github.com/nis2shield/infrastructure"
+                    class="text-white hover:text-purple-400 font-semibold transition">GitHub</a>
             </div>
 
             <!-- Mobile Menu Button -->
@@ -43,17 +53,19 @@
         </div>
     </nav>
 
-    <!-- Mobile Menu Overlay (outside nav to avoid transparency inheritance) -->
+    <!-- Mobile Menu Overlay -->
     <div id="mobile-menu"
         class="fixed inset-0 z-[9999] bg-slate-900 transform translate-x-full transition-transform duration-300 ease-in-out md:hidden flex flex-col items-center justify-center space-y-6"
         style="background-color: #0f172a !important;">
         <button id="close-menu-btn" class="absolute top-6 right-6 text-slate-400 hover:text-white">
             <i data-lucide="x" class="w-8 h-8"></i>
         </button>
-        <a href="../" class="text-2xl text-slate-300 hover:text-purple-400 transition" onclick="toggleMenu()">← Back
-            to Hub</a>
+        <a href="../" class="text-2xl text-slate-300 hover:text-purple-400 transition" onclick="toggleMenu()">Home</a>
+        <a href="#terraform" class="text-2xl text-slate-300 hover:text-purple-400 transition"
+            onclick="toggleMenu()">Terraform</a>
+        <a href="#helm" class="text-2xl text-slate-300 hover:text-purple-400 transition" onclick="toggleMenu()">Helm</a>
         <a href="https://github.com/nis2shield/infrastructure"
-            class="text-2xl text-slate-300 hover:text-purple-400 transition" onclick="toggleMenu()">GitHub</a>
+            class="text-2xl text-purple-400 font-bold hover:text-white transition" onclick="toggleMenu()">GitHub</a>
     </div>
 
     <script>
@@ -63,83 +75,291 @@
 
         function toggleMenu() {
             mobileMenu.classList.toggle('translate-x-full');
-            if (!mobileMenu.classList.contains('translate-x-full')) {
-                document.body.style.overflow = 'hidden';
-            } else {
-                document.body.style.overflow = 'auto';
-            }
+            document.body.style.overflow = mobileMenu.classList.contains('translate-x-full') ? 'auto' : 'hidden';
         }
 
         mobileMenuBtn.addEventListener('click', toggleMenu);
         closeMenuBtn.addEventListener('click', toggleMenu);
     </script>
-    <header class="py-20 border-b border-slate-800">
+
+    <header class="py-20 border-b border-slate-800 relative overflow-hidden">
+        <!-- Background Glow -->
+        <div
+            class="absolute top-0 left-1/2 -translate-x-1/2 w-full h-full max-w-4xl bg-purple-500/10 blur-3xl rounded-full -z-10">
+        </div>
+
         <div class="container mx-auto px-6 text-center">
             <div
-                class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-purple-900/30 border border-purple-500/30 text-purple-400 text-sm font-medium mb-6">
-                <i data-lucide="container" class="w-4 h-4"></i> Docker Infrastructure
+                class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-purple-900/30 border border-purple-500/30 text-purple-400 text-sm font-medium mb-6 animate-fade-in-up">
+                <i data-lucide="shield-check" class="w-4 h-4"></i> Infrastructure as Code (IaC)
             </div>
-            <h1 class="text-4xl md:text-5xl font-bold text-white mb-6">Secure-by-Design Infrastructure</h1>
-            <p class="text-xl text-slate-400 max-w-3xl mx-auto mb-8">The "last mile" for NIS2 compliance. Hardened
-                containers, log segregation, and automated backups.</p>
-            <a href="https://github.com/nis2shield/infrastructure"
-                class="inline-flex items-center gap-2 bg-purple-600 hover:bg-purple-500 text-white px-6 py-3 rounded-lg font-medium transition">
-                <i data-lucide="github" class="w-5 h-5"></i> View on GitHub
-            </a>
+            <h1 class="text-5xl md:text-6xl font-bold text-white mb-6 leading-tight">
+                Secure Infrastructure <br>
+                <span class="gradient-text">Made Simple</span>
+            </h1>
+            <p class="text-xl text-slate-400 max-w-3xl mx-auto mb-10">
+                The "last mile" for NIS2 compliance. Production-ready Terraform modules, hardened Helm charts, and
+                Policy-as-Code — all compliant by design.
+            </p>
+            <div class="flex flex-col sm:flex-row justify-center gap-4">
+                <a href="https://github.com/nis2shield/infrastructure"
+                    class="inline-flex items-center justify-center gap-2 bg-purple-600 hover:bg-purple-500 text-white px-8 py-4 rounded-xl font-bold transition shadow-lg shadow-purple-900/20">
+                    <i data-lucide="github" class="w-5 h-5"></i> View on GitHub
+                </a>
+                <a href="#toggles"
+                    class="inline-flex items-center justify-center gap-2 bg-slate-800 hover:bg-slate-700 text-white px-8 py-4 rounded-xl font-medium border border-slate-700 transition">
+                    <i data-lucide="sliders" class="w-5 h-5"></i> Compliance Toggles
+                </a>
+            </div>
         </div>
     </header>
-    <section class="py-16 border-b border-slate-800">
+
+    <!-- Cloud Modules (Terraform) -->
+    <section id="terraform" class="py-20 border-b border-slate-800">
         <div class="container mx-auto px-6">
-            <h2 class="text-2xl font-bold text-white mb-8">Architecture</h2>
-            <div class="grid md:grid-cols-4 gap-4">
-                <div class="bg-slate-800/50 border border-slate-700 rounded-xl p-6">
-                    <div class="w-10 h-10 bg-green-900/50 rounded-lg flex items-center justify-center mb-4"><i
-                            data-lucide="server" class="w-5 h-5 text-green-400"></i></div>
-                    <h3 class="font-semibold text-white mb-2">webapp</h3>
-                    <p class="text-sm text-slate-400">Your Django app, hardened with non-root, read-only FS</p>
+            <div class="flex flex-col md:flex-row justify-between items-end mb-12">
+                <div>
+                    <h2 class="text-3xl font-bold text-white mb-4">Multi-Cloud Terraform Modules</h2>
+                    <p class="text-slate-400 max-w-2xl">
+                        Deploy compliant infrastructure in minutes. Includes VPC hardening, private endpoints, and
+                        encryption at rest enabled by default.
+                    </p>
                 </div>
-                <div class="bg-slate-800/50 border border-slate-700 rounded-xl p-6">
-                    <div class="w-10 h-10 bg-blue-900/50 rounded-lg flex items-center justify-center mb-4"><i
-                            data-lucide="file-json" class="w-5 h-5 text-blue-400"></i></div>
-                    <h3 class="font-semibold text-white mb-2">log-collector</h3>
-                    <p class="text-sm text-slate-400">Fluent Bit sidecar for SIEM integration</p>
+                <div class="flex gap-2 mt-4 md:mt-0">
+                    <span
+                        class="px-3 py-1 bg-blue-900/30 text-blue-400 rounded-full border border-blue-800 text-sm">Azure</span>
+                    <span
+                        class="px-3 py-1 bg-yellow-900/30 text-yellow-400 rounded-full border border-yellow-800 text-sm">AWS</span>
+                    <span
+                        class="px-3 py-1 bg-red-900/30 text-red-400 rounded-full border border-red-800 text-sm">GCP</span>
                 </div>
-                <div class="bg-slate-800/50 border border-slate-700 rounded-xl p-6">
-                    <div class="w-10 h-10 bg-yellow-900/50 rounded-lg flex items-center justify-center mb-4"><i
-                            data-lucide="database-backup" class="w-5 h-5 text-yellow-400"></i></div>
-                    <h3 class="font-semibold text-white mb-2">db-backup</h3>
-                    <p class="text-sm text-slate-400">Automated PostgreSQL dumps every 6h</p>
+            </div>
+
+            <div class="grid md:grid-cols-3 gap-8">
+                <!-- Azure -->
+                <div
+                    class="bg-slate-800/50 p-8 rounded-2xl border border-slate-700 hover:border-blue-500 transition group">
+                    <div
+                        class="w-12 h-12 bg-blue-500/10 rounded-xl flex items-center justify-center mb-6 group-hover:scale-110 transition">
+                        <i data-lucide="cloud" class="w-6 h-6 text-blue-400"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-white mb-3">Azure Module</h3>
+                    <ul class="space-y-2 text-slate-400 text-sm mb-6">
+                        <li class="flex gap-2"><i data-lucide="check" class="w-4 h-4 text-green-500"></i> AKS with
+                            Auto-Upgrade</li>
+                        <li class="flex gap-2"><i data-lucide="check" class="w-4 h-4 text-green-500"></i> PostgreSQL
+                            Flexible Server</li>
+                        <li class="flex gap-2"><i data-lucide="check" class="w-4 h-4 text-green-500"></i> Key Vault
+                            Integration</li>
+                        <li class="flex gap-2"><i data-lucide="check" class="w-4 h-4 text-green-500"></i> Log Analytics
+                            Workspace</li>
+                    </ul>
+                    <div class="bg-slate-900 rounded p-3 text-xs font-mono text-slate-400 border border-slate-800">
+                        source = "./modules/azure"<br>
+                        enable_key_vault = true
+                    </div>
                 </div>
-                <div class="bg-slate-800/50 border border-slate-700 rounded-xl p-6">
-                    <div class="w-10 h-10 bg-purple-900/50 rounded-lg flex items-center justify-center mb-4"><i
-                            data-lucide="database" class="w-5 h-5 text-purple-400"></i></div>
-                    <h3 class="font-semibold text-white mb-2">db</h3>
-                    <p class="text-sm text-slate-400">PostgreSQL 15 with persistent volume</p>
+
+                <!-- AWS -->
+                <div
+                    class="bg-slate-800/50 p-8 rounded-2xl border border-slate-700 hover:border-yellow-500 transition group">
+                    <div
+                        class="w-12 h-12 bg-yellow-500/10 rounded-xl flex items-center justify-center mb-6 group-hover:scale-110 transition">
+                        <i data-lucide="server" class="w-6 h-6 text-yellow-400"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-white mb-3">AWS Module</h3>
+                    <ul class="space-y-2 text-slate-400 text-sm mb-6">
+                        <li class="flex gap-2"><i data-lucide="check" class="w-4 h-4 text-green-500"></i> EKS Cluster
+                            Hardening</li>
+                        <li class="flex gap-2"><i data-lucide="check" class="w-4 h-4 text-green-500"></i> RDS with
+                            Encryption</li>
+                        <li class="flex gap-2"><i data-lucide="check" class="w-4 h-4 text-green-500"></i> VPC Flow Logs
+                            Enabled</li>
+                        <li class="flex gap-2"><i data-lucide="check" class="w-4 h-4 text-green-500"></i> S3 Block
+                            Public Access</li>
+                    </ul>
+                    <div class="bg-slate-900 rounded p-3 text-xs font-mono text-slate-400 border border-slate-800">
+                        source = "./modules/aws"<br>
+                        enable_flow_logs = true
+                    </div>
+                </div>
+
+                <!-- GCP -->
+                <div
+                    class="bg-slate-800/50 p-8 rounded-2xl border border-slate-700 hover:border-red-500 transition group">
+                    <div
+                        class="w-12 h-12 bg-red-500/10 rounded-xl flex items-center justify-center mb-6 group-hover:scale-110 transition">
+                        <i data-lucide="globe" class="w-6 h-6 text-red-400"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-white mb-3">GCP Module</h3>
+                    <ul class="space-y-2 text-slate-400 text-sm mb-6">
+                        <li class="flex gap-2"><i data-lucide="check" class="w-4 h-4 text-green-500"></i> GKE Private
+                            Cluster</li>
+                        <li class="flex gap-2"><i data-lucide="check" class="w-4 h-4 text-green-500"></i> Cloud SQL with
+                            IAM Auth</li>
+                        <li class="flex gap-2"><i data-lucide="check" class="w-4 h-4 text-green-500"></i> Artifact
+                            Registry</li>
+                        <li class="flex gap-2"><i data-lucide="check" class="w-4 h-4 text-green-500"></i> Workload
+                            Identity</li>
+                    </ul>
+                    <div class="bg-slate-900 rounded p-3 text-xs font-mono text-slate-400 border border-slate-800">
+                        source = "./modules/gcp"<br>
+                        private_cluster = true
+                    </div>
                 </div>
             </div>
         </div>
     </section>
-    <section class="py-16 border-b border-slate-800">
+
+    <!-- Flexible Compliance Toggles -->
+    <section id="toggles" class="py-20 bg-slate-800/20">
         <div class="container mx-auto px-6">
-            <h2 class="text-2xl font-bold text-white mb-8">Quick Start</h2>
-            <div class="bg-slate-800 border border-slate-700 rounded-xl overflow-hidden">
-                <div class="bg-slate-800/80 border-b border-slate-700 px-4 py-2 flex items-center gap-2">
-                    <div class="w-3 h-3 rounded-full bg-red-500"></div>
-                    <div class="w-3 h-3 rounded-full bg-yellow-500"></div>
-                    <div class="w-3 h-3 rounded-full bg-green-500"></div>
+            <div class="max-w-4xl mx-auto">
+                <div class="flex items-center gap-3 mb-6">
+                    <span
+                        class="px-3 py-1 bg-green-500/20 text-green-400 rounded-full text-xs font-bold uppercase tracking-wide">New
+                        Feature</span>
                 </div>
-                <pre class="p-6 code-block text-sm overflow-x-auto bg-slate-950"><code>git clone https://github.com/nis2shield/infrastructure.git
-cd infrastructure
-cp .env.example .env
-docker-compose up -d</code></pre>
+                <h2 class="text-3xl font-bold text-white mb-6">Flexible Compliance Toggles</h2>
+                <p class="text-slate-400 mb-10 text-lg">
+                    Not every project needs full NIS2 compliance from Day 1. Our Azure module now supports granular
+                    toggles to balance <strong class="text-white">Cost vs. Compliance</strong>. Control expensive
+                    resources like Log Analytics and Key Vault with simple booleans.
+                </p>
+
+                <div class="bg-slate-900 rounded-2xl border border-slate-700 overflow-hidden shadow-2xl">
+                    <div class="flex border-b border-slate-700">
+                        <div
+                            class="px-6 py-3 bg-slate-800 text-slate-300 text-sm font-medium border-r border-slate-700">
+                            variables.tf</div>
+                        <div class="px-6 py-3 bg-slate-900 text-slate-500 text-sm">Terraform Configuration</div>
+                    </div>
+                    <div class="p-8 font-mono text-sm text-blue-300 overflow-x-auto">
+                        <div class="mb-4">
+                            <span class="text-purple-400">module</span> <span
+                                class="text-yellow-300">"azure_infrastructure"</span> {<br>
+                            &nbsp;&nbsp;source = <span class="text-green-300">"./modules/azure"</span>
+                        </div>
+
+                        <div class="pl-4 space-y-2">
+                            <span class="text-slate-500">// Start small (Dev/Test)</span><br>
+                            <span class="text-white">enable_log_analytics</span> = <span
+                                class="text-red-400">false</span> <span class="text-slate-500"># Save
+                                ~€100/mo</span><br>
+                            <span class="text-white">enable_key_vault</span> &nbsp;&nbsp;&nbsp;&nbsp;= <span
+                                class="text-red-400">false</span> <span class="text-slate-500"># Use K8s secrets
+                                instead</span><br>
+                            <br>
+                            <span class="text-slate-500">// Or go full NIS2 (Production)</span><br>
+                            <span class="text-white">full_nis2_compliance</span> = <span
+                                class="text-green-400">true</span> &nbsp;<span class="text-slate-500"># Overrides all
+                                above</span>
+                        </div>
+
+                        <div class="mt-4">
+                            }
+                        </div>
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mt-8">
+                    <div class="bg-slate-800/50 p-4 rounded-xl text-center">
+                        <div class="text-2xl font-bold text-white mb-1">Art. 21.2.c</div>
+                        <div class="text-xs text-slate-400">Backup & Disaster Recovery</div>
+                    </div>
+                    <div class="bg-slate-800/50 p-4 rounded-xl text-center">
+                        <div class="text-2xl font-bold text-white mb-1">Art. 21.2.d</div>
+                        <div class="text-xs text-slate-400">Access Control (Key Vault)</div>
+                    </div>
+                    <div class="bg-slate-800/50 p-4 rounded-xl text-center">
+                        <div class="text-2xl font-bold text-white mb-1">Art. 21.2.a</div>
+                        <div class="text-xs text-slate-400">Risk Analysis (Logs)</div>
+                    </div>
+                    <div class="bg-slate-800/50 p-4 rounded-xl text-center">
+                        <div class="text-2xl font-bold text-white mb-1">Art. 21.2.e</div>
+                        <div class="text-xs text-slate-400">Incident Handling</div>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
-    <footer class="border-t border-slate-800 py-8 text-center text-slate-500">
-        <p>Part of the <a href="../" class="text-purple-400 hover:underline">NIS2 Shield</a> ecosystem</p>
+
+    <!-- OPA Gatekeeper -->
+    <section id="opa" class="py-20 border-t border-slate-800">
+        <div class="container mx-auto px-6 text-center mb-16">
+            <h2 class="text-3xl font-bold text-white mb-4">Policy as Code</h2>
+            <p class="text-slate-400 max-w-2xl mx-auto">
+                Don't just trust; verify. We include <strong>OPA Gatekeeper</strong> policies to enforce NIS2
+                requirements at the Kubernetes admission level.
+            </p>
+        </div>
+
+        <div class="container mx-auto px-6 max-w-5xl">
+            <div class="grid md:grid-cols-2 gap-8 items-center">
+                <div class="space-y-4">
+                    <div class="flex gap-4 p-4 bg-red-900/10 border border-red-900/30 rounded-lg">
+                        <i data-lucide="x-circle" class="w-6 h-6 text-red-500 shrink-0"></i>
+                        <div>
+                            <h4 class="font-bold text-white">Blocked: Privileged Container</h4>
+                            <p class="text-sm text-slate-400">Pod attempted to run as root. Violated `k8snonroot`
+                                policy.</p>
+                        </div>
+                    </div>
+                    <div class="flex gap-4 p-4 bg-red-900/10 border border-red-900/30 rounded-lg">
+                        <i data-lucide="x-circle" class="w-6 h-6 text-red-500 shrink-0"></i>
+                        <div>
+                            <h4 class="font-bold text-white">Blocked: Missing Labels</h4>
+                            <p class="text-sm text-slate-400">Deployment missing `nis2-compliance` label. Violated
+                                `k8srequiredlabels`.</p>
+                        </div>
+                    </div>
+                    <div class="flex gap-4 p-4 bg-green-900/10 border border-green-900/30 rounded-lg">
+                        <i data-lucide="check-circle" class="w-6 h-6 text-green-500 shrink-0"></i>
+                        <div>
+                            <h4 class="font-bold text-white">Allowed: Compliant Pod</h4>
+                            <p class="text-sm text-slate-400">RunAsNonRoot: true, ReadOnlyRootFilesystem: true.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="bg-slate-900 rounded-xl p-6 border border-slate-700">
+                    <div class="flex items-center justify-between mb-4">
+                        <span class="text-sm font-semibold text-white">k8snonroot.yaml</span>
+                        <span class="text-xs bg-slate-800 text-slate-400 px-2 py-1 rounded">Rego Policy</span>
+                    </div>
+                    <pre class="font-mono text-xs text-slate-300 overflow-x-auto"><code>violation[{"msg": msg}] {
+  input.review.object.spec.containers[_].securityContext.privileged
+  msg := "Privileged containers are not allowed by NIS2 Art 21.2.d"
+}
+
+violation[{"msg": msg}] {
+  not input.review.object.spec.securityContext.runAsNonRoot
+  msg := "Containers must run as non-root user"
+}</code></pre>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="border-t border-slate-800 py-12 text-center text-slate-500">
+        <div class="mb-6">
+            <span
+                class="inline-flex items-center gap-2 px-3 py-1 bg-purple-900/30 text-purple-400 text-sm rounded-full">
+                <i data-lucide="container" class="w-4 h-4"></i> Infrastructure Kit v1.0.0
+            </span>
+        </div>
+        <p class="mb-4">© 2025 NIS2 Shield Contributors. MIT License.</p>
+        <div class="flex justify-center space-x-6">
+            <a href="../" class="hover:text-white transition">Home</a>
+            <a href="../pricing/" class="hover:text-white transition">Pricing</a>
+            <a href="https://github.com/nis2shield/infrastructure" class="hover:text-white transition">GitHub</a>
+        </div>
     </footer>
+
     <script>lucide.createIcons();</script>
-<!-- Cloudflare Web Analytics --><script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "4b9d7f2a1da44d62a75457bc2d38af01"}'></script><!-- End Cloudflare Web Analytics -->
+    <!-- Cloudflare Web Analytics -->
+    <script defer src='https://static.cloudflareinsights.com/beacon.min.js'
+        data-cf-beacon='{"token": "4b9d7f2a1da44d62a75457bc2d38af01"}'></script><!-- End Cloudflare Web Analytics -->
 </body>
 
 </html>

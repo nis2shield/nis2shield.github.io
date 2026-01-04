@@ -429,26 +429,37 @@
                 </div>
                 <div class="flex items-center text-green-400 font-semibold">Explore Vue Guard →</div>
             </a>
-            <!-- Infrastructure Card -->
-            <a href="https://github.com/nis2shield/infrastructure"
-                class="bg-slate-800/50 p-8 rounded-2xl border border-slate-700 hover:border-purple-500 transition-all duration-300 card-hover block">
-                <div class="flex items-center gap-4 mb-6">
-                    <div class="w-14 h-14 bg-purple-900/50 rounded-xl flex items-center justify-center">
+            <!-- Project 4: Infrastructure -->
+            <a href="./infrastructure/"
+                class="group block bg-slate-800 rounded-2xl p-8 border border-slate-700 hover:border-purple-500 transition h-full relative overflow-hidden">
+                <div
+                    class="absolute top-0 right-0 w-32 h-32 bg-purple-500/10 rounded-bl-full -mr-8 -mt-8 transition group-hover:bg-purple-500/20">
+                </div>
+
+                <div class="flex items-center gap-4 mb-6 relative">
+                    <div class="w-12 h-12 rounded-xl bg-purple-500/20 flex items-center justify-center text-purple-400">
                         <i data-lucide="container" class="w-8 h-8 text-purple-400"></i>
                     </div>
                     <div>
-                        <h3 class="text-2xl font-bold text-white">Infrastructure Kit</h3>
-                        <p class="text-slate-400">Docker Stack</p>
+                        <h3 class="text-xl font-bold text-white">Infrastructure Kit</h3>
+                        <p class="text-sm text-slate-400">Docker Stack</p>
                     </div>
                 </div>
-                <p class="text-slate-300 mb-6">Secure-by-design Docker infrastructure. Hardened containers, log
-                    segregation, automated backups.</p>
+
+                <p class="text-slate-400 mb-6 text-sm leading-relaxed">
+                    Secure-by-design Docker infrastructure. Hardened containers, log segregation, automated backups.
+                </p>
+
                 <div class="flex flex-wrap gap-2 mb-6">
-                    <span class="px-3 py-1 bg-purple-900/30 text-purple-400 rounded-full text-sm">Docker</span>
-                    <span class="px-3 py-1 bg-slate-700 text-slate-300 rounded-full text-sm">Fluent Bit</span>
-                    <span class="px-3 py-1 bg-slate-700 text-slate-300 rounded-full text-sm">PostgreSQL</span>
+                    <span class="px-2 py-1 bg-slate-700 rounded text-xs text-purple-300">Docker</span>
+                    <span class="px-2 py-1 bg-slate-700 rounded text-xs text-purple-300">Fluent Bit</span>
+                    <span class="px-2 py-1 bg-slate-700 rounded text-xs text-purple-300">PostgreSQL</span>
                 </div>
-                <div class="flex items-center text-purple-400 font-semibold">View on GitHub →</div>
+
+                <div
+                    class="flex items-center text-purple-400 text-sm font-semibold group-hover:translate-x-1 transition">
+                    Explore Infrastructure <i data-lucide="arrow-right" class="w-4 h-4 ml-1"></i>
+                </div>
             </a>
         </div>
     </section>
