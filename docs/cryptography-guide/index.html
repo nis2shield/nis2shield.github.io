@@ -244,17 +244,107 @@
             font-weight: 600;
         }
 
-        /* Diagram */
-        .diagram {
+        /* Flow Diagram */
+        .flow-diagram {
             background: #f8fafc;
             border: 1px solid #e2e8f0;
-            border-radius: 8px;
-            padding: 20px;
+            border-radius: 12px;
+            padding: 30px;
             margin: 20px 0;
-            font-family: 'JetBrains Mono', monospace;
-            font-size: 9pt;
-            white-space: pre;
-            overflow-x: auto;
+        }
+
+        .flow-row {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+
+        .flow-row:last-child {
+            margin-bottom: 0;
+        }
+
+        .flow-box {
+            padding: 15px 20px;
+            border-radius: 8px;
+            text-align: center;
+            font-size: 10pt;
+            font-weight: 500;
+        }
+
+        .flow-start {
+            background: #dbeafe;
+            border: 2px solid #3b82f6;
+            color: #1e40af;
+        }
+
+        .flow-process {
+            background: #fef3c7;
+            border: 2px solid #f59e0b;
+            color: #92400e;
+        }
+
+        .flow-encrypt {
+            background: #d1fae5;
+            border: 2px solid #10b981;
+            color: #065f46;
+        }
+
+        .flow-wrap {
+            background: #ede9fe;
+            border: 2px solid #8b5cf6;
+            color: #5b21b6;
+        }
+
+        .flow-data {
+            background: #cffafe;
+            border: 2px solid #06b6d4;
+            color: #0e7490;
+        }
+
+        .flow-result {
+            background: #f1f5f9;
+            border: 2px solid #64748b;
+            color: #334155;
+            min-width: 300px;
+        }
+
+        .flow-result code {
+            display: block;
+            margin-top: 8px;
+            font-size: 8pt;
+            color: #475569;
+        }
+
+        .flow-arrow {
+            font-size: 20pt;
+            color: #94a3b8;
+            font-weight: bold;
+        }
+
+        .flow-arrow-down {
+            font-size: 20pt;
+            color: #94a3b8;
+            text-align: center;
+            margin: 10px 0;
+        }
+
+        .flow-split {
+            justify-content: center;
+            gap: 60px;
+        }
+
+        .flow-branch {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .flow-merge {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
         }
 
         /* Code Block */
@@ -619,19 +709,32 @@
 
         <h2>3.1 Encryption Flow</h2>
 
-        <div class="diagram">┌─────────────────────────────────────────────────────────────┐
-            │ Encryption Flow │
-            │ │
-            │ Plaintext → [Generate Session Key] → AES-256-GCM Encrypt │
-            │ │ │ │
-            │ ▼ ▼ │
-            │ RSA-OAEP Wrap Key Ciphertext │
-            │ │ │ │
-            │ └────────┬───────────────┘ │
-            │ ▼ │
-            │ Encrypted Envelope (JSON) │
-            │ { encrypted_data, encrypted_key, iv, tag, key_id } │
-            └─────────────────────────────────────────────────────────────┘</div>
+        <div class="flow-diagram">
+            <div class="flow-row">
+                <div class="flow-box flow-start">Plaintext</div>
+                <div class="flow-arrow">→</div>
+                <div class="flow-box flow-process">Generate Session Key<br><small>(CSPRNG 256-bit)</small></div>
+                <div class="flow-arrow">→</div>
+                <div class="flow-box flow-encrypt">AES-256-GCM Encrypt</div>
+            </div>
+            <div class="flow-row flow-split">
+                <div class="flow-branch">
+                    <div class="flow-arrow-down">↓</div>
+                    <div class="flow-box flow-wrap">RSA-OAEP<br>Wrap Session Key</div>
+                </div>
+                <div class="flow-branch">
+                    <div class="flow-arrow-down">↓</div>
+                    <div class="flow-box flow-data">Ciphertext</div>
+                </div>
+            </div>
+            <div class="flow-row">
+                <div class="flow-merge">
+                    <div class="flow-arrow-down">↓</div>
+                    <div class="flow-box flow-result">Encrypted Envelope
+                        (JSON)<br><code>{ encrypted_data, encrypted_key, iv, tag, key_id }</code></div>
+                </div>
+            </div>
+        </div>
 
         <h2>3.2 Security Properties</h2>
 
