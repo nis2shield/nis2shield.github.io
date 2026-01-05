@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Disaster Recovery - NIS2 Shield</title>
+    <meta name="description"
+        content="Enterprise disaster recovery with automatic failover. On-premise installation with encrypted cloud standby.">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+
+        .gradient-text {
+            background: linear-gradient(90deg, #60a5fa, #a855f7);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            color: transparent;
+        }
+
+        .gradient-border {
+            background: linear-gradient(135deg, rgba(96, 165, 250, 0.3), rgba(168, 85, 247, 0.3));
+        }
+
+        .glass-card {
+            background: rgba(30, 41, 59, 0.8);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(100, 116, 139, 0.3);
+        }
+
+        .architecture-box {
+            background: rgba(15, 23, 42, 0.9);
+            border: 2px solid #334155;
+            border-radius: 12px;
+            padding: 20px;
+        }
+
+        .flow-arrow {
+            color: #60a5fa;
+            font-size: 24px;
+        }
+    </style>
+</head>
+
+<body class="bg-slate-900 text-slate-300 antialiased">
+
+    <!-- Navbar -->
+    <nav class="border-b border-slate-800 bg-slate-900/80 backdrop-blur sticky top-0 z-50">
+        <div class="container mx-auto px-6 py-4 flex justify-between items-center">
+            <a href="../" class="flex items-center space-x-2">
+                <img src="../logo/logo.svg" alt="NIS2 Shield" class="w-9 h-9 p-1.5">
+                <span class="text-xl font-bold text-white"><span class="gradient-text">NIS2</span>Shield</span>
+            </a>
+            <div class="hidden md:flex space-x-8">
+                <a href="../" class="hover:text-teal-400 transition">Home</a>
+                <a href="../infrastructure/" class="hover:text-teal-400 transition">Infrastructure</a>
+                <a href="../pricing/" class="hover:text-teal-400 transition">Pricing</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero -->
+    <header class="relative overflow-hidden py-20">
+        <div class="absolute inset-0 bg-gradient-to-br from-purple-900/20 to-blue-900/20"></div>
+        <div class="container mx-auto px-6 relative z-10">
+            <div class="max-w-4xl mx-auto text-center">
+                <span
+                    class="inline-block px-4 py-2 rounded-full bg-purple-500/20 text-purple-400 text-sm font-medium mb-6">
+                    💎 Premium Module
+                </span>
+                <h1 class="text-4xl md:text-5xl font-bold text-white mb-6">
+                    <span class="gradient-text">Disaster Recovery</span><br>
+                    for On-Premise Installations
+                </h1>
+                <p class="text-xl text-slate-400 mb-8 max-w-2xl mx-auto">
+                    Keep your data on-premise with automatic failover to encrypted cloud standby.
+                    Business continuity guaranteed in under 5 minutes.
+                </p>
+                <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                    <a href="mailto:enterprise@nis2shield.com"
+                        class="px-8 py-4 bg-gradient-to-r from-purple-500 to-blue-500 text-white font-semibold rounded-lg hover:opacity-90 transition">
+                        Contact Sales
+                    </a>
+                    <a href="#architecture"
+                        class="px-8 py-4 border border-slate-600 text-white font-semibold rounded-lg hover:border-purple-500 transition">
+                        View Architecture
+                    </a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Key Metrics -->
+    <section class="py-16 border-b border-slate-800">
+        <div class="container mx-auto px-6">
+            <div class="grid md:grid-cols-4 gap-8 text-center">
+                <div class="glass-card rounded-xl p-6">
+                    <div class="text-4xl font-bold text-white mb-2">&lt;5 min</div>
+                    <div class="text-slate-400">Recovery Time (RTO)</div>
+                </div>
+                <div class="glass-card rounded-xl p-6">
+                    <div class="text-4xl font-bold text-white mb-2">&lt;1 min</div>
+                    <div class="text-slate-400">Data Loss (RPO)</div>
+                </div>
+                <div class="glass-card rounded-xl p-6">
+                    <div class="text-4xl font-bold text-white mb-2">100%</div>
+                    <div class="text-slate-400">Encrypted</div>
+                </div>
+                <div class="glass-card rounded-xl p-6">
+                    <div class="text-4xl font-bold text-white mb-2">Zero</div>
+                    <div class="text-slate-400">Cloud Access to Data</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- How It Works -->
+    <section class="py-20" id="architecture">
+        <div class="container mx-auto px-6">
+            <h2 class="text-3xl font-bold text-white text-center mb-4">How It Works</h2>
+            <p class="text-slate-400 text-center mb-12 max-w-2xl mx-auto">
+                Your primary server runs on-premise. A dormant cloud replica syncs continuously.
+                If the primary fails, traffic automatically switches to the cloud.
+            </p>
+
+            <!-- Architecture Diagram -->
+            <div class="max-w-5xl mx-auto">
+                <div class="grid md:grid-cols-3 gap-6 items-center">
+                    <!-- On-Premise -->
+                    <div class="architecture-box">
+                        <div class="flex items-center gap-3 mb-4">
+                            <div class="w-10 h-10 rounded-lg bg-green-500/20 flex items-center justify-center">
+                                <i data-lucide="server" class="w-5 h-5 text-green-400"></i>
+                            </div>
+                            <div>
+                                <div class="text-white font-semibold">On-Premise</div>
+                                <div class="text-xs text-green-400">ACTIVE</div>
+                            </div>
+                        </div>
+                        <ul class="text-sm text-slate-400 space-y-2">
+                            <li class="flex items-center gap-2">
+                                <i data-lucide="check" class="w-4 h-4 text-green-400"></i>
+                                Your App + Database
+                            </li>
+                            <li class="flex items-center gap-2">
+                                <i data-lucide="check" class="w-4 h-4 text-green-400"></i>
+                                DR Agent installed
+                            </li>
+                            <li class="flex items-center gap-2">
+                                <i data-lucide="check" class="w-4 h-4 text-green-400"></i>
+                                Data stays local
+                            </li>
+                        </ul>
+                    </div>
+
+                    <!-- Arrow -->
+                    <div class="text-center">
+                        <div class="hidden md:block">
+                            <div class="text-slate-500 text-sm mb-2">Encrypted Sync</div>
+                            <div class="flow-arrow">→ → →</div>
+                            <div class="text-slate-500 text-sm mt-2">TLS 1.3 + AES-256</div>
+                        </div>
+                        <div class="md:hidden py-4">
+                            <div class="flow-arrow">↓</div>
+                        </div>
+                    </div>
+
+                    <!-- Cloud Standby -->
+                    <div class="architecture-box border-dashed border-slate-600">
+                        <div class="flex items-center gap-3 mb-4">
+                            <div class="w-10 h-10 rounded-lg bg-blue-500/20 flex items-center justify-center">
+                                <i data-lucide="cloud" class="w-5 h-5 text-blue-400"></i>
+                            </div>
+                            <div>
+                                <div class="text-white font-semibold">Cloud Standby</div>
+                                <div class="text-xs text-slate-500">DORMANT</div>
+                            </div>
+                        </div>
+                        <ul class="text-sm text-slate-400 space-y-2">
+                            <li class="flex items-center gap-2">
+                                <i data-lucide="pause" class="w-4 h-4 text-slate-500"></i>
+                                App stopped (no cost)
+                            </li>
+                            <li class="flex items-center gap-2">
+                                <i data-lucide="database" class="w-4 h-4 text-blue-400"></i>
+                                DB replica syncing
+                            </li>
+                            <li class="flex items-center gap-2">
+                                <i data-lucide="lock" class="w-4 h-4 text-purple-400"></i>
+                                You keep the key
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Failover Arrow -->
+                <div class="text-center py-8">
+                    <div
+                        class="inline-flex items-center gap-4 px-6 py-3 rounded-full bg-red-500/10 border border-red-500/30">
+                        <i data-lucide="alert-triangle" class="w-5 h-5 text-red-400"></i>
+                        <span class="text-red-400 font-medium">If primary fails → Automatic failover in &lt;5
+                            minutes</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features -->
+    <section class="py-20 bg-slate-800/30">
+        <div class="container mx-auto px-6">
+            <h2 class="text-3xl font-bold text-white text-center mb-12">Key Features</h2>
+
+            <div class="grid md:grid-cols-3 gap-8 max-w-5xl mx-auto">
+                <div class="glass-card rounded-xl p-6">
+                    <div class="w-12 h-12 rounded-lg bg-green-500/20 flex items-center justify-center mb-4">
+                        <i data-lucide="heart-pulse" class="w-6 h-6 text-green-400"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold text-white mb-2">Health Monitoring</h3>
+                    <p class="text-slate-400">
+                        Continuous 30-second health checks. Three failures trigger automatic failover with instant
+                        notifications.
+                    </p>
+                </div>
+
+                <div class="glass-card rounded-xl p-6">
+                    <div class="w-12 h-12 rounded-lg bg-blue-500/20 flex items-center justify-center mb-4">
+                        <i data-lucide="refresh-cw" class="w-6 h-6 text-blue-400"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold text-white mb-2">Database Replication</h3>
+                    <p class="text-slate-400">
+                        PostgreSQL streaming replication with encrypted WAL logs. Point-in-time recovery supported.
+                    </p>
+                </div>
+
+                <div class="glass-card rounded-xl p-6">
+                    <div class="w-12 h-12 rounded-lg bg-purple-500/20 flex items-center justify-center mb-4">
+                        <i data-lucide="globe" class="w-6 h-6 text-purple-400"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold text-white mb-2">DNS Failover</h3>
+                    <p class="text-slate-400">
+                        Automatic DNS switch via Cloudflare or Route53. Low TTL ensures rapid traffic redirection.
+                    </p>
+                </div>
+
+                <div class="glass-card rounded-xl p-6">
+                    <div class="w-12 h-12 rounded-lg bg-teal-500/20 flex items-center justify-center mb-4">
+                        <i data-lucide="rotate-ccw" class="w-6 h-6 text-teal-400"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold text-white mb-2">Automatic Failback</h3>
+                    <p class="text-slate-400">
+                        When your primary recovers, data syncs back automatically. Zero manual intervention required.
+                    </p>
+                </div>
+
+                <div class="glass-card rounded-xl p-6">
+                    <div class="w-12 h-12 rounded-lg bg-orange-500/20 flex items-center justify-center mb-4">
+                        <i data-lucide="shield-check" class="w-6 h-6 text-orange-400"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold text-white mb-2">Zero-Trust Security</h3>
+                    <p class="text-slate-400">
+                        Cloud provider cannot access your data. End-to-end encryption with your private key stored
+                        offline.
+                    </p>
+                </div>
+
+                <div class="glass-card rounded-xl p-6">
+                    <div class="w-12 h-12 rounded-lg bg-pink-500/20 flex items-center justify-center mb-4">
+                        <i data-lucide="file-check" class="w-6 h-6 text-pink-400"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold text-white mb-2">NIS2 Compliant</h3>
+                    <p class="text-slate-400">
+                        Satisfies Article 21.2.c (business continuity) and 21.2.j (backup systems) requirements.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pricing -->
+    <section class="py-20">
+        <div class="container mx-auto px-6">
+            <h2 class="text-3xl font-bold text-white text-center mb-4">Simple Pricing</h2>
+            <p class="text-slate-400 text-center mb-12">One-time license. Pay cloud costs directly to your provider.</p>
+
+            <div class="max-w-lg mx-auto">
+                <div class="glass-card rounded-2xl p-8 border-2 border-purple-500/50">
+                    <div class="text-center mb-6">
+                        <div class="text-purple-400 font-medium mb-2">DR Module License</div>
+                        <div class="text-5xl font-bold text-white">€499</div>
+                        <div class="text-slate-400">one-time payment</div>
+                    </div>
+
+                    <ul class="space-y-4 mb-8">
+                        <li class="flex items-center gap-3">
+                            <i data-lucide="check-circle" class="w-5 h-5 text-green-400"></i>
+                            <span>DR Agent (Go binary)</span>
+                        </li>
+                        <li class="flex items-center gap-3">
+                            <i data-lucide="check-circle" class="w-5 h-5 text-green-400"></i>
+                            <span>Health Monitor (Cloudflare Workers)</span>
+                        </li>
+                        <li class="flex items-center gap-3">
+                            <i data-lucide="check-circle" class="w-5 h-5 text-green-400"></i>
+                            <span>Database Replication Scripts</span>
+                        </li>
+                        <li class="flex items-center gap-3">
+                            <i data-lucide="check-circle" class="w-5 h-5 text-green-400"></i>
+                            <span>DNS Failover Controller</span>
+                        </li>
+                        <li class="flex items-center gap-3">
+                            <i data-lucide="check-circle" class="w-5 h-5 text-green-400"></i>
+                            <span>Terraform modules (AWS/Azure/GCP)</span>
+                        </li>
+                        <li class="flex items-center gap-3">
+                            <i data-lucide="check-circle" class="w-5 h-5 text-green-400"></i>
+                            <span>Automatic failback</span>
+                        </li>
+                        <li class="flex items-center gap-3">
+                            <i data-lucide="check-circle" class="w-5 h-5 text-green-400"></i>
+                            <span>1 year of updates</span>
+                        </li>
+                    </ul>
+
+                    <div class="bg-slate-800/50 rounded-lg p-4 mb-6 text-sm">
+                        <div class="text-slate-400 mb-2">Estimated cloud costs (paid to provider):</div>
+                        <div class="text-white">~$20-50/month for standby infrastructure</div>
+                    </div>
+
+                    <a href="mailto:enterprise@nis2shield.com"
+                        class="block w-full py-4 text-center bg-gradient-to-r from-purple-500 to-blue-500 text-white font-semibold rounded-lg hover:opacity-90 transition">
+                        Contact Sales
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="py-20 bg-gradient-to-r from-purple-900/30 to-blue-900/30">
+        <div class="container mx-auto px-6 text-center">
+            <h2 class="text-3xl font-bold text-white mb-4">Ready for Business Continuity?</h2>
+            <p class="text-slate-400 mb-8 max-w-xl mx-auto">
+                Don't wait for a disaster to test your recovery plan. Get enterprise-grade failover today.
+            </p>
+            <a href="mailto:enterprise@nis2shield.com"
+                class="inline-block px-8 py-4 bg-white text-slate-900 font-semibold rounded-lg hover:bg-slate-100 transition">
+                Schedule a Demo
+            </a>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="border-t border-slate-800 py-12">
+        <div class="container mx-auto px-6">
+            <div class="flex flex-col md:flex-row justify-between items-center gap-6">
+                <div class="flex items-center space-x-2">
+                    <img src="../logo/logo.svg" alt="NIS2 Shield" class="w-8 h-8">
+                    <span class="text-white font-semibold"><span class="gradient-text">NIS2</span>Shield</span>
+                </div>
+                <div class="flex gap-6 text-sm text-slate-400">
+                    <a href="../" class="hover:text-white transition">Home</a>
+                    <a href="../infrastructure/" class="hover:text-white transition">Infrastructure</a>
+                    <a href="../auditor-kit/" class="hover:text-white transition">Auditor Kit</a>
+                    <a href="../pricing/" class="hover:text-white transition">Pricing</a>
+                </div>
+                <div class="text-sm text-slate-500">
+                    © 2026 NIS2 Shield. All rights reserved.
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        lucide.createIcons();
+    </script>
+</body>
+
+</html>
